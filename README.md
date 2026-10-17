@@ -64,8 +64,8 @@ EvilTwinDetection/
 
 ### 2. Clone the Repository
 ```bash
-git clone https://github.com/your-username/EvilTwinDetection.git
-cd EvilTwinDetection
+git clone https://github.com/hemapriyaperugu-hub/EvilTwinWiFiDetection.git
+cd EvilTwinWiFiDetection
 ```
 
 ### 3. Install Dependencies
