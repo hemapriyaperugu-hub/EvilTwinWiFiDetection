@@ -13,14 +13,9 @@ from src.history import load_history, update_history
 from src.predict import (
     analyze_scanned_networks,
     load_models,
-    STATUS_LEGITIMATE,
-    STATUS_NEW,
-    STATUS_SUSPICIOUS,
-    STATUS_EVIL_TWIN,
-    VERDICT_SAFE,
-    VERDICT_ACCEPTABLE,
-    VERDICT_CAUTION,
-    VERDICT_DANGER
+    RISK_LOWER,
+    RISK_UNCERTAIN,
+    RISK_HIGH
 )
 from src.system_profiles import (
     get_active_wifi_interface,
@@ -72,7 +67,6 @@ def display_active_connection_analysis():
         print(f"  Default Gateway IP : {net_info['Gateway_IP'] or 'N/A'}")
         if net_info.get("Gateway_MAC"):
             print(f"  Default Gateway MAC: {net_info['Gateway_MAC']}")
-            # Compare Gateway MAC and Wi-Fi BSSID OUI
             gw_oui = net_info['Gateway_MAC'][:8]
             ap_oui = iface.get('BSSID', '')[:8]
             if gw_oui and ap_oui and gw_oui == ap_oui:
@@ -95,8 +89,8 @@ def display_active_connection_analysis():
 
 def main():
     print("======================================================================")
-    print("       SOFTWARE-BASED EVIL TWIN DETECTION IN PUBLIC WI-FI")
-    print("       Algorithms: K-Nearest Neighbors (KNN) + Random Forest")
+    print("       EVIDENCE-BASED WI-FI CONNECTION RISK ASSESSMENT SYSTEM")
+    print("       Multi-Dimensional Analysis: ML (KNN + RF) + RF + Cryptography")
     print("======================================================================\n")
 
     # Ensure models exist and are valid
@@ -132,7 +126,7 @@ def main():
     history_df = load_history()
 
     # ---------------------------------------------------------
-    # STEP 4 - Run Detection Analysis
+    # STEP 4 - Run Multi-Dimensional Risk Assessment
     # ---------------------------------------------------------
     results, safer_candidates = analyze_scanned_networks(
         scanned_networks,
@@ -140,10 +134,10 @@ def main():
     )
 
     # ---------------------------------------------------------
-    # STEP 5 - Detection report
+    # STEP 5 - Risk Assessment Report
     # ---------------------------------------------------------
     print("======================================================================")
-    print("                DETECTION & CONNECTION DECISION REPORT")
+    print("              EVIDENCE-BASED WI-FI RISK ASSESSMENT REPORT")
     print("======================================================================")
 
     for i, res in enumerate(results, start=1):
@@ -154,39 +148,44 @@ def main():
         print(f"  Signal Strength    : {res['Signal']}%")
         print(f"  Advertised Security: {res['Security']} ({res.get('Encryption', 'CCMP')})")
         if res.get("Radio") and res["Radio"] != "Unknown":
-            print(f"  PHY Radio Type     : {res['Radio']}")
+            print(f"  Physical Radio PHY : {res['Radio']}")
+
+        print(f"\n  Trust Baseline     : {res['TrustState']}")
 
         print("\n  Machine Learning Evaluation:")
-        print(f"    - KNN Classifier     : {res['KNN_Pred']}")
+        print(f"    - KNN Model          : {res['KNN_Pred']}")
         print(f"    - Random Forest      : {res['RF_Pred']}")
 
-        print("\n  Evidence & Analysis:")
-        for reason in res["Reasons"]:
-            print(f"    * {reason}")
+        print("\n  Observed Evidence & Factors:")
+        for ev in res["ObservedEvidence"]:
+            print(f"    [+] {ev}")
 
-        print(f"\n  Threat Assessment  : {res['Badge']} {res['FinalResult']}")
-        print(f"  CONNECTION VERDICT : {res['VerdictBadge']} {res['ConnectionVerdict']}")
-        print(f"  Action Advice      : {res['ConnectionAdvice']}")
+        if res["WarningIndicators"]:
+            print("\n  Warning Indicators & Anomalies:")
+            for warn in res["WarningIndicators"]:
+                print(f"    [!] {warn}")
+
+        print(f"\n  RISK ASSESSMENT    : {res['RiskBadge']} {res['RiskCategory']}")
+        print(f"  ACTION ADVICE      : {res['SummaryAdvice']}")
         print("-" * 70)
 
     # ---------------------------------------------------------
-    # STEP 6 - Safer network recommendation
+    # STEP 6 - Lower-Risk Network Recommendations
     # ---------------------------------------------------------
     print("\n======================================================================")
-    print("                   RECOMMENDED NETWORK FOR CONNECTION")
-    print("======================================================================")
+    print("              RECOMMENDED LOWER-RISK NETWORKS IN RANGE")
+    print("======================================================================\n")
 
     if safer_candidates:
-        top = safer_candidates[0]
-        print(f"  Suggested SSID     : {top['SSID']}")
-        print(f"  BSSID (MAC)        : {top['BSSID']}")
-        print(f"  Signal Strength    : {top['Signal']}%")
-        print(f"  Confidence Level   : {top['ObservationCount']} observation / profile weight")
-        print("  Status             : Verified safe. Zero attack or spoofing indicators.")
-        print("  Notice             : System does not auto-connect; use Windows Wi-Fi menu.")
+        for rank, cand in enumerate(safer_candidates[:3], start=1):
+            print(f"  {rank}. SSID: {cand['SSID']} [{cand['BSSID']}]")
+            print(f"     Signal Strength  : {cand['Signal']}%")
+            print(f"     Assessment Status: {cand['RiskCategory']}")
+            print()
+        print("  Notice: System does not connect automatically; choose your network via Windows Wi-Fi menu.")
     else:
-        print("  No pre-verified networks in range.")
-        print("  Unfamiliar networks should be checked against the Connection Verdict above.")
+        print("  No networks currently meet the Lower-Risk criteria.")
+        print("  Check the individual Warning Indicators and Action Advice above.")
 
     # ---------------------------------------------------------
     # STEP 7 - Update local network history

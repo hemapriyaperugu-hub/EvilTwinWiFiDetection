@@ -33,7 +33,10 @@ from src.predict import (
     STATUS_LEGITIMATE,
     STATUS_NEW,
     STATUS_SUSPICIOUS,
-    STATUS_EVIL_TWIN
+    STATUS_EVIL_TWIN,
+    RISK_LOWER,
+    RISK_UNCERTAIN,
+    RISK_HIGH
 )
 
 
@@ -387,8 +390,8 @@ class TestEvilTwinScenarios(unittest.TestCase):
             self.assertTrue(res["IsDualBand"], f"Failed to detect dual-band partner for {res['BSSID']}")
             # Both radios must NEVER be flagged as Evil Twin!
             self.assertNotEqual(res["FinalResult"], STATUS_EVIL_TWIN)
-            # Verdict must be safe or acceptable to connect
-            self.assertIn(res["ConnectionVerdict"], ["SAFE TO CONNECT", "ACCEPTABLE — PROCEED WITH CAUTION"])
+            # Verdict must reflect lower risk or acceptable to connect
+            self.assertIn(res["ConnectionVerdict"], [RISK_LOWER, RISK_UNCERTAIN])
 
     # ------------------------------------------------------------------
     # Scenario 14: Saved Windows Profile Correlation
@@ -407,7 +410,7 @@ class TestEvilTwinScenarios(unittest.TestCase):
             results, safer = analyze_scanned_networks(scan, history_df=self.isolated_history)
             self.assertEqual(len(results), 1)
             self.assertEqual(results[0]["FinalResult"], STATUS_LEGITIMATE)
-            self.assertEqual(results[0]["ConnectionVerdict"], "SAFE TO CONNECT")
+            self.assertEqual(results[0]["ConnectionVerdict"], RISK_LOWER)
 
     # ------------------------------------------------------------------
     # Scenario 15: Captive Portal Probe Simulation

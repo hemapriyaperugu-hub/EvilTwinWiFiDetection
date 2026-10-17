@@ -279,6 +279,27 @@ def get_known_securities_for_ssid(history_df, ssid):
     return set(matches["Security"].dropna().str.strip().str.lower().tolist())
 
 
+def get_trust_state(history_df, ssid, bssid, saved_profiles=None):
+    """
+    Distinguishes internal trust status of an access point:
+    - 'USER_VERIFIED': Network is explicitly saved in Windows profiles (user configured credentials).
+    - 'PREVIOUSLY_OBSERVED': Seen in passive scans previously (Observation Count >= 1), but not in saved profiles.
+    - 'UNFAMILIAR': Never observed before on this device.
+    """
+    ssid_clean = sanitize_ssid(ssid)
+    bssid_clean = sanitize_bssid(bssid)
+
+    if saved_profiles and ssid_clean in saved_profiles:
+        return "USER_VERIFIED"
+
+    if history_df is not None and not history_df.empty:
+        rec = get_ap_record(history_df, ssid_clean, bssid_clean)
+        if rec is not None:
+            return "PREVIOUSLY_OBSERVED"
+
+    return "UNFAMILIAR"
+
+
 if __name__ == "__main__":
     print("==================================================")
     print("           NETWORK HISTORY SYSTEM                 ")
