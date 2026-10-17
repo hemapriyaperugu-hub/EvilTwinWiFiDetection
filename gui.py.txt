@@ -1,0 +1,1108 @@
+import tkinter as tk
+from tkinter import ttk, messagebox
+import subprocess
+import threading
+import os
+import sys
+import csv
+import re
+
+
+# ============================================================
+# COLORS
+# ============================================================
+
+BG = "#08111F"
+PANEL = "#0D1B2A"
+PANEL2 = "#10243A"
+BORDER = "#1D3A56"
+
+TEXT = "#EAF4FF"
+MUTED = "#8EA8C1"
+
+BLUE = "#238BFF"
+GREEN = "#16C784"
+RED = "#FF4D67"
+YELLOW = "#FFB020"
+
+
+# ============================================================
+# MAIN WINDOW
+# ============================================================
+
+root = tk.Tk()
+
+root.title("Wi-Fi Evil Twin Detection System")
+
+root.geometry("1250x760")
+root.minsize(1050, 650)
+
+root.configure(bg=BG)
+
+
+# ============================================================
+# VARIABLES
+# ============================================================
+
+scan_running = False
+
+
+# ============================================================
+# FUNCTIONS
+# ============================================================
+
+def clear_table():
+    """Remove all networks from the table."""
+
+    for item in network_table.get_children():
+        network_table.delete(item)
+
+
+def update_output(text):
+    """Display terminal output inside GUI."""
+
+    output_box.config(state="normal")
+
+    output_box.insert("end", text)
+
+    output_box.see("end")
+
+    output_box.config(state="disabled")
+
+
+def load_networks_from_csv():
+    """
+    Read the Wi-Fi dataset created by main.py
+    and display the detected networks.
+    """
+
+    clear_table()
+
+    csv_path = os.path.join(
+        PROJECT_FOLDER,
+        "dataset",
+        "wifi_dataset.csv"
+    )
+
+    if not os.path.exists(csv_path):
+        return
+
+    try:
+
+        with open(
+            csv_path,
+            "r",
+            encoding="utf-8-sig",
+            newline=""
+        ) as file:
+
+            reader = csv.DictReader(file)
+
+            rows = list(reader)
+
+        for number, row in enumerate(rows, start=1):
+
+            ssid = row.get("SSID", "--")
+            bssid = row.get("BSSID", "--")
+            signal = row.get("Signal", "--")
+            channel = row.get("Channel", "--")
+            security = row.get("Security", "--")
+
+            # Convert empty values
+            if not ssid:
+                ssid = "<Hidden Network>"
+
+            if not bssid:
+                bssid = "--"
+
+            if not signal:
+                signal = "--"
+
+            if not channel:
+                channel = "--"
+
+            if not security:
+                security = "--"
+
+            network_table.insert(
+                "",
+                "end",
+                values=(
+                    number,
+                    ssid,
+                    bssid,
+                    signal,
+                    channel,
+                    security,
+                    "ANALYZED"
+                )
+            )
+
+        network_count.config(
+            text=f"Networks found: {len(rows)}"
+        )
+
+    except Exception as error:
+
+        update_output(
+            f"\n[GUI] Could not read dataset: {error}\n"
+        )
+
+
+def show_final_result(output):
+    """Determine the final result from main.py output."""
+
+    text = output.upper()
+
+    # Suspicious result has priority
+    if (
+        "SUSPICIOUS NETWORK" in text
+        or "POSSIBLE EVIL TWIN" in text
+    ):
+
+        result_label.config(
+            text="⚠  SUSPICIOUS NETWORK",
+            fg=RED
+        )
+
+        result_description.config(
+            text=(
+                "Possible Evil Twin detected. "
+                "Avoid connecting until the network is verified."
+            )
+        )
+
+        return
+
+    # Legitimate result
+    if (
+        "LEGITIMATE NETWORK" in text
+        or "SAFE NETWORK" in text
+    ):
+
+        result_label.config(
+            text="✓  SAFE NETWORK",
+            fg=GREEN
+        )
+
+        result_description.config(
+            text=(
+                "No suspicious indicators were detected "
+                "by the current detection models."
+            )
+        )
+
+        return
+
+    # Completed but result wasn't detected
+    result_label.config(
+        text="SCAN COMPLETED",
+        fg=BLUE
+    )
+
+    result_description.config(
+        text=(
+            "The scan completed successfully. "
+            "Check the analysis output below."
+        )
+    )
+
+
+def scan_finished(output, return_code):
+    """Runs after main.py finishes."""
+
+    global scan_running
+
+    scan_running = False
+
+    scan_button.config(
+        state="normal",
+        text="  SCAN WI-FI NETWORKS  "
+    )
+
+    status_dot.config(
+        fg=GREEN
+    )
+
+    status_label.config(
+        text="Wi-Fi Adapter Ready"
+    )
+
+    if return_code != 0:
+
+        scan_status.config(
+            text="Scan Failed",
+            fg=RED
+        )
+
+        result_label.config(
+            text="SCAN ERROR",
+            fg=RED
+        )
+
+        result_description.config(
+            text="Check the output panel below for details."
+        )
+
+        return
+
+    scan_status.config(
+        text="Scan Completed",
+        fg=GREEN
+    )
+
+    # Update network table
+    load_networks_from_csv()
+
+    # Show result
+    show_final_result(output)
+
+
+def run_main_program():
+    """
+    Execute the existing main.py.
+    """
+
+    try:
+
+        # Use the same Python interpreter
+        # that is running this GUI.
+        python_executable = sys.executable
+
+        process = subprocess.Popen(
+            [
+                python_executable,
+                "main.py"
+            ],
+
+            cwd=PROJECT_FOLDER,
+
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+
+            text=True,
+
+            bufsize=1
+        )
+
+        complete_output = ""
+
+        # Read main.py output line by line
+        for line in process.stdout:
+
+            complete_output += line
+
+            root.after(
+                0,
+                update_output,
+                line
+            )
+
+        process.wait()
+
+        root.after(
+            0,
+            scan_finished,
+            complete_output,
+            process.returncode
+        )
+
+    except Exception as error:
+
+        root.after(
+            0,
+            scan_error,
+            str(error)
+        )
+
+
+def start_scan():
+    """Start Wi-Fi scanning."""
+
+    global scan_running
+
+    if scan_running:
+        return
+
+    scan_running = True
+
+    # Clear previous information
+    clear_table()
+
+    output_box.config(state="normal")
+    output_box.delete("1.0", "end")
+    output_box.config(state="disabled")
+
+    # Update GUI
+    scan_button.config(
+        state="disabled",
+        text="  SCANNING...  "
+    )
+
+    scan_status.config(
+        text="Scanning nearby networks...",
+        fg=YELLOW
+    )
+
+    status_dot.config(
+        fg=YELLOW
+    )
+
+    status_label.config(
+        text="Scanning Wi-Fi networks"
+    )
+
+    network_count.config(
+        text="Networks found: --"
+    )
+
+    result_label.config(
+        text="ANALYZING...",
+        fg=YELLOW
+    )
+
+    result_description.config(
+        text=(
+            "Scanning with the built-in Wi-Fi adapter "
+            "and running the detection models."
+        )
+    )
+
+    # Run main.py in background
+    thread = threading.Thread(
+        target=run_main_program,
+        daemon=True
+    )
+
+    thread.start()
+
+
+def scan_error(error):
+    """Display errors."""
+
+    global scan_running
+
+    scan_running = False
+
+    scan_button.config(
+        state="normal",
+        text="  SCAN WI-FI NETWORKS  "
+    )
+
+    status_dot.config(
+        fg=RED
+    )
+
+    status_label.config(
+        text="Error"
+    )
+
+    scan_status.config(
+        text="Scan Failed",
+        fg=RED
+    )
+
+    result_label.config(
+        text="ERROR",
+        fg=RED
+    )
+
+    result_description.config(
+        text=str(error)
+    )
+
+
+def show_history():
+    """Show information about scan history."""
+
+    history_path = os.path.join(
+        PROJECT_FOLDER,
+        "dataset",
+        "network_history.csv"
+    )
+
+    if os.path.exists(history_path):
+
+        messagebox.showinfo(
+            "Scan History",
+            "Your scan history is stored in:\n\n"
+            "dataset\\network_history.csv"
+        )
+
+    else:
+
+        messagebox.showinfo(
+            "Scan History",
+            "No scan history has been created yet."
+        )
+
+
+def show_about():
+    """About window."""
+
+    messagebox.showinfo(
+        "About",
+        "Wi-Fi Evil Twin Detection System\n\n"
+        "Client-side Wi-Fi security prototype\n\n"
+        "Technology:\n"
+        "• Python\n"
+        "• Built-in Wi-Fi adapter\n"
+        "• Feature extraction\n"
+        "• KNN\n"
+        "• Random Forest\n"
+        "• Network history"
+    )
+
+
+# ============================================================
+# PROJECT LOCATION
+# ============================================================
+
+PROJECT_FOLDER = os.path.dirname(
+    os.path.abspath(__file__)
+)
+
+
+# ============================================================
+# HEADER
+# ============================================================
+
+header = tk.Frame(
+    root,
+    bg=BG,
+    height=90
+)
+
+header.pack(
+    fill="x",
+    padx=28,
+    pady=(20, 0)
+)
+
+
+# Left side title
+
+title_area = tk.Frame(
+    header,
+    bg=BG
+)
+
+title_area.pack(
+    side="left"
+)
+
+
+shield = tk.Label(
+    title_area,
+    text="◈",
+    font=("Segoe UI", 38, "bold"),
+    fg=BLUE,
+    bg=BG
+)
+
+shield.pack(
+    side="left",
+    padx=(0, 15)
+)
+
+
+title_text = tk.Frame(
+    title_area,
+    bg=BG
+)
+
+title_text.pack(
+    side="left"
+)
+
+
+title = tk.Label(
+    title_text,
+    text="Wi-Fi Evil Twin Detection System",
+    font=("Segoe UI", 22, "bold"),
+    fg=TEXT,
+    bg=BG
+)
+
+title.pack(
+    anchor="w"
+)
+
+
+subtitle = tk.Label(
+    title_text,
+    text="Detect  •  Analyze  •  Stay Safe",
+    font=("Segoe UI", 10),
+    fg=MUTED,
+    bg=BG
+)
+
+subtitle.pack(
+    anchor="w"
+)
+
+
+# Right side
+
+header_right = tk.Frame(
+    header,
+    bg=BG
+)
+
+header_right.pack(
+    side="right",
+    pady=15
+)
+
+
+tk.Label(
+    header_right,
+    text="Built with Python",
+    font=("Segoe UI", 9),
+    fg=MUTED,
+    bg=BG
+).pack(
+    side="left",
+    padx=8
+)
+
+
+tk.Label(
+    header_right,
+    text="│",
+    font=("Segoe UI", 9),
+    fg=BORDER,
+    bg=BG
+).pack(
+    side="left"
+)
+
+
+tk.Label(
+    header_right,
+    text="KNN + Random Forest",
+    font=("Segoe UI", 9),
+    fg=MUTED,
+    bg=BG
+).pack(
+    side="left",
+    padx=8
+)
+
+
+# ============================================================
+# CONTENT
+# ============================================================
+
+content = tk.Frame(
+    root,
+    bg=BG
+)
+
+content.pack(
+    fill="both",
+    expand=True,
+    padx=28,
+    pady=15
+)
+
+
+# ============================================================
+# SIDEBAR
+# ============================================================
+
+sidebar = tk.Frame(
+    content,
+    bg=PANEL,
+    width=210,
+    highlightbackground=BORDER,
+    highlightthickness=1
+)
+
+sidebar.pack(
+    side="left",
+    fill="y"
+)
+
+sidebar.pack_propagate(False)
+
+
+tk.Label(
+    sidebar,
+    text="SECURITY",
+    font=("Segoe UI", 9, "bold"),
+    fg=MUTED,
+    bg=PANEL
+).pack(
+    anchor="w",
+    padx=25,
+    pady=(28, 12)
+)
+
+
+def create_sidebar_button(text, command):
+
+    button = tk.Button(
+        sidebar,
+        text=text,
+        command=command,
+
+        anchor="w",
+
+        padx=22,
+        pady=15,
+
+        font=("Segoe UI", 10, "bold"),
+
+        bg=PANEL,
+        fg=TEXT,
+
+        activebackground="#173F68",
+        activeforeground="white",
+
+        relief="flat",
+        bd=0,
+
+        cursor="hand2"
+    )
+
+    button.pack(
+        fill="x",
+        pady=2
+    )
+
+    return button
+
+
+# Now functions already exist, so this is safe.
+
+create_sidebar_button(
+    "   ◉   Scan Networks",
+    start_scan
+)
+
+create_sidebar_button(
+    "   ◷   Scan History",
+    show_history
+)
+
+create_sidebar_button(
+    "   ⓘ   About",
+    show_about
+)
+
+
+# Sidebar bottom
+
+sidebar_bottom = tk.Frame(
+    sidebar,
+    bg=PANEL
+)
+
+sidebar_bottom.pack(
+    side="bottom",
+    fill="x",
+    padx=20,
+    pady=25
+)
+
+
+tk.Label(
+    sidebar_bottom,
+    text="●",
+    font=("Segoe UI", 13),
+    fg=GREEN,
+    bg=PANEL
+).pack(
+    side="left"
+)
+
+
+tk.Label(
+    sidebar_bottom,
+    text=" Wi-Fi Adapter Ready\n Windows",
+    justify="left",
+    font=("Segoe UI", 9),
+    fg=MUTED,
+    bg=PANEL
+).pack(
+    side="left"
+)
+
+
+# ============================================================
+# MAIN AREA
+# ============================================================
+
+main_area = tk.Frame(
+    content,
+    bg=BG
+)
+
+main_area.pack(
+    side="left",
+    fill="both",
+    expand=True,
+    padx=(18, 0)
+)
+
+
+# ============================================================
+# SCAN BAR
+# ============================================================
+
+scan_bar = tk.Frame(
+    main_area,
+    bg=PANEL,
+    highlightbackground=BORDER,
+    highlightthickness=1
+)
+
+scan_bar.pack(
+    fill="x",
+    pady=(0, 15)
+)
+
+
+scan_button = tk.Button(
+    scan_bar,
+
+    text="  SCAN WI-FI NETWORKS  ",
+
+    command=start_scan,
+
+    font=("Segoe UI", 11, "bold"),
+
+    bg=BLUE,
+    fg="white",
+
+    activebackground="#1670D2",
+    activeforeground="white",
+
+    relief="flat",
+
+    padx=25,
+    pady=13,
+
+    cursor="hand2"
+)
+
+scan_button.pack(
+    side="left",
+    padx=15,
+    pady=15
+)
+
+
+scan_status = tk.Label(
+    scan_bar,
+    text="Ready to scan",
+    font=("Segoe UI", 10, "bold"),
+    fg=GREEN,
+    bg=PANEL
+)
+
+scan_status.pack(
+    side="left",
+    padx=10
+)
+
+
+network_count = tk.Label(
+    scan_bar,
+    text="Networks found: --",
+    font=("Segoe UI", 10),
+    fg=MUTED,
+    bg=PANEL
+)
+
+network_count.pack(
+    side="right",
+    padx=20
+)
+
+
+# ============================================================
+# NETWORK TABLE
+# ============================================================
+
+table_panel = tk.Frame(
+    main_area,
+    bg=PANEL,
+    highlightbackground=BORDER,
+    highlightthickness=1
+)
+
+table_panel.pack(
+    fill="both",
+    expand=True
+)
+
+
+tk.Label(
+    table_panel,
+    text="Detected Wi-Fi Networks",
+    font=("Segoe UI", 14, "bold"),
+    fg=TEXT,
+    bg=PANEL
+).pack(
+    anchor="w",
+    padx=20,
+    pady=(18, 12)
+)
+
+
+table_container = tk.Frame(
+    table_panel,
+    bg=PANEL
+)
+
+table_container.pack(
+    fill="both",
+    expand=True,
+    padx=15,
+    pady=(0, 15)
+)
+
+
+columns = (
+    "No.",
+    "SSID",
+    "BSSID",
+    "Signal",
+    "Channel",
+    "Security",
+    "Status"
+)
+
+
+network_table = ttk.Treeview(
+    table_container,
+    columns=columns,
+    show="headings"
+)
+
+
+column_widths = {
+    "No.": 50,
+    "SSID": 180,
+    "BSSID": 180,
+    "Signal": 80,
+    "Channel": 90,
+    "Security": 100,
+    "Status": 110
+}
+
+
+for column in columns:
+
+    network_table.heading(
+        column,
+        text=column
+    )
+
+    network_table.column(
+        column,
+        width=column_widths[column],
+        anchor="center"
+    )
+
+
+network_table.pack(
+    side="left",
+    fill="both",
+    expand=True
+)
+
+
+# Scrollbar
+
+table_scroll = ttk.Scrollbar(
+    table_container,
+    orient="vertical",
+    command=network_table.yview
+)
+
+network_table.configure(
+    yscrollcommand=table_scroll.set
+)
+
+table_scroll.pack(
+    side="right",
+    fill="y"
+)
+
+
+# ============================================================
+# RESULT PANEL
+# ============================================================
+
+result_panel = tk.Frame(
+    main_area,
+    bg=PANEL,
+    highlightbackground=BORDER,
+    highlightthickness=1
+)
+
+result_panel.pack(
+    fill="x",
+    pady=(15, 0)
+)
+
+
+tk.Label(
+    result_panel,
+    text="Detection Result",
+    font=("Segoe UI", 13, "bold"),
+    fg=TEXT,
+    bg=PANEL
+).pack(
+    anchor="w",
+    padx=20,
+    pady=(15, 5)
+)
+
+
+result_label = tk.Label(
+    result_panel,
+    text="No scan performed yet",
+    font=("Segoe UI", 20, "bold"),
+    fg=MUTED,
+    bg=PANEL
+)
+
+result_label.pack(
+    anchor="w",
+    padx=20
+)
+
+
+result_description = tk.Label(
+    result_panel,
+    text="Run a scan to analyze nearby Wi-Fi networks.",
+    font=("Segoe UI", 10),
+    fg=MUTED,
+    bg=PANEL
+)
+
+result_description.pack(
+    anchor="w",
+    padx=20,
+    pady=(3, 15)
+)
+
+
+# ============================================================
+# OUTPUT PANEL
+# ============================================================
+
+output_panel = tk.Frame(
+    main_area,
+    bg=PANEL,
+    highlightbackground=BORDER,
+    highlightthickness=1
+)
+
+output_panel.pack(
+    fill="x",
+    pady=(15, 0)
+)
+
+
+tk.Label(
+    output_panel,
+    text="Analysis Output",
+    font=("Segoe UI", 11, "bold"),
+    fg=TEXT,
+    bg=PANEL
+).pack(
+    anchor="w",
+    padx=15,
+    pady=(10, 5)
+)
+
+
+output_box = tk.Text(
+    output_panel,
+
+    height=7,
+
+    bg="#06101C",
+    fg="#B8D4EA",
+
+    insertbackground="white",
+
+    relief="flat",
+
+    font=("Consolas", 9),
+
+    padx=12,
+    pady=10
+)
+
+output_box.pack(
+    fill="both",
+    expand=True,
+    padx=10,
+    pady=(0, 10)
+)
+
+output_box.config(
+    state="disabled"
+)
+
+
+# ============================================================
+# TREEVIEW COLORS
+# ============================================================
+
+style = ttk.Style()
+
+style.theme_use("clam")
+
+style.configure(
+    "Treeview",
+
+    background=PANEL,
+    foreground=TEXT,
+
+    fieldbackground=PANEL,
+
+    rowheight=38,
+
+    borderwidth=0,
+
+    font=("Segoe UI", 10)
+)
+
+
+style.configure(
+    "Treeview.Heading",
+
+    background=PANEL2,
+    foreground=MUTED,
+
+    font=("Segoe UI Semibold", 10),
+
+    borderwidth=0
+)
+
+
+style.map(
+    "Treeview",
+
+    background=[
+        ("selected", "#173F68")
+    ],
+
+    foreground=[
+        ("selected", "white")
+    ]
+)
+
+
+# ============================================================
+# START GUI
+# ============================================================
+
+root.mainloop()

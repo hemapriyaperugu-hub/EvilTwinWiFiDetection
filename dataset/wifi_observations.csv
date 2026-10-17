@@ -1,0 +1,1274 @@
+SSID,BSSID,Signal,Channel,Security,Timestamp,Label
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,80,6,WPA2-Personal,2026-09-10 10:10:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,77,3,WPA2-Personal,2026-09-10 10:10:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,78,36,WPA2-Personal,2026-09-10 10:10:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,76,11,WPA2-Personal,2026-09-10 10:10:00,0
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,94,6,WPA2-Personal,2026-09-10 10:11:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,91,3,WPA2-Personal,2026-09-10 10:11:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,92,36,WPA2-Personal,2026-09-10 10:11:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,90,11,WPA2-Personal,2026-09-10 10:11:00,0
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,100,6,WPA2-Personal,2026-09-10 10:12:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,99,3,WPA2-Personal,2026-09-10 10:12:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,100,36,WPA2-Personal,2026-09-10 10:12:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,98,11,WPA2-Personal,2026-09-10 10:12:00,0
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,74,6,WPA2-Personal,2026-09-10 10:13:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,71,3,WPA2-Personal,2026-09-10 10:13:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,72,36,WPA2-Personal,2026-09-10 10:13:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,70,11,WPA2-Personal,2026-09-10 10:13:00,0
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,87,6,WPA2-Personal,2026-09-10 10:14:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,84,3,WPA2-Personal,2026-09-10 10:14:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,85,36,WPA2-Personal,2026-09-10 10:14:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,83,11,WPA2-Personal,2026-09-10 10:14:00,0
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,98,6,WPA2-Personal,2026-09-10 10:15:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,95,3,WPA2-Personal,2026-09-10 10:15:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,96,36,WPA2-Personal,2026-09-10 10:15:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,94,11,WPA2-Personal,2026-09-10 10:15:00,0
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,71,6,WPA2-Personal,2026-09-10 10:16:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,68,3,WPA2-Personal,2026-09-10 10:16:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,69,36,WPA2-Personal,2026-09-10 10:16:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,67,11,WPA2-Personal,2026-09-10 10:16:00,0
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,77,6,WPA2-Personal,2026-09-10 10:17:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,74,3,WPA2-Personal,2026-09-10 10:17:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,75,36,WPA2-Personal,2026-09-10 10:17:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,73,11,WPA2-Personal,2026-09-10 10:17:00,0
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,90,6,WPA2-Personal,2026-09-10 10:18:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,87,3,WPA2-Personal,2026-09-10 10:18:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,88,36,WPA2-Personal,2026-09-10 10:18:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,86,11,WPA2-Personal,2026-09-10 10:18:00,0
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,85,6,WPA2-Personal,2026-09-10 10:19:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,82,3,WPA2-Personal,2026-09-10 10:19:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,83,36,WPA2-Personal,2026-09-10 10:19:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,81,11,WPA2-Personal,2026-09-10 10:19:00,0
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,72,6,WPA2-Personal,2026-09-10 10:20:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,69,3,WPA2-Personal,2026-09-10 10:20:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,70,36,WPA2-Personal,2026-09-10 10:20:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,68,11,WPA2-Personal,2026-09-10 10:20:00,0
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,97,6,WPA2-Personal,2026-09-10 10:21:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,94,3,WPA2-Personal,2026-09-10 10:21:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,95,36,WPA2-Personal,2026-09-10 10:21:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,93,11,WPA2-Personal,2026-09-10 10:21:00,0
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,79,6,WPA2-Personal,2026-09-10 10:22:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,76,3,WPA2-Personal,2026-09-10 10:22:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,77,36,WPA2-Personal,2026-09-10 10:22:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,75,11,WPA2-Personal,2026-09-10 10:22:00,0
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,76,6,WPA2-Personal,2026-09-10 10:23:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,73,3,WPA2-Personal,2026-09-10 10:23:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,74,36,WPA2-Personal,2026-09-10 10:23:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,72,11,WPA2-Personal,2026-09-10 10:23:00,0
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,92,6,WPA2-Personal,2026-09-10 10:24:00,0
+TP-Link_6790,0c:ef:15:e8:67:90,89,3,WPA2-Personal,2026-09-10 10:24:00,0
+Home_Fiber_5G,50:d4:f7:9a:bc:de,90,36,WPA2-Personal,2026-09-10 10:24:00,0
+Student_StudyRoom,ac:84:c6:33:44:55,88,11,WPA2-Personal,2026-09-10 10:24:00,0
+Vardhaman_Campus,18:64:72:a1:01:01,61,1,WPA2-Enterprise,2026-09-11 11:10:00,0
+Vardhaman_Campus,18:64:72:a1:01:02,65,6,WPA2-Enterprise,2026-09-11 11:10:00,0
+Vardhaman_Campus,18:64:72:a1:01:03,69,11,WPA2-Enterprise,2026-09-11 11:10:00,0
+Vardhaman_Campus,18:64:72:a1:01:01,74,1,WPA2-Enterprise,2026-09-11 11:11:00,0
+Vardhaman_Campus,18:64:72:a1:01:02,78,6,WPA2-Enterprise,2026-09-11 11:11:00,0
+Vardhaman_Campus,18:64:72:a1:01:03,82,11,WPA2-Enterprise,2026-09-11 11:11:00,0
+Vardhaman_Campus,18:64:72:a1:01:01,81,1,WPA2-Enterprise,2026-09-11 11:12:00,0
+Vardhaman_Campus,18:64:72:a1:01:02,85,6,WPA2-Enterprise,2026-09-11 11:12:00,0
+Vardhaman_Campus,18:64:72:a1:01:03,89,11,WPA2-Enterprise,2026-09-11 11:12:00,0
+Vardhaman_Campus,18:64:72:a1:01:01,88,1,WPA2-Enterprise,2026-09-11 11:13:00,0
+Vardhaman_Campus,18:64:72:a1:01:02,92,6,WPA2-Enterprise,2026-09-11 11:13:00,0
+Vardhaman_Campus,18:64:72:a1:01:03,96,11,WPA2-Enterprise,2026-09-11 11:13:00,0
+Vardhaman_Campus,18:64:72:a1:01:01,66,1,WPA2-Enterprise,2026-09-11 11:14:00,0
+Vardhaman_Campus,18:64:72:a1:01:02,70,6,WPA2-Enterprise,2026-09-11 11:14:00,0
+Vardhaman_Campus,18:64:72:a1:01:03,74,11,WPA2-Enterprise,2026-09-11 11:14:00,0
+Vardhaman_Campus,18:64:72:a1:01:01,76,1,WPA2-Enterprise,2026-09-11 11:15:00,0
+Vardhaman_Campus,18:64:72:a1:01:02,80,6,WPA2-Enterprise,2026-09-11 11:15:00,0
+Vardhaman_Campus,18:64:72:a1:01:03,84,11,WPA2-Enterprise,2026-09-11 11:15:00,0
+Vardhaman_Campus,18:64:72:a1:01:01,84,1,WPA2-Enterprise,2026-09-11 11:16:00,0
+Vardhaman_Campus,18:64:72:a1:01:02,88,6,WPA2-Enterprise,2026-09-11 11:16:00,0
+Vardhaman_Campus,18:64:72:a1:01:03,92,11,WPA2-Enterprise,2026-09-11 11:16:00,0
+Vardhaman_Campus,18:64:72:a1:01:01,58,1,WPA2-Enterprise,2026-09-11 11:17:00,0
+Vardhaman_Campus,18:64:72:a1:01:02,62,6,WPA2-Enterprise,2026-09-11 11:17:00,0
+Vardhaman_Campus,18:64:72:a1:01:03,66,11,WPA2-Enterprise,2026-09-11 11:17:00,0
+Vardhaman_Campus,18:64:72:a1:01:01,70,1,WPA2-Enterprise,2026-09-11 11:18:00,0
+Vardhaman_Campus,18:64:72:a1:01:02,74,6,WPA2-Enterprise,2026-09-11 11:18:00,0
+Vardhaman_Campus,18:64:72:a1:01:03,78,11,WPA2-Enterprise,2026-09-11 11:18:00,0
+Vardhaman_Campus,18:64:72:a1:01:01,91,1,WPA2-Enterprise,2026-09-11 11:19:00,0
+Vardhaman_Campus,18:64:72:a1:01:02,95,6,WPA2-Enterprise,2026-09-11 11:19:00,0
+Vardhaman_Campus,18:64:72:a1:01:03,99,11,WPA2-Enterprise,2026-09-11 11:19:00,0
+Vardhaman_Campus,18:64:72:a1:01:01,78,1,WPA2-Enterprise,2026-09-11 11:20:00,0
+Vardhaman_Campus,18:64:72:a1:01:02,82,6,WPA2-Enterprise,2026-09-11 11:20:00,0
+Vardhaman_Campus,18:64:72:a1:01:03,86,11,WPA2-Enterprise,2026-09-11 11:20:00,0
+Vardhaman_Campus,18:64:72:a1:01:01,64,1,WPA2-Enterprise,2026-09-11 11:21:00,0
+Vardhaman_Campus,18:64:72:a1:01:02,68,6,WPA2-Enterprise,2026-09-11 11:21:00,0
+Vardhaman_Campus,18:64:72:a1:01:03,72,11,WPA2-Enterprise,2026-09-11 11:21:00,0
+TestWiFi,00:14:22:01:23:45,70,1,WPA2-Personal,2026-09-12 14:10:00,0
+TestWiFi,00:14:22:01:23:45,74,1,WPA2-Personal,2026-09-12 14:11:00,0
+TestWiFi,00:14:22:01:23:45,78,1,WPA2-Personal,2026-09-12 14:12:00,0
+TestWiFi,00:14:22:01:23:45,82,1,WPA2-Personal,2026-09-12 14:13:00,0
+TestWiFi,00:14:22:01:23:45,86,1,WPA2-Personal,2026-09-12 14:14:00,0
+TestWiFi,00:14:22:01:23:45,70,1,WPA2-Personal,2026-09-12 14:15:00,0
+TestWiFi,00:14:22:01:23:45,74,1,WPA2-Personal,2026-09-12 14:16:00,0
+TestWiFi,00:14:22:01:23:45,78,1,WPA2-Personal,2026-09-12 14:17:00,0
+TestWiFi,00:14:22:01:23:45,82,1,WPA2-Personal,2026-09-12 14:18:00,0
+TestWiFi,00:14:22:01:23:45,86,1,WPA2-Personal,2026-09-12 14:19:00,0
+TestWiFi,e0:dc:ff:99:88:77,92,11,Open,2026-09-12 14:10:00,1
+TestWiFi,e0:dc:ff:99:88:77,94,11,Open,2026-09-12 14:11:00,1
+TestWiFi,e0:dc:ff:99:88:77,96,11,Open,2026-09-12 14:12:00,1
+TestWiFi,e0:dc:ff:99:88:77,92,11,Open,2026-09-12 14:13:00,1
+TestWiFi,e0:dc:ff:99:88:77,94,11,Open,2026-09-12 14:14:00,1
+TestWiFi,e0:dc:ff:99:88:77,96,11,Open,2026-09-12 14:15:00,1
+TestWiFi,e0:dc:ff:99:88:77,92,11,Open,2026-09-12 14:16:00,1
+TestWiFi,e0:dc:ff:99:88:77,94,11,Open,2026-09-12 14:17:00,1
+TestWiFi,e0:dc:ff:99:88:77,96,11,Open,2026-09-12 14:18:00,1
+TestWiFi,e0:dc:ff:99:88:77,92,11,Open,2026-09-12 14:19:00,1
+Vardhaman_Campus,da:a1:19:bb:22:33,96,3,Open,2026-09-13 15:15:00,1
+Vardhaman_Campus,da:a1:19:bb:22:33,94,3,Open,2026-09-13 15:16:00,1
+Vardhaman_Campus,da:a1:19:bb:22:33,90,3,WPA2-Personal,2026-09-13 15:17:00,1
+Vardhaman_Campus,92:c5:31:44:55:66,88,9,Open,2026-09-13 15:18:00,1
+Vardhaman_Campus,92:c5:31:44:55:66,91,9,Open,2026-09-13 15:19:00,1
+CoffeeShop_WiFi,44:48:b1:11:22:33,65,6,Open,2026-09-14 16:10:00,0
+CoffeeShop_WiFi,44:48:b1:11:22:33,69,6,Open,2026-09-14 16:11:00,0
+CoffeeShop_WiFi,44:48:b1:11:22:33,73,6,Open,2026-09-14 16:12:00,0
+CoffeeShop_WiFi,44:48:b1:11:22:33,77,6,Open,2026-09-14 16:13:00,0
+CoffeeShop_WiFi,44:48:b1:11:22:33,81,6,Open,2026-09-14 16:14:00,0
+CoffeeShop_WiFi,44:48:b1:11:22:33,85,6,Open,2026-09-14 16:15:00,0
+CoffeeShop_WiFi,44:48:b1:11:22:33,65,6,Open,2026-09-14 16:16:00,0
+CoffeeShop_WiFi,44:48:b1:11:22:33,69,6,Open,2026-09-14 16:17:00,0
+CoffeeShop_WiFi,44:48:b1:11:22:33,73,6,Open,2026-09-14 16:18:00,0
+CoffeeShop_WiFi,44:48:b1:11:22:33,77,6,Open,2026-09-14 16:19:00,0
+Airport_Free_WiFi,3c:37:12:77:88:99,65,1,Open,2026-09-14 16:10:00,0
+Airport_Free_WiFi,3c:37:12:77:88:99,69,1,Open,2026-09-14 16:11:00,0
+Airport_Free_WiFi,3c:37:12:77:88:99,73,1,Open,2026-09-14 16:12:00,0
+Airport_Free_WiFi,3c:37:12:77:88:99,77,1,Open,2026-09-14 16:13:00,0
+Airport_Free_WiFi,3c:37:12:77:88:99,81,1,Open,2026-09-14 16:14:00,0
+Airport_Free_WiFi,3c:37:12:77:88:99,85,1,Open,2026-09-14 16:15:00,0
+Airport_Free_WiFi,3c:37:12:77:88:99,65,1,Open,2026-09-14 16:16:00,0
+Airport_Free_WiFi,3c:37:12:77:88:99,69,1,Open,2026-09-14 16:17:00,0
+Airport_Free_WiFi,3c:37:12:77:88:99,73,1,Open,2026-09-14 16:18:00,0
+Airport_Free_WiFi,3c:37:12:77:88:99,77,1,Open,2026-09-14 16:19:00,0
+CoffeeShop_WiFi,f2:90:3a:cc:11:99,93,11,Open,2026-09-14 16:20:00,1
+CoffeeShop_WiFi,f2:90:3a:cc:11:99,95,11,Open,2026-09-14 16:21:00,1
+Airport_Free_WiFi,b8:27:eb:55:44:33,91,8,Open,2026-09-14 16:22:00,1
+Airport_Free_WiFi,b8:27:eb:55:44:33,89,8,Open,2026-09-14 16:23:00,1
+TP-Link_6790,42:2b:44:b2:97:a9,96,3,WPA2-Personal,2026-09-15 17:10:00,1
+TP-Link_6790,42:2b:44:b2:97:a9,94,3,WPA2-Personal,2026-09-15 17:11:00,1
+TP-Link_6790,3e:84:32:6b:06:1d,92,3,WPA2-Personal,2026-09-15 17:12:00,1
+Hostel_BlockB_WiFi,ee:11:22:33:44:55,95,6,WPA2-Personal,2026-09-15 17:13:00,1
+Hostel_BlockB_WiFi,ee:11:22:33:44:55,91,6,WPA2-Personal,2026-09-15 17:14:00,1
+TP-Link_6790,0c:ef:15:e8:67:90,100,3,WPA2-Personal,2026-09-18 12:46:07,Unknown
+TP-Link_6790,5e:75:81:46:8d:60,100,3,WPA2-Personal,2026-09-18 12:46:07,Unknown
+S RAJESH REDDY,78:20:51:c8:54:9a,13,3,WPA2-Personal,2026-09-18 12:46:07,Unknown
+TP-Link_6790,0c:ef:15:e8:67:90,100,3,WPA2-Personal,2026-09-18 12:46:41,Unknown
+TP-Link_6790,5e:75:81:46:8d:60,100,3,WPA2-Personal,2026-09-18 12:46:41,Unknown
+S RAJESH REDDY,78:20:51:c8:54:9a,9,3,WPA2-Personal,2026-09-18 12:46:41,Unknown
+TP-Link_22CE,78:20:51:c9:22:ce,50,2,WPA2-Personal,2026-09-18 12:46:41,Unknown
+TP-Link_4208,98:03:8e:eb:42:08,30,2,WPA2-Personal,2026-09-18 12:46:41,Unknown
+ACT-ai_101797014974,5c:e9:31:e8:35:e1,5,4,WPA2-Personal,2026-09-18 12:46:41,Unknown
+Sadhuu,e0:d3:62:57:f3:34,6,3,WPA2-Personal,2026-09-18 12:46:41,Unknown
+TP-Link_6790,0c:ef:15:e8:67:90,100,3,WPA2-Personal,2026-09-18 12:47:07,Unknown
+TP-Link_6790,5e:75:81:46:8d:60,100,3,WPA2-Personal,2026-09-18 12:47:07,Unknown
+S RAJESH REDDY,78:20:51:c8:54:9a,9,3,WPA2-Personal,2026-09-18 12:47:07,Unknown
+TP-Link_22CE,78:20:51:c9:22:ce,50,2,WPA2-Personal,2026-09-18 12:47:07,Unknown
+TP-Link_4208,98:03:8e:eb:42:08,30,2,WPA2-Personal,2026-09-18 12:47:07,Unknown
+ACT-ai_101797014974,5c:e9:31:e8:35:e1,5,4,WPA2-Personal,2026-09-18 12:47:07,Unknown
+Sadhuu,e0:d3:62:57:f3:34,6,3,WPA2-Personal,2026-09-18 12:47:07,Unknown
+TP-Link_6790,0c:ef:15:e8:67:90,100,3,WPA2-Personal,2026-09-18 12:47:13,Unknown
+TP-Link_6790,5e:75:81:46:8d:60,100,3,WPA2-Personal,2026-09-18 12:47:13,Unknown
+S RAJESH REDDY,78:20:51:c8:54:9a,9,3,WPA2-Personal,2026-09-18 12:47:13,Unknown
+TP-Link_22CE,78:20:51:c9:22:ce,50,2,WPA2-Personal,2026-09-18 12:47:13,Unknown
+TP-Link_4208,98:03:8e:eb:42:08,30,2,WPA2-Personal,2026-09-18 12:47:13,Unknown
+ACT-ai_101797014974,5c:e9:31:e8:35:e1,5,4,WPA2-Personal,2026-09-18 12:47:13,Unknown
+Sadhuu,e0:d3:62:57:f3:34,6,3,WPA2-Personal,2026-09-18 12:47:13,Unknown
+Nidhi Sri 2nd Floor-5G,54:a2:45:36:db:31,95,44,WPA2-Personal,2026-09-18 19:26:32,Unknown
+Nidhi Sri 2nd Floor-5G,54:a2:45:36:db:31,100,44,WPA2-Personal,2026-09-18 19:26:41,Unknown
+Nidhi Sri 2nd Floor,54:a2:45:36:db:35,100,11,WPA2-Personal,2026-09-18 19:26:41,Unknown
+HAYASUDHI,18:69:45:1a:4e:f4,85,4,WPA2-Personal,2026-09-18 19:26:41,Unknown
+Airtel_Saipriya,58:07:f8:58:6d:da,9,6,WPA2-Personal,2026-09-18 19:26:41,Unknown
+TP-Link_534A,0c:ef:15:e9:53:4a,85,10,WPA2-Personal,2026-09-18 19:26:41,Unknown
+I'm your_wifi,98:ba:5f:97:63:78,55,4,WPA2-Personal,2026-09-18 19:26:41,Unknown
+TP-Link_6790,0c:ef:15:e8:67:90,20,3,WPA2-Personal,2026-09-18 19:26:41,Unknown
+ADYAN D LINK,bc:0f:9a:19:fa:4c,12,13,WPA2-Personal,2026-09-18 19:26:41,Unknown
+SAMA NIVAS,34:0a:33:72:98:aa,9,13,WPA2-Personal,2026-09-18 19:26:41,Unknown
+ACT-ai_101768339186,3c:6a:d2:da:c1:01,8,10,WPA2-Personal,2026-09-18 19:26:41,Unknown
+Nidhi Sri 2nd Floor-5G,54:a2:45:36:db:31,90,44,WPA2-Personal,2026-09-18 19:27:53,Unknown
+Nidhi Sri 2nd Floor,54:a2:45:36:db:35,100,11,WPA2-Personal,2026-09-18 19:27:53,Unknown
+HAYASUDHI,18:69:45:1a:4e:f4,85,4,WPA2-Personal,2026-09-18 19:27:53,Unknown
+Airtel_Saipriya,58:07:f8:58:6d:da,9,6,WPA2-Personal,2026-09-18 19:27:53,Unknown
+TP-Link_534A,0c:ef:15:e9:53:4a,85,10,WPA2-Personal,2026-09-18 19:27:53,Unknown
+I'm your_wifi,98:ba:5f:97:63:78,55,4,WPA2-Personal,2026-09-18 19:27:53,Unknown
+TP-Link_6790,0c:ef:15:e8:67:90,20,3,WPA2-Personal,2026-09-18 19:27:53,Unknown
+ADYAN D LINK,bc:0f:9a:19:fa:4c,12,13,WPA2-Personal,2026-09-18 19:27:53,Unknown
+SAMA NIVAS,34:0a:33:72:98:aa,9,13,WPA2-Personal,2026-09-18 19:27:53,Unknown
+ACT-ai_101768339186,3c:6a:d2:da:c1:01,8,10,WPA2-Personal,2026-09-18 19:27:53,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,100,153,Open,2026-09-19 10:11:40,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,90,1,Open,2026-09-19 10:11:40,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,45,44,Open,2026-09-19 10:11:40,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,50,40,Open,2026-09-19 10:11:40,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-19 10:11:40,Unknown
+VCE Campus WiFi,e8:48:b8:3d:3f:ee,8,1,Open,2026-09-19 10:11:40,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,30,153,Open,2026-09-19 10:11:40,Unknown
+doraemon💗,fe:49:e5:78:95:e7,20,12,WPA2-Personal,2026-09-19 10:11:40,Unknown
+Makers-Space,34:60:f9:2c:35:80,8,11,WPA2-Personal,2026-09-19 10:11:40,Unknown
+Makers-Space,34:60:f9:2c:2f:c4,11,1,WPA2-Personal,2026-09-19 10:11:40,Unknown
+Harry Potter,b2:89:27:2c:29:79,60,11,WPA2-Personal,2026-09-19 10:11:40,Unknown
+3006-HE8D94tf8q09KUN,44:d2:44:de:92:34,100,11,WPA2-Personal,2026-09-19 10:11:40,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,100,153,Open,2026-09-19 10:12:45,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-19 10:12:45,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,65,1,Open,2026-09-19 10:12:45,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 10:12:45,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,30,153,Open,2026-09-19 10:12:45,Unknown
+3002,34:60:f9:2c:30:04,75,11,WPA2-Personal,2026-09-19 10:22:07,Unknown
+3002,34:60:f9:2c:30:05,6,40,WPA2-Personal,2026-09-19 10:22:07,Unknown
+Yellishetty Akshay's S24,16:23:08:3c:b5:eb,100,11,WPA2-Personal,2026-09-19 10:22:07,Unknown
+VCE-CIE,16:27:f5:66:b6:8a,70,11,WPA2-Personal,2026-09-19 10:22:07,Unknown
+3002,34:60:f9:2c:30:04,65,11,WPA2-Personal,2026-09-19 10:22:22,Unknown
+3002,34:60:f9:2c:30:05,6,40,WPA2-Personal,2026-09-19 10:22:22,Unknown
+Yellishetty Akshay's S24,16:23:08:3c:b5:eb,100,11,WPA2-Personal,2026-09-19 10:22:22,Unknown
+VCE-CIE,16:27:f5:66:b6:8a,70,11,WPA2-Personal,2026-09-19 10:22:22,Unknown
+3002,34:60:f9:2c:30:04,65,11,WPA2-Personal,2026-09-19 10:22:56,Unknown
+3002,34:60:f9:2c:30:05,6,40,WPA2-Personal,2026-09-19 10:22:56,Unknown
+VCE-SAC,10:27:f5:66:b6:8a,100,11,WPA2-Personal,2026-09-19 10:22:56,Unknown
+VCE-SAC,10:27:f5:66:b6:9d,11,48,WPA2-Personal,2026-09-19 10:22:56,Unknown
+VCE-CIE,16:27:f5:66:b6:8a,100,11,WPA2-Personal,2026-09-19 10:22:56,Unknown
+VCE-CIE,16:27:f5:66:b6:9d,10,48,WPA2-Personal,2026-09-19 10:22:56,Unknown
+VCE-CIE,16:27:f5:66:b6:9c,50,1,WPA2-Personal,2026-09-19 10:22:56,Unknown
+Yellishetty Akshay's S24,16:23:08:3c:b5:eb,100,11,WPA2-Personal,2026-09-19 10:22:56,Unknown
+vivo S2,a2:e5:9f:41:06:52,14,1,WPA2-Personal,2026-09-19 10:22:56,Unknown
+moto g45 5G_6761,22:27:40:9c:a5:8a,100,1,WPA3-Personal,2026-09-19 10:22:56,Unknown
+3202,b6:09:b9:ed:e3:8c,100,40,WPA2-Personal,2026-09-19 10:22:56,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,75,1,Open,2026-09-19 10:28:42,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,10,153,Open,2026-09-19 10:28:42,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,20,40,Open,2026-09-19 10:28:42,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d5:74,55,1,Open,2026-09-19 10:28:42,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,100,6,WPA2-Personal,2026-09-19 10:28:42,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,75,40,WPA2-Personal,2026-09-19 10:28:42,Unknown
+vivo S2,a2:e5:9f:41:06:52,5,1,WPA2-Personal,2026-09-19 10:28:42,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3b,75,161,WPA2-Personal,2026-09-19 10:28:42,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,100,11,WPA2-Personal,2026-09-19 10:28:42,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,45,153,Open,2026-09-19 10:28:42,Unknown
+3202,b6:09:b9:ed:e3:8c,15,40,WPA2-Personal,2026-09-19 10:28:42,Unknown
+Yellishetty Akshay's S24,16:23:08:3c:b5:eb,100,11,WPA2-Personal,2026-09-19 10:28:42,Unknown
+CSM E-Class Room,78:8c:b5:9a:f5:fe,20,1,WPA2-Personal,2026-09-19 10:28:42,Unknown
+moto g45 5G_6761,22:27:40:9c:a5:8a,70,1,WPA3-Personal,2026-09-19 10:28:42,Unknown
+Avinash_360,56:ff:37:91:91:8d,65,11,WPA2-Personal,2026-09-19 10:28:42,Unknown
+VCE-CIE,16:27:f5:66:b6:8a,70,11,WPA2-Personal,2026-09-19 10:28:42,Unknown
+VCE-CIE,16:27:f5:66:b6:9c,50,1,WPA2-Personal,2026-09-19 10:28:42,Unknown
+VCE-SAC,10:27:f5:66:b6:8a,65,11,WPA2-Personal,2026-09-19 10:28:42,Unknown
+VCE-SAC,10:27:f5:66:b6:9d,8,48,WPA2-Personal,2026-09-19 10:28:42,Unknown
+VCE-SAC,10:27:f5:66:b6:9c,50,1,WPA2-Personal,2026-09-19 10:28:42,Unknown
+Server-Room,42:52:a1:0e:d5:74,60,1,Open,2026-09-19 10:28:42,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,65,1,Open,2026-09-19 10:30:02,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,5,153,Open,2026-09-19 10:30:02,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,60,11,Open,2026-09-19 10:30:02,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,20,40,Open,2026-09-19 10:30:02,Unknown
+Yellishetty Akshay's S24,16:23:08:3c:b5:eb,70,11,WPA2-Personal,2026-09-19 10:30:02,Unknown
+Avinash_360,56:ff:37:91:91:8d,50,11,WPA2-Personal,2026-09-19 10:30:02,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,100,11,WPA2-Personal,2026-09-19 10:30:02,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3b,75,161,WPA2-Personal,2026-09-19 10:30:02,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,100,6,WPA2-Personal,2026-09-19 10:30:02,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,100,40,WPA2-Personal,2026-09-19 10:30:02,Unknown
+vivo S2,a2:e5:9f:41:06:52,70,1,WPA2-Personal,2026-09-19 10:30:02,Unknown
+3202,b6:09:b9:ed:e3:8c,30,40,WPA2-Personal,2026-09-19 10:30:02,Unknown
+<Hidden Network>,42:52:a1:0e:d3:41,100,40,WPA2-Personal,2026-09-19 10:30:02,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,30,153,Open,2026-09-19 10:30:02,Unknown
+R&D,70:4f:57:9d:b2:c7,7,44,WPA2-Personal,2026-09-19 10:30:02,Unknown
+moto g45 5G_6761,22:27:40:9c:a5:8a,45,1,WPA3-Personal,2026-09-19 10:30:02,Unknown
+CSM E-Class Room,78:8c:b5:9a:f5:fe,25,1,WPA2-Personal,2026-09-19 10:30:02,Unknown
+ram,62:8d:01:b2:a0:61,20,1,WPA2-Personal,2026-09-19 10:30:02,Unknown
+Server-Room,42:52:a1:0e:d5:74,10,1,Open,2026-09-19 10:30:02,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,25,1,Open,2026-09-19 10:39:43,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,10,1,Open,2026-09-19 10:39:43,Unknown
+OPPO F29 5G n9uw,42:12:a0:94:84:2c,55,1,WPA3-Personal,2026-09-19 10:39:43,Unknown
+Physics Lab,b0:4e:26:7b:0a:5e,50,1,WPA2-Personal,2026-09-19 10:39:43,Unknown
+Physics Lab,b0:4e:26:7b:0a:5d,65,36,WPA2-Personal,2026-09-19 10:39:43,Unknown
+Asadhd,c6:0f:dd:51:72:f3,12,11,WPA2-Personal,2026-09-19 10:39:43,Unknown
+IOTLAB-3013,b0:be:76:24:70:7e,8,11,WPA2-Personal,2026-09-19 10:39:43,Unknown
+3016-HE8D94tODV09KBv,44:d2:44:dd:83:5f,8,11,WPA2-Personal,2026-09-19 10:39:43,Unknown
+doraemon💗,fe:49:e5:78:95:e7,15,12,WPA2-Personal,2026-09-19 10:39:43,Unknown
+EEE3116-HE8D94s@mQ09NGt,44:d2:44:db:ec:1a,75,11,WPA2-Personal,2026-09-19 10:39:43,Unknown
+EEE-3106,a0:21:b7:b6:5e:b8,55,6,WPA2-Personal,2026-09-19 10:39:43,Unknown
+Galaxy A35 5G 44E9,ce:58:af:d8:34:67,20,6,WPA2-Personal,2026-09-19 10:39:43,Unknown
+nikhil,3a:61:fe:21:15:5e,80,6,WPA2-Personal,2026-09-19 10:39:43,Unknown
+Studio Room,b0:be:76:24:6f:aa,35,6,WPA2-Personal,2026-09-19 10:39:43,Unknown
+Vce-campus wifi,c6:a9:50:a2:5b:17,10,36,WPA2-Personal,2026-09-19 10:39:43,Unknown
+R&D,90:94:e4:c7:ff:ee,45,2,Open,2026-09-19 10:39:43,Unknown
+Unknown,ba:36:cd:79:70:7e,9,1,WPA3-Personal,2026-09-19 10:39:43,Unknown
+Asadhd,c6:0f:dd:51:72:f3,20,11,WPA2-Personal,2026-09-19 10:40:36,Unknown
+Physics Lab,b0:4e:26:7b:0a:5e,100,1,WPA2-Personal,2026-09-19 10:40:36,Unknown
+Physics Lab,b0:4e:26:7b:0a:5d,65,36,WPA2-Personal,2026-09-19 10:40:36,Unknown
+R&D,90:94:e4:c7:ff:ee,15,2,Open,2026-09-19 10:40:36,Unknown
+3108-HE8D94tfVq09KPs,44:d2:44:de:97:f4,10,11,WPA2-Personal,2026-09-19 10:40:36,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,11,11,WPA2-Personal,2026-09-19 10:40:36,Unknown
+Wifi,28:87:ba:2e:76:7c,11,10,WPA2-Personal,2026-09-19 10:40:36,Unknown
+EEE3116-HE8D94s@mQ09NGt,44:d2:44:db:ec:1a,50,11,WPA2-Personal,2026-09-19 10:40:36,Unknown
+🪭,ba:96:de:0e:a5:af,5,11,WPA2-Personal,2026-09-19 10:40:36,Unknown
+OPPO F29 5G n9uw,42:12:a0:94:84:2c,45,1,WPA3-Personal,2026-09-19 10:40:36,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,20,1,Open,2026-09-19 10:40:36,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,13,153,Open,2026-09-19 10:40:36,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,20,1,Open,2026-09-19 10:40:36,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,9,11,Open,2026-09-19 10:40:36,Unknown
+doraemon💗,fe:49:e5:78:95:e7,20,12,WPA2-Personal,2026-09-19 10:40:36,Unknown
+EEE-3106,a0:21:b7:b6:5e:b8,12,6,WPA2-Personal,2026-09-19 10:40:36,Unknown
+Studio Room,b0:be:76:24:6f:aa,14,6,WPA2-Personal,2026-09-19 10:40:36,Unknown
+nikhil,3a:61:fe:21:15:5e,40,6,WPA2-Personal,2026-09-19 10:40:36,Unknown
+3016-HE8D94tODV09KBv,44:d2:44:dd:83:5f,13,11,WPA2-Personal,2026-09-19 10:40:36,Unknown
+Galaxy A35 5G 44E9,ce:58:af:d8:34:67,20,6,WPA2-Personal,2026-09-19 10:40:36,Unknown
+IOTLAB-3013,b0:be:76:24:70:7e,6,11,WPA2-Personal,2026-09-19 10:40:36,Unknown
+Oppo A5,32:f6:68:c9:da:f8,10,11,WPA3-Personal,2026-09-19 10:40:36,Unknown
+OPPO Reno14 5G 103A,c6:10:36:73:70:f7,6,11,WPA2-Personal,2026-09-19 10:40:36,Unknown
+Vce-campus wifi,c6:a9:50:a2:5b:17,10,36,WPA2-Personal,2026-09-19 10:40:36,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,70,153,Open,2026-09-19 11:09:21,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,40,44,Open,2026-09-19 11:09:21,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,35,40,Open,2026-09-19 11:09:21,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,100,1,Open,2026-09-19 11:09:21,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-19 11:09:21,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,25,153,Open,2026-09-19 11:09:21,Unknown
+vce,08:bd:43:65:42:a2,13,5,WPA2-Personal,2026-09-19 11:09:21,Unknown
+MBA,3c:52:a1:0e:d2:eb,11,36,WPA2-Personal,2026-09-19 11:09:21,Unknown
+<Hidden Network>,42:52:a1:0e:d2:eb,11,36,WPA2-Personal,2026-09-19 11:09:21,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,55,6,Open,2026-09-19 11:09:21,Unknown
+HONOR X9b 5G,16:40:4b:5e:ba:ae,15,6,WPA2-Personal,2026-09-19 11:09:21,Unknown
+Avinash,96:34:44:ad:6c:60,12,6,WPA3-Personal,2026-09-19 11:09:21,Unknown
+EEE_HOD,a0:21:b7:b6:5e:de,20,6,WPA2-Personal,2026-09-19 11:09:21,Unknown
+3006-HE8D94tf8q09KUN,44:d2:44:de:92:34,100,11,WPA2-Personal,2026-09-19 11:09:21,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,90,153,Open,2026-09-19 11:11:44,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,100,153,Open,2026-09-19 11:11:54,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-19 11:11:54,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,85,1,Open,2026-09-19 11:11:54,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,30,44,Open,2026-09-19 11:11:54,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,15,40,Open,2026-09-19 11:11:54,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,25,153,Open,2026-09-19 11:11:54,Unknown
+Makers Space Staff,3a:60:f9:2c:35:1e,14,6,WPA2-Personal,2026-09-19 11:11:54,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,55,6,Open,2026-09-19 11:11:54,Unknown
+iQOO z10,f6:ab:29:47:83:ee,10,1,WPA2-Personal,2026-09-19 11:11:54,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-19 12:13:16,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 12:13:16,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,65,153,Open,2026-09-19 12:13:16,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,35,40,Open,2026-09-19 12:13:16,Unknown
+ITDEPT-EE89sItYn01AMDm,38:9d:92:de:2c:40,100,11,WPA2-Personal,2026-09-19 12:13:16,Unknown
+3107-HE8D94s_GP09K6T,44:d2:44:db:f4:19,80,11,WPA2-Personal,2026-09-19 12:13:16,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,10,153,Open,2026-09-19 12:13:16,Unknown
+3006-HE8D94tf8q09KUN,44:d2:44:de:92:34,100,11,WPA2-Personal,2026-09-19 12:13:16,Unknown
+Avinash,96:34:44:ad:6c:60,35,6,WPA3-Personal,2026-09-19 12:13:16,Unknown
+Galaxy A35 5G 44E9,ce:58:af:d8:34:67,5,6,WPA2-Personal,2026-09-19 12:13:16,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,80,6,WPA3-Personal,2026-09-19 12:13:16,Unknown
+One Plus Nord CE4,f6:3b:57:34:ad:18,100,6,WPA2-Personal,2026-09-19 12:13:16,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,80,6,Open,2026-09-19 12:13:16,Unknown
+<Hidden Network>,42:52:a1:0e:d2:eb,5,36,WPA2-Personal,2026-09-19 12:13:16,Unknown
+Pixel_3874,02:3b:58:12:34:d0,10,13,WPA2-Personal,2026-09-19 12:13:16,Unknown
+GATTU 7️⃣,c2:58:67:c2:9b:9b,10,11,WPA3-Personal,2026-09-19 12:13:16,Unknown
+vce,08:bd:43:65:42:a2,10,5,WPA2-Personal,2026-09-19 12:13:16,Unknown
+raatledha!,7a:28:26:28:2a:a2,100,1,WPA2-Personal,2026-09-19 12:13:16,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,55,153,Open,2026-09-19 12:13:50,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 12:13:50,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,60,40,Open,2026-09-19 12:13:50,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,50,1,Open,2026-09-19 12:13:50,Unknown
+3006-HE8D94tf8q09KUN,44:d2:44:de:92:34,100,11,WPA2-Personal,2026-09-19 12:13:50,Unknown
+3107-HE8D94s_GP09K6T,44:d2:44:db:f4:19,85,11,WPA2-Personal,2026-09-19 12:13:50,Unknown
+MBA,3c:52:a1:0e:d2:ea,20,11,WPA2-Personal,2026-09-19 12:13:50,Unknown
+ITDEPT-EE89sItYn01AMDm,38:9d:92:de:2c:40,100,11,WPA2-Personal,2026-09-19 12:13:50,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,20,153,Open,2026-09-19 12:13:50,Unknown
+Avinash,96:34:44:ad:6c:60,35,6,WPA3-Personal,2026-09-19 12:13:50,Unknown
+Galaxy A35 5G 44E9,ce:58:af:d8:34:67,5,6,WPA2-Personal,2026-09-19 12:13:50,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,80,6,WPA3-Personal,2026-09-19 12:13:50,Unknown
+One Plus Nord CE4,f6:3b:57:34:ad:18,100,6,WPA2-Personal,2026-09-19 12:13:50,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,80,6,Open,2026-09-19 12:13:50,Unknown
+<Hidden Network>,42:52:a1:0e:d2:eb,5,36,WPA2-Personal,2026-09-19 12:13:50,Unknown
+Pixel_3874,02:3b:58:12:34:d0,10,13,WPA2-Personal,2026-09-19 12:13:50,Unknown
+GATTU 7️⃣,c2:58:67:c2:9b:9b,10,11,WPA3-Personal,2026-09-19 12:13:50,Unknown
+vce,08:bd:43:65:42:a2,10,5,WPA2-Personal,2026-09-19 12:13:50,Unknown
+raatledha!,7a:28:26:28:2a:a2,100,1,WPA2-Personal,2026-09-19 12:13:50,Unknown
+Buddi ^_^,36:ef:b8:b1:ea:f7,100,1,WPA3-Personal,2026-09-19 12:16:28,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 12:16:28,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-19 12:16:28,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,35,40,Open,2026-09-19 12:16:28,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,30,44,Open,2026-09-19 12:16:28,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,55,153,Open,2026-09-19 12:16:28,Unknown
+Galaxy A17 5G D978,16:34:cb:9a:aa:89,100,1,WPA2-Personal,2026-09-19 12:16:28,Unknown
+iQOO Z7 Pro 5G,aa:72:74:d2:c7:d5,95,1,WPA2-Personal,2026-09-19 12:16:28,Unknown
+raatledha!,7a:28:26:28:2a:a2,65,1,WPA2-Personal,2026-09-19 12:16:28,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,80,6,WPA3-Personal,2026-09-19 12:16:28,Unknown
+One Plus Nord CE4,f6:3b:57:34:ad:18,100,6,WPA2-Personal,2026-09-19 12:16:28,Unknown
+Isolemnlyswearthatiamuptonogood,a2:db:20:57:e1:ea,100,11,WPA2-Personal,2026-09-19 12:16:28,Unknown
+3006-HE8D94tf8q09KUN,44:d2:44:de:92:34,100,11,WPA2-Personal,2026-09-19 12:16:28,Unknown
+ITDEPT-EE89sItYn01AMDm,38:9d:92:de:2c:40,100,11,WPA2-Personal,2026-09-19 12:16:28,Unknown
+iQOO Z10R 5G,9e:da:27:bf:99:5d,8,40,WPA2-Personal,2026-09-19 12:16:28,Unknown
+GATTU 7️⃣,c2:58:67:c2:9b:9b,14,11,WPA3-Personal,2026-09-19 12:16:28,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,85,6,Open,2026-09-19 12:16:28,Unknown
+Galaxy A35 5G 44E9,ce:58:af:d8:34:67,15,6,WPA2-Personal,2026-09-19 12:16:28,Unknown
+Avinash,96:34:44:ad:6c:60,25,6,WPA3-Personal,2026-09-19 12:16:28,Unknown
+Class room,1e:23:1d:c0:61:5b,25,11,WPA2-Personal,2026-09-19 12:16:28,Unknown
+Buddi ^_^,36:ef:b8:b1:ea:f7,100,1,WPA3-Personal,2026-09-19 12:17:01,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 12:17:01,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-19 12:17:01,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,35,40,Open,2026-09-19 12:17:01,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,30,44,Open,2026-09-19 12:17:01,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,55,153,Open,2026-09-19 12:17:01,Unknown
+Galaxy A17 5G D978,16:34:cb:9a:aa:89,100,1,WPA2-Personal,2026-09-19 12:17:01,Unknown
+iQOO Z7 Pro 5G,aa:72:74:d2:c7:d5,95,1,WPA2-Personal,2026-09-19 12:17:01,Unknown
+raatledha!,7a:28:26:28:2a:a2,65,1,WPA2-Personal,2026-09-19 12:17:01,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,80,6,WPA3-Personal,2026-09-19 12:17:01,Unknown
+One Plus Nord CE4,f6:3b:57:34:ad:18,100,6,WPA2-Personal,2026-09-19 12:17:01,Unknown
+Isolemnlyswearthatiamuptonogood,a2:db:20:57:e1:ea,100,11,WPA2-Personal,2026-09-19 12:17:01,Unknown
+3006-HE8D94tf8q09KUN,44:d2:44:de:92:34,100,11,WPA2-Personal,2026-09-19 12:17:01,Unknown
+ITDEPT-EE89sItYn01AMDm,38:9d:92:de:2c:40,100,11,WPA2-Personal,2026-09-19 12:17:01,Unknown
+iQOO Z10R 5G,9e:da:27:bf:99:5d,8,40,WPA2-Personal,2026-09-19 12:17:01,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 12:34:39,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,50,153,Open,2026-09-19 12:34:39,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,30,40,Open,2026-09-19 12:34:39,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,35,1,Open,2026-09-19 12:34:39,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,70,11,Open,2026-09-19 12:34:39,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,40,44,Open,2026-09-19 12:34:39,Unknown
+Android,9e:f6:6c:e0:f6:22,100,1,WPA2-Personal,2026-09-19 12:34:39,Unknown
+Galaxy A17 5G D978,16:34:cb:9a:aa:89,100,1,WPA2-Personal,2026-09-19 12:34:39,Unknown
+ITDEPT-EE89sItYn01AMDm,38:9d:92:de:2c:40,100,11,WPA2-Personal,2026-09-19 12:34:39,Unknown
+vivo Y16,8e:cf:33:0b:36:9a,5,6,WPA2-Personal,2026-09-19 12:34:39,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,50,6,Open,2026-09-19 12:34:39,Unknown
+Thavan9k,9e:86:5c:eb:da:62,8,6,WPA2-Personal,2026-09-19 12:34:39,Unknown
+One Plus Nord CE4,f6:3b:57:34:ad:18,100,6,WPA2-Personal,2026-09-19 12:34:39,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,100,6,WPA3-Personal,2026-09-19 12:34:39,Unknown
+iQOO Z7 Pro 5G,aa:72:74:d2:c7:d5,5,1,WPA2-Personal,2026-09-19 12:34:39,Unknown
+ram,62:8d:01:b2:a0:61,60,1,WPA2-Personal,2026-09-19 12:34:39,Unknown
+raatledha!,7a:28:26:28:2a:a2,90,1,WPA2-Personal,2026-09-19 12:34:39,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,14,153,Open,2026-09-19 12:34:39,Unknown
+Makers Space Staff,3a:60:f9:2c:2f:c4,12,11,WPA2-Personal,2026-09-19 12:34:39,Unknown
+Isolemnlyswearthatiamuptonogood,a2:db:20:57:e1:ea,55,11,WPA2-Personal,2026-09-19 12:34:39,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 12:35:21,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,50,44,Open,2026-09-19 12:35:21,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,10,40,Open,2026-09-19 12:35:21,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-19 12:35:21,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,50,153,Open,2026-09-19 12:35:21,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,35,1,Open,2026-09-19 12:35:21,Unknown
+Android,9e:f6:6c:e0:f6:22,100,1,WPA2-Personal,2026-09-19 12:35:21,Unknown
+Galaxy A17 5G D978,16:34:cb:9a:aa:89,100,1,WPA2-Personal,2026-09-19 12:35:21,Unknown
+ITDEPT-EE89sItYn01AMDm,38:9d:92:de:2c:40,100,11,WPA2-Personal,2026-09-19 12:35:21,Unknown
+vivo Y16,8e:cf:33:0b:36:9a,5,6,WPA2-Personal,2026-09-19 12:35:21,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,50,6,Open,2026-09-19 12:35:21,Unknown
+Thavan9k,9e:86:5c:eb:da:62,8,6,WPA2-Personal,2026-09-19 12:35:21,Unknown
+One Plus Nord CE4,f6:3b:57:34:ad:18,100,6,WPA2-Personal,2026-09-19 12:35:21,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,100,6,WPA3-Personal,2026-09-19 12:35:21,Unknown
+iQOO Z7 Pro 5G,aa:72:74:d2:c7:d5,5,1,WPA2-Personal,2026-09-19 12:35:21,Unknown
+ram,62:8d:01:b2:a0:61,60,1,WPA2-Personal,2026-09-19 12:35:21,Unknown
+raatledha!,7a:28:26:28:2a:a2,90,1,WPA2-Personal,2026-09-19 12:35:21,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,14,153,Open,2026-09-19 12:35:21,Unknown
+Makers Space Staff,3a:60:f9:2c:2f:c4,12,11,WPA2-Personal,2026-09-19 12:35:21,Unknown
+Isolemnlyswearthatiamuptonogood,a2:db:20:57:e1:ea,55,11,WPA2-Personal,2026-09-19 12:35:21,Unknown
+Buddi ^_^,de:40:6e:fa:de:7b,100,11,WPA3-Personal,2026-09-19 12:36:22,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,60,40,Open,2026-09-19 12:36:22,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-19 12:36:22,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 12:36:22,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,65,1,Open,2026-09-19 12:36:22,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,75,153,Open,2026-09-19 12:36:22,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,45,44,Open,2026-09-19 12:36:22,Unknown
+Isolemnlyswearthatiamuptonogood,a2:db:20:57:e1:ea,100,11,WPA2-Personal,2026-09-19 12:36:22,Unknown
+ITDEPT-EE89sItYn01AMDm,38:9d:92:de:2c:40,100,11,WPA2-Personal,2026-09-19 12:36:22,Unknown
+3107-HE8D94s_GP09K6T,44:d2:44:db:f4:19,75,11,WPA2-Personal,2026-09-19 12:36:22,Unknown
+OPPO F29 5G n9uw,42:12:a0:94:84:2c,35,1,WPA3-Personal,2026-09-19 12:36:22,Unknown
+iQOO Z9s 5G,a2:a1:24:77:15:2a,9,1,WPA2-Personal,2026-09-19 12:36:22,Unknown
+raatledha!,7a:28:26:28:2a:a2,70,1,WPA2-Personal,2026-09-19 12:36:22,Unknown
+One Plus Nord CE4,f6:3b:57:34:ad:18,100,6,WPA2-Personal,2026-09-19 12:36:22,Unknown
+HONOR X9b 5G,16:40:4b:5e:ba:ae,10,6,WPA2-Personal,2026-09-19 12:36:22,Unknown
+chinnaaa,fe:48:d2:4a:17:05,100,6,WPA2-Personal,2026-09-19 12:36:22,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,85,6,WPA3-Personal,2026-09-19 12:36:22,Unknown
+VCE,3c:52:a1:0e:c6:38,5,1,WPA2-Personal,2026-09-19 12:36:22,Unknown
+<Hidden Network>,42:52:a1:0e:d2:eb,9,36,WPA2-Personal,2026-09-19 12:36:22,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,12,11,WPA2-Personal,2026-09-19 12:36:22,Unknown
+Wifi,28:87:ba:2e:76:7c,11,10,WPA2-Personal,2026-09-19 12:36:22,Unknown
+EEE_HOD,a0:21:b7:b6:5e:de,6,6,WPA2-Personal,2026-09-19 12:36:22,Unknown
+vivo Y16,8e:cf:33:0b:36:9a,14,6,WPA2-Personal,2026-09-19 12:36:22,Unknown
+EEE-Dept,7c:8b:ca:47:10:9e,8,4,WPA2-Personal,2026-09-19 12:36:22,Unknown
+Thavan9k,9e:86:5c:eb:da:62,13,6,WPA2-Personal,2026-09-19 12:36:22,Unknown
+Avinash,96:34:44:ad:6c:60,40,6,WPA3-Personal,2026-09-19 12:36:22,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,5,153,Open,2026-09-19 12:36:22,Unknown
+ram,62:8d:01:b2:a0:61,20,1,WPA2-Personal,2026-09-19 12:36:22,Unknown
+Buddi ^_^,de:40:6e:fa:de:7b,100,1,WPA3-Personal,2026-09-19 12:37:12,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 12:37:12,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,60,40,Open,2026-09-19 12:37:12,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-19 12:37:12,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,65,1,Open,2026-09-19 12:37:12,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,75,153,Open,2026-09-19 12:37:12,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,45,44,Open,2026-09-19 12:37:12,Unknown
+Isolemnlyswearthatiamuptonogood,a2:db:20:57:e1:ea,100,11,WPA2-Personal,2026-09-19 12:37:12,Unknown
+R&D,70:4f:57:9d:b2:c8,10,11,WPA2-Personal,2026-09-19 12:37:12,Unknown
+ITDEPT-EE89sItYn01AMDm,38:9d:92:de:2c:40,100,11,WPA2-Personal,2026-09-19 12:37:12,Unknown
+3107-HE8D94s_GP09K6T,44:d2:44:db:f4:19,75,11,WPA2-Personal,2026-09-19 12:37:12,Unknown
+OPPO F29 5G n9uw,42:12:a0:94:84:2c,35,1,WPA3-Personal,2026-09-19 12:37:12,Unknown
+iQOO Z9s 5G,a2:a1:24:77:15:2a,9,1,WPA2-Personal,2026-09-19 12:37:12,Unknown
+raatledha!,7a:28:26:28:2a:a2,70,1,WPA2-Personal,2026-09-19 12:37:12,Unknown
+One Plus Nord CE4,f6:3b:57:34:ad:18,100,6,WPA2-Personal,2026-09-19 12:37:12,Unknown
+HONOR X9b 5G,16:40:4b:5e:ba:ae,10,6,WPA2-Personal,2026-09-19 12:37:12,Unknown
+chinnaaa,fe:48:d2:4a:17:05,100,6,WPA2-Personal,2026-09-19 12:37:12,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,85,6,WPA3-Personal,2026-09-19 12:37:12,Unknown
+VCE,3c:52:a1:0e:c6:38,5,1,WPA2-Personal,2026-09-19 12:37:12,Unknown
+<Hidden Network>,42:52:a1:0e:d2:eb,9,36,WPA2-Personal,2026-09-19 12:37:12,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,12,11,WPA2-Personal,2026-09-19 12:37:12,Unknown
+Wifi,28:87:ba:2e:76:7c,11,10,WPA2-Personal,2026-09-19 12:37:12,Unknown
+EEE_HOD,a0:21:b7:b6:5e:de,6,6,WPA2-Personal,2026-09-19 12:37:12,Unknown
+vivo Y16,8e:cf:33:0b:36:9a,14,6,WPA2-Personal,2026-09-19 12:37:12,Unknown
+EEE-Dept,7c:8b:ca:47:10:9e,8,4,WPA2-Personal,2026-09-19 12:37:12,Unknown
+Thavan9k,9e:86:5c:eb:da:62,13,6,WPA2-Personal,2026-09-19 12:37:12,Unknown
+Avinash,96:34:44:ad:6c:60,40,6,WPA3-Personal,2026-09-19 12:37:12,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,5,153,Open,2026-09-19 12:37:12,Unknown
+ram,62:8d:01:b2:a0:61,20,1,WPA2-Personal,2026-09-19 12:37:12,Unknown
+Buddi ^_^,de:40:6e:fa:de:7b,100,1,WPA3-Personal,2026-09-19 12:37:36,Unknown
+ITDEPT-EE89sItYn01AMDm,38:9d:92:de:2c:40,100,11,WPA2-Personal,2026-09-19 12:37:36,Unknown
+MBA,3c:52:a1:0e:d2:ea,10,11,WPA2-Personal,2026-09-19 12:37:36,Unknown
+MBA,3c:52:a1:0e:d2:eb,13,36,WPA2-Personal,2026-09-19 12:37:36,Unknown
+OPPO Reno5 Pro 5G,ca:34:75:b3:41:81,6,8,WPA2-Personal,2026-09-19 12:37:36,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,70,44,Open,2026-09-19 12:37:36,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,80,153,Open,2026-09-19 12:37:36,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 12:37:36,Unknown
+VCE Campus WiFi,e8:48:b8:3d:3f:ae,12,1,Open,2026-09-19 12:37:36,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-19 12:37:36,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,60,40,Open,2026-09-19 12:37:36,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,65,1,Open,2026-09-19 12:37:36,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,15,153,Open,2026-09-19 12:37:36,Unknown
+One Plus Nord CE4,f6:3b:57:34:ad:18,100,6,WPA2-Personal,2026-09-19 12:37:36,Unknown
+chinnaaa,fe:48:d2:4a:17:05,100,6,WPA2-Personal,2026-09-19 12:37:36,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,35,6,WPA3-Personal,2026-09-19 12:37:36,Unknown
+Thavan9k,9e:86:5c:eb:da:62,8,6,WPA2-Personal,2026-09-19 12:37:36,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,95,6,Open,2026-09-19 12:37:36,Unknown
+raatledha!,7a:28:26:28:2a:a2,90,1,WPA2-Personal,2026-09-19 12:37:36,Unknown
+ram,62:8d:01:b2:a0:61,12,1,WPA2-Personal,2026-09-19 12:37:36,Unknown
+OPPO F29 5G n9uw,42:12:a0:94:84:2c,50,1,WPA3-Personal,2026-09-19 12:37:36,Unknown
+iQOO Z9s 5G,a2:a1:24:77:15:2a,11,1,WPA2-Personal,2026-09-19 12:37:36,Unknown
+A35,72:af:61:95:c4:53,12,1,WPA2-Personal,2026-09-19 12:37:36,Unknown
+3107-HE8D94s_GP09K6T,44:d2:44:db:f4:19,70,11,WPA2-Personal,2026-09-19 12:37:36,Unknown
+Isolemnlyswearthatiamuptonogood,a2:db:20:57:e1:ea,100,11,WPA2-Personal,2026-09-19 12:37:36,Unknown
+Makers-Space,34:60:f9:2c:2f:c4,8,11,WPA2-Personal,2026-09-19 12:37:36,Unknown
+GATTU 7️⃣,c2:58:67:c2:9b:9b,40,11,WPA3-Personal,2026-09-19 12:37:36,Unknown
+R&D,70:4f:57:9d:b2:c8,15,11,WPA2-Personal,2026-09-19 12:37:36,Unknown
+HONOR X9b 5G,16:40:4b:5e:ba:ae,10,6,WPA2-Personal,2026-09-19 12:37:36,Unknown
+VCE,3c:52:a1:0e:c6:38,5,1,WPA2-Personal,2026-09-19 12:37:36,Unknown
+<Hidden Network>,42:52:a1:0e:d2:eb,9,36,WPA2-Personal,2026-09-19 12:37:36,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,12,11,WPA2-Personal,2026-09-19 12:37:36,Unknown
+Wifi,28:87:ba:2e:76:7c,11,10,WPA2-Personal,2026-09-19 12:37:36,Unknown
+EEE_HOD,a0:21:b7:b6:5e:de,6,6,WPA2-Personal,2026-09-19 12:37:36,Unknown
+vivo Y16,8e:cf:33:0b:36:9a,14,6,WPA2-Personal,2026-09-19 12:37:36,Unknown
+EEE-Dept,7c:8b:ca:47:10:9e,8,4,WPA2-Personal,2026-09-19 12:37:36,Unknown
+Avinash,96:34:44:ad:6c:60,40,6,WPA3-Personal,2026-09-19 12:37:36,Unknown
+Buddi ^_^,de:40:6e:fa:de:7b,100,1,WPA3-Personal,2026-09-19 12:39:48,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 12:39:48,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,60,44,Open,2026-09-19 12:39:48,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,45,40,Open,2026-09-19 12:39:48,Unknown
+GATTU 7️⃣,c2:58:67:c2:9b:9b,55,11,WPA3-Personal,2026-09-19 12:39:48,Unknown
+Wifi,28:87:ba:2e:76:7c,10,10,WPA2-Personal,2026-09-19 12:39:48,Unknown
+chinnaaa,fe:48:d2:4a:17:05,100,6,WPA2-Personal,2026-09-19 12:39:48,Unknown
+iQOO Neo 10R,36:fd:2a:4d:03:2b,10,40,WPA2-Personal,2026-09-19 12:39:48,Unknown
+<Hidden Network>,42:52:a1:0e:d2:eb,11,36,WPA2-Personal,2026-09-19 12:39:48,Unknown
+vce,08:bd:43:65:42:a2,11,5,WPA2-Personal,2026-09-19 12:39:48,Unknown
+One Plus Nord CE4,f6:3b:57:34:ad:18,50,6,WPA2-Personal,2026-09-19 12:39:48,Unknown
+realme C83 5G z2nk,6e:ca:0f:c6:1b:81,45,6,WPA2-Personal,2026-09-19 12:39:48,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,35,6,WPA3-Personal,2026-09-19 12:39:48,Unknown
+Avinash,96:34:44:ad:6c:60,15,6,WPA3-Personal,2026-09-19 12:39:48,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,85,6,Open,2026-09-19 12:39:48,Unknown
+R&D,70:4f:57:9d:b2:c8,15,11,WPA2-Personal,2026-09-19 12:39:48,Unknown
+Isolemnlyswearthatiamuptonogood,a2:db:20:57:e1:ea,100,11,WPA2-Personal,2026-09-19 12:39:48,Unknown
+Buddi ^_^,de:40:6e:fa:de:7b,100,1,WPA3-Personal,2026-09-19 12:42:09,Unknown
+GATTU 7️⃣,c2:58:67:c2:9b:9b,45,11,WPA3-Personal,2026-09-19 12:42:09,Unknown
+raatledha!,7a:28:26:28:2a:a2,80,1,WPA2-Personal,2026-09-19 12:42:09,Unknown
+Buddi ^_^,de:40:6e:fa:de:7b,100,1,WPA3-Personal,2026-09-19 12:42:18,Unknown
+GATTU 7️⃣,c2:58:67:c2:9b:9b,65,11,WPA3-Personal,2026-09-19 12:42:18,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,50,1,Open,2026-09-19 12:42:18,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,35,40,Open,2026-09-19 12:42:18,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,70,153,Open,2026-09-19 12:42:18,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-19 12:42:18,Unknown
+VCE Campus WiFi,50:91:e3:76:fe:08,5,11,Open,2026-09-19 12:42:18,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 12:42:18,Unknown
+ITDEPT-EE89sItYn01AMDm,38:9d:92:de:2c:40,100,11,WPA2-Personal,2026-09-19 12:42:18,Unknown
+EEE-Dept,7c:8b:ca:47:10:9e,11,4,WPA2-Personal,2026-09-19 12:42:18,Unknown
+One Plus Nord CE4,f6:3b:57:34:ad:18,100,6,WPA2-Personal,2026-09-19 12:42:18,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,25,153,Open,2026-09-19 12:42:18,Unknown
+MBA,3c:52:a1:0e:d2:eb,12,36,WPA2-Personal,2026-09-19 12:42:18,Unknown
+Avinash,96:34:44:ad:6c:60,14,6,WPA3-Personal,2026-09-19 12:42:18,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,70,6,WPA3-Personal,2026-09-19 12:42:18,Unknown
+R&D,70:4f:57:9d:b2:c8,5,11,WPA2-Personal,2026-09-19 12:42:18,Unknown
+Bunty,96:d4:39:d1:39:f8,60,11,WPA2-Personal,2026-09-19 12:42:18,Unknown
+varma🧡,b6:e4:b4:a3:23:e8,85,1,WPA2-Personal,2026-09-19 12:42:18,Unknown
+Rk,3e:51:f8:78:23:f5,55,1,WPA2-Personal,2026-09-19 12:42:18,Unknown
+raatledha!,7a:28:26:28:2a:a2,80,1,WPA2-Personal,2026-09-19 12:42:18,Unknown
+Buddi ^_^,de:40:6e:fa:de:7b,100,1,WPA3-Personal,2026-09-19 12:42:39,Unknown
+GATTU 7️⃣,c2:58:67:c2:9b:9b,65,11,WPA3-Personal,2026-09-19 12:42:39,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,50,1,Open,2026-09-19 12:42:39,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,35,40,Open,2026-09-19 12:42:39,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,70,153,Open,2026-09-19 12:42:39,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-19 12:42:39,Unknown
+VCE Campus WiFi,50:91:e3:76:fe:08,5,11,Open,2026-09-19 12:42:39,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 12:42:39,Unknown
+ITDEPT-EE89sItYn01AMDm,38:9d:92:de:2c:40,100,11,WPA2-Personal,2026-09-19 12:42:39,Unknown
+EEE-Dept,7c:8b:ca:47:10:9e,11,4,WPA2-Personal,2026-09-19 12:42:39,Unknown
+One Plus Nord CE4,f6:3b:57:34:ad:18,100,6,WPA2-Personal,2026-09-19 12:42:39,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,25,153,Open,2026-09-19 12:42:39,Unknown
+MBA,3c:52:a1:0e:d2:eb,12,36,WPA2-Personal,2026-09-19 12:42:39,Unknown
+Avinash,96:34:44:ad:6c:60,14,6,WPA3-Personal,2026-09-19 12:42:39,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,70,6,WPA3-Personal,2026-09-19 12:42:39,Unknown
+R&D,70:4f:57:9d:b2:c8,5,11,WPA2-Personal,2026-09-19 12:42:39,Unknown
+Bunty,96:d4:39:d1:39:f8,60,11,WPA2-Personal,2026-09-19 12:42:39,Unknown
+varma🧡,b6:e4:b4:a3:23:e8,85,1,WPA2-Personal,2026-09-19 12:42:39,Unknown
+Rk,3e:51:f8:78:23:f5,55,1,WPA2-Personal,2026-09-19 12:42:39,Unknown
+Buddi ^_^,de:40:6e:fa:de:7b,100,1,WPA3-Personal,2026-09-19 12:58:22,Unknown
+Buddi ^_^,de:40:6e:fa:de:7b,100,1,WPA3-Personal,2026-09-19 12:58:32,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,20,44,Open,2026-09-19 12:58:32,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 12:58:32,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,30,153,Open,2026-09-19 12:58:32,Unknown
+R&D,70:4f:57:9d:b2:c8,12,11,WPA2-Personal,2026-09-19 12:58:32,Unknown
+AndroidAP_7012,82:e2:a8:3d:02:01,50,11,WPA3-Personal,2026-09-19 12:58:32,Unknown
+Wifi,28:87:ba:2e:76:7c,10,10,WPA2-Personal,2026-09-19 12:58:32,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,90,11,Open,2026-09-19 13:44:39,Unknown
+Manoj,f2:1e:e5:ae:b2:fd,11,11,WPA3-Personal,2026-09-19 13:44:39,Unknown
+OnePlus 11R 5G,de:f8:d1:7b:ff:ef,100,11,WPA2-Personal,2026-09-19 13:44:39,Unknown
+Wifi,28:87:ba:2e:76:7c,10,10,WPA2-Personal,2026-09-19 13:44:49,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,25,6,WPA3-Personal,2026-09-19 13:44:49,Unknown
+Nokia,4e:b0:17:b3:03:14,30,6,WPA2-Personal,2026-09-19 13:44:49,Unknown
+Ak's S24,4e:de:e4:1a:6f:36,14,6,WPA2-Personal,2026-09-19 13:44:49,Unknown
+Lucky,02:7b:33:95:50:e0,12,6,WPA2-Personal,2026-09-19 13:44:49,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,15,44,Open,2026-09-19 13:44:49,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 13:44:49,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,75,11,Open,2026-09-19 13:44:49,Unknown
+Buddi ^_^,de:40:6e:fa:de:7b,100,1,WPA3-Personal,2026-09-19 13:44:49,Unknown
+OnePlus 11R 5G,de:f8:d1:7b:ff:ef,100,11,WPA2-Personal,2026-09-19 13:44:49,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,10,11,WPA2-Personal,2026-09-19 13:44:49,Unknown
+Makers Space Staff,3a:60:f9:2c:35:80,10,11,WPA2-Personal,2026-09-19 13:44:49,Unknown
+R&D,70:4f:57:9d:b2:c8,12,11,WPA2-Personal,2026-09-19 13:44:49,Unknown
+Manoj,f2:1e:e5:ae:b2:fd,13,11,WPA3-Personal,2026-09-19 13:44:49,Unknown
+iQOO Neo 10R,96:0f:ca:13:6b:06,35,11,WPA2-Personal,2026-09-19 13:44:49,Unknown
+[LG_Refrigerator]a2e3,3a:06:e6:62:a2:e3,8,11,WPA2-Personal,2026-09-19 13:44:49,Unknown
+Keerthi,b6:77:62:bf:e8:5b,10,11,WPA2-Personal,2026-09-19 13:44:49,Unknown
+OnePlus 13s 6CCC,6a:c9:45:0e:16:27,90,1,WPA2-Personal,2026-09-19 13:44:49,Unknown
+OPPO F29 5G n9uw,42:12:a0:94:84:2c,50,1,WPA3-Personal,2026-09-19 13:44:49,Unknown
+Vignesh_njr11,12:04:b4:24:1f:2e,11,11,WPA2-Personal,2026-09-19 13:44:49,Unknown
+Buddi ^_^,de:40:6e:fa:de:7b,100,1,WPA3-Personal,2026-09-19 13:45:12,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,65,11,Open,2026-09-19 13:45:12,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,65,153,Open,2026-09-19 13:45:12,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,25,44,Open,2026-09-19 13:45:12,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,30,40,Open,2026-09-19 13:45:12,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,85,1,Open,2026-09-19 13:45:12,Unknown
+Wifi,28:87:ba:2e:76:7c,15,10,WPA2-Personal,2026-09-19 13:45:12,Unknown
+OPPO Reno5 Pro 5G,ca:34:75:b3:41:81,15,8,WPA2-Personal,2026-09-19 13:45:12,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,95,6,Open,2026-09-19 13:45:12,Unknown
+MG,06:8a:96:f0:74:ba,55,161,WPA2-Personal,2026-09-19 13:45:12,Unknown
+OnePlus 11R 5G,de:f8:d1:7b:ff:ef,100,11,WPA2-Personal,2026-09-19 13:45:12,Unknown
+[LG_Refrigerator]a2e3,3a:06:e6:62:a2:e3,12,11,WPA2-Personal,2026-09-19 13:45:12,Unknown
+MBA,3c:52:a1:0e:d2:ea,30,11,WPA2-Personal,2026-09-19 13:45:12,Unknown
+iQOO Neo 10R,96:0f:ca:13:6b:06,40,11,WPA2-Personal,2026-09-19 13:45:12,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,10,6,WPA3-Personal,2026-09-19 13:45:12,Unknown
+OnePlus 13s 6CCC,6a:c9:45:0e:16:27,100,1,WPA2-Personal,2026-09-19 13:45:12,Unknown
+raatledha!,7a:28:26:28:2a:a2,100,1,WPA2-Personal,2026-09-19 13:45:12,Unknown
+EEE_HOD,a0:21:b7:b6:5e:de,13,6,WPA2-Personal,2026-09-19 13:45:12,Unknown
+Tharun,76:4d:0c:f1:8f:d4,8,6,WPA2-Personal,2026-09-19 13:45:12,Unknown
+Nokia,4e:b0:17:b3:03:14,65,6,WPA2-Personal,2026-09-19 13:45:12,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,100,153,Open,2026-09-19 14:45:53,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,100,1,Open,2026-09-19 14:45:53,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,60,40,Open,2026-09-19 14:45:53,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,60,11,Open,2026-09-19 14:45:53,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,5,44,Open,2026-09-19 14:45:53,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,100,1,Open,2026-09-19 14:45:53,Unknown
+3006-HE8D94tf8q09KUN,44:d2:44:de:92:34,75,11,WPA2-Personal,2026-09-19 14:45:53,Unknown
+Hi,0a:a1:2d:37:87:c5,15,11,WPA2-Personal,2026-09-19 14:45:53,Unknown
+ONE PLUS NORD CE 4,a6:7a:97:2d:8e:6b,30,11,WPA2-Personal,2026-09-19 14:45:53,Unknown
+Keerthi,b6:77:62:bf:e8:5b,14,11,WPA2-Personal,2026-09-19 14:45:53,Unknown
+Wifi,28:87:ba:2e:76:7c,30,10,WPA2-Personal,2026-09-19 14:45:53,Unknown
+Manoj,f2:1e:e5:ae:b2:fd,5,11,WPA3-Personal,2026-09-19 14:45:53,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,40,11,WPA2-Personal,2026-09-19 14:45:53,Unknown
+Lucky,02:7b:33:95:50:e0,25,6,WPA2-Personal,2026-09-19 14:45:53,Unknown
+EEE_HOD,a0:21:b7:b6:5e:de,35,6,WPA2-Personal,2026-09-19 14:45:53,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,55,6,Open,2026-09-19 14:45:53,Unknown
+iPhone,16:98:45:39:88:75,8,149,WPA3-Personal,2026-09-19 14:45:53,Unknown
+MBA,3c:52:a1:0e:d2:eb,8,36,WPA2-Personal,2026-09-19 14:45:53,Unknown
+MBA,3c:52:a1:0e:d2:ea,75,11,WPA2-Personal,2026-09-19 14:45:53,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,35,153,Open,2026-09-19 14:45:53,Unknown
+Android,9e:f6:6c:e0:f6:22,14,11,WPA2-Personal,2026-09-19 14:45:53,Unknown
+chinnaaa,fe:48:d2:4a:17:05,40,1,WPA2-Personal,2026-09-19 14:45:53,Unknown
+Galaxy A35 5G 44E9,ce:58:af:d8:34:67,35,1,WPA2-Personal,2026-09-19 14:45:53,Unknown
+vivo T4 Lite 5G,f6:cf:45:a7:0c:8e,15,6,WPA2-Personal,2026-09-19 14:45:53,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,25,6,WPA3-Personal,2026-09-19 14:45:53,Unknown
+OnePlus Nord CE4,0e:55:7d:10:0b:2b,13,6,WPA2-Personal,2026-09-19 14:45:53,Unknown
+only gods B2K,a2:45:58:7a:5a:2c,10,6,WPA3-Personal,2026-09-19 14:45:53,Unknown
+Anish's A15,ba:e1:55:23:d9:79,50,6,WPA2-Personal,2026-09-19 14:45:53,Unknown
+vivo y56,aa:36:a6:6f:88:12,7,153,WPA3-Personal,2026-09-19 14:45:53,Unknown
+EEE-Dept,7c:8b:ca:47:10:9d,10,40,WPA2-Personal,2026-09-19 14:45:53,Unknown
+R&D,70:4f:57:9d:b2:c7,5,44,WPA2-Personal,2026-09-19 14:45:53,Unknown
+Makers Space Staff,3a:60:f9:2c:2f:c4,30,11,WPA2-Personal,2026-09-19 14:45:53,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,80,153,Open,2026-09-19 14:46:21,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,15,44,Open,2026-09-19 14:46:21,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,25,40,Open,2026-09-19 14:46:21,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-19 14:46:21,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,95,1,Open,2026-09-19 14:46:21,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,100,1,Open,2026-09-19 14:46:21,Unknown
+3006-HE8D94tf8q09KUN,44:d2:44:de:92:34,75,11,WPA2-Personal,2026-09-19 14:46:21,Unknown
+Hi,0a:a1:2d:37:87:c5,15,11,WPA2-Personal,2026-09-19 14:46:21,Unknown
+ONE PLUS NORD CE 4,a6:7a:97:2d:8e:6b,30,11,WPA2-Personal,2026-09-19 14:46:21,Unknown
+Keerthi,b6:77:62:bf:e8:5b,14,11,WPA2-Personal,2026-09-19 14:46:21,Unknown
+Wifi,28:87:ba:2e:76:7c,30,10,WPA2-Personal,2026-09-19 14:46:21,Unknown
+Manoj,f2:1e:e5:ae:b2:fd,5,11,WPA3-Personal,2026-09-19 14:46:21,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,40,11,WPA2-Personal,2026-09-19 14:46:21,Unknown
+Lucky,02:7b:33:95:50:e0,25,6,WPA2-Personal,2026-09-19 14:46:21,Unknown
+EEE_HOD,a0:21:b7:b6:5e:de,35,6,WPA2-Personal,2026-09-19 14:46:21,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,55,6,Open,2026-09-19 14:46:21,Unknown
+iPhone,16:98:45:39:88:75,8,149,WPA3-Personal,2026-09-19 14:46:21,Unknown
+MBA,3c:52:a1:0e:d2:eb,8,36,WPA2-Personal,2026-09-19 14:46:21,Unknown
+MBA,3c:52:a1:0e:d2:ea,75,11,WPA2-Personal,2026-09-19 14:46:21,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,35,153,Open,2026-09-19 14:46:21,Unknown
+Android,9e:f6:6c:e0:f6:22,14,11,WPA2-Personal,2026-09-19 14:46:21,Unknown
+chinnaaa,fe:48:d2:4a:17:05,40,1,WPA2-Personal,2026-09-19 14:46:21,Unknown
+Galaxy A35 5G 44E9,ce:58:af:d8:34:67,35,1,WPA2-Personal,2026-09-19 14:46:21,Unknown
+vivo T4 Lite 5G,f6:cf:45:a7:0c:8e,15,6,WPA2-Personal,2026-09-19 14:46:21,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,25,6,WPA3-Personal,2026-09-19 14:46:21,Unknown
+OnePlus Nord CE4,0e:55:7d:10:0b:2b,13,6,WPA2-Personal,2026-09-19 14:46:21,Unknown
+only gods B2K,a2:45:58:7a:5a:2c,10,6,WPA3-Personal,2026-09-19 14:46:21,Unknown
+Anish's A15,ba:e1:55:23:d9:79,50,6,WPA2-Personal,2026-09-19 14:46:21,Unknown
+vivo y56,aa:36:a6:6f:88:12,7,153,WPA3-Personal,2026-09-19 14:46:21,Unknown
+EEE-Dept,7c:8b:ca:47:10:9d,10,40,WPA2-Personal,2026-09-19 14:46:21,Unknown
+R&D,70:4f:57:9d:b2:c7,5,44,WPA2-Personal,2026-09-19 14:46:21,Unknown
+Makers Space Staff,3a:60:f9:2c:2f:c4,30,11,WPA2-Personal,2026-09-19 14:46:21,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,30,40,Open,2026-09-19 14:46:46,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,80,11,Open,2026-09-19 14:46:46,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,11,153,Open,2026-09-19 14:46:46,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,15,44,Open,2026-09-19 14:46:46,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,100,1,Open,2026-09-19 14:46:46,Unknown
+OnePlus Nord CE6 Lite d6ed,52:bb:63:99:32:cf,80,1,WPA2-Personal,2026-09-19 14:46:46,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,100,40,WPA2-Personal,2026-09-19 14:46:46,Unknown
+Redmi 13 5G,4e:3e:00:1e:db:6b,65,40,WPA2-Personal,2026-09-19 14:46:46,Unknown
+R&D,70:4f:57:9d:b2:c7,10,44,WPA2-Personal,2026-09-19 14:46:46,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,25,153,Open,2026-09-19 14:46:46,Unknown
+Yellishetty Akshay's S24,16:23:08:3c:b5:eb,70,1,WPA2-Personal,2026-09-19 14:46:46,Unknown
+iQOO Z11x 5G,f2:b7:db:d0:a8:d6,55,1,WPA2-Personal,2026-09-19 14:46:46,Unknown
+varma🧡,ba:b3:5c:2f:72:18,50,1,WPA2-Personal,2026-09-19 14:46:46,Unknown
+3006-HE8D94tf8q09KUN,44:d2:44:de:92:34,75,11,WPA2-Personal,2026-09-19 14:46:46,Unknown
+Hi,0a:a1:2d:37:87:c5,15,11,WPA2-Personal,2026-09-19 14:46:46,Unknown
+ONE PLUS NORD CE 4,a6:7a:97:2d:8e:6b,30,11,WPA2-Personal,2026-09-19 14:46:46,Unknown
+Keerthi,b6:77:62:bf:e8:5b,14,11,WPA2-Personal,2026-09-19 14:46:46,Unknown
+Wifi,28:87:ba:2e:76:7c,30,10,WPA2-Personal,2026-09-19 14:46:46,Unknown
+Manoj,f2:1e:e5:ae:b2:fd,5,11,WPA3-Personal,2026-09-19 14:46:46,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,40,11,WPA2-Personal,2026-09-19 14:46:46,Unknown
+Lucky,02:7b:33:95:50:e0,25,6,WPA2-Personal,2026-09-19 14:46:46,Unknown
+EEE_HOD,a0:21:b7:b6:5e:de,35,6,WPA2-Personal,2026-09-19 14:46:46,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,55,6,Open,2026-09-19 14:46:46,Unknown
+iPhone,16:98:45:39:88:75,8,149,WPA3-Personal,2026-09-19 14:46:46,Unknown
+MBA,3c:52:a1:0e:d2:eb,8,36,WPA2-Personal,2026-09-19 14:46:46,Unknown
+MBA,3c:52:a1:0e:d2:ea,75,11,WPA2-Personal,2026-09-19 14:46:46,Unknown
+Android,9e:f6:6c:e0:f6:22,14,11,WPA2-Personal,2026-09-19 14:46:46,Unknown
+chinnaaa,fe:48:d2:4a:17:05,40,1,WPA2-Personal,2026-09-19 14:46:46,Unknown
+Galaxy A35 5G 44E9,ce:58:af:d8:34:67,35,1,WPA2-Personal,2026-09-19 14:46:46,Unknown
+vivo T4 Lite 5G,f6:cf:45:a7:0c:8e,15,6,WPA2-Personal,2026-09-19 14:46:46,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,25,6,WPA3-Personal,2026-09-19 14:46:46,Unknown
+OnePlus Nord CE4,0e:55:7d:10:0b:2b,13,6,WPA2-Personal,2026-09-19 14:46:46,Unknown
+only gods B2K,a2:45:58:7a:5a:2c,10,6,WPA3-Personal,2026-09-19 14:46:46,Unknown
+Anish's A15,ba:e1:55:23:d9:79,50,6,WPA2-Personal,2026-09-19 14:46:46,Unknown
+vivo y56,aa:36:a6:6f:88:12,7,153,WPA3-Personal,2026-09-19 14:46:46,Unknown
+EEE-Dept,7c:8b:ca:47:10:9d,10,40,WPA2-Personal,2026-09-19 14:46:46,Unknown
+Makers Space Staff,3a:60:f9:2c:2f:c4,30,11,WPA2-Personal,2026-09-19 14:46:46,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,45,11,Open,2026-09-19 14:47:13,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,11,40,Open,2026-09-19 14:47:13,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,15,153,Open,2026-09-19 14:47:13,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,15,44,Open,2026-09-19 14:47:13,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,100,1,Open,2026-09-19 14:47:13,Unknown
+vivo Y31 5G,76:b5:f9:da:a5:9a,75,1,WPA2-Personal,2026-09-19 14:47:13,Unknown
+iQOO Z11x 5G,f2:b7:db:d0:a8:d6,15,1,WPA2-Personal,2026-09-19 14:47:13,Unknown
+Yellishetty Akshay's S24,16:23:08:3c:b5:eb,100,1,WPA2-Personal,2026-09-19 14:47:13,Unknown
+Galaxy A17 5G 4586,8e:0c:83:20:c4:0f,60,11,WPA2-Personal,2026-09-19 14:47:13,Unknown
+realme C83 5G z2nk,4a:ef:38:77:93:4c,14,11,WPA2-Personal,2026-09-19 14:47:13,Unknown
+OnePlus Nord CE6 Lite d6ed,52:bb:63:99:32:cf,100,1,WPA2-Personal,2026-09-19 14:47:13,Unknown
+Redmi 13 5G,4e:3e:00:1e:db:6b,60,40,WPA2-Personal,2026-09-19 14:47:13,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,15,153,Open,2026-09-19 14:47:13,Unknown
+CSM E-Class Room,78:8c:b5:9a:f5:fe,55,1,WPA2-Personal,2026-09-19 14:47:13,Unknown
+3202,b6:09:b9:ed:e3:8c,15,40,WPA2-Personal,2026-09-19 14:47:13,Unknown
+<Hidden Network>,42:52:a1:0e:d3:41,100,40,WPA2-Personal,2026-09-19 14:47:13,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,100,40,WPA2-Personal,2026-09-19 14:47:13,Unknown
+R&D,70:4f:57:9d:b2:c7,10,44,WPA2-Personal,2026-09-19 14:47:13,Unknown
+varma🧡,ba:b3:5c:2f:72:18,50,1,WPA2-Personal,2026-09-19 14:47:13,Unknown
+3006-HE8D94tf8q09KUN,44:d2:44:de:92:34,75,11,WPA2-Personal,2026-09-19 14:47:13,Unknown
+Hi,0a:a1:2d:37:87:c5,15,11,WPA2-Personal,2026-09-19 14:47:13,Unknown
+ONE PLUS NORD CE 4,a6:7a:97:2d:8e:6b,30,11,WPA2-Personal,2026-09-19 14:47:13,Unknown
+Keerthi,b6:77:62:bf:e8:5b,14,11,WPA2-Personal,2026-09-19 14:47:13,Unknown
+Wifi,28:87:ba:2e:76:7c,30,10,WPA2-Personal,2026-09-19 14:47:13,Unknown
+Manoj,f2:1e:e5:ae:b2:fd,5,11,WPA3-Personal,2026-09-19 14:47:13,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,40,11,WPA2-Personal,2026-09-19 14:47:13,Unknown
+Lucky,02:7b:33:95:50:e0,25,6,WPA2-Personal,2026-09-19 14:47:13,Unknown
+EEE_HOD,a0:21:b7:b6:5e:de,35,6,WPA2-Personal,2026-09-19 14:47:13,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,55,6,Open,2026-09-19 14:47:13,Unknown
+iPhone,16:98:45:39:88:75,8,149,WPA3-Personal,2026-09-19 14:47:13,Unknown
+MBA,3c:52:a1:0e:d2:eb,8,36,WPA2-Personal,2026-09-19 14:47:13,Unknown
+MBA,3c:52:a1:0e:d2:ea,75,11,WPA2-Personal,2026-09-19 14:47:13,Unknown
+Android,9e:f6:6c:e0:f6:22,14,11,WPA2-Personal,2026-09-19 14:47:13,Unknown
+chinnaaa,fe:48:d2:4a:17:05,40,1,WPA2-Personal,2026-09-19 14:47:13,Unknown
+Galaxy A35 5G 44E9,ce:58:af:d8:34:67,35,1,WPA2-Personal,2026-09-19 14:47:13,Unknown
+vivo T4 Lite 5G,f6:cf:45:a7:0c:8e,15,6,WPA2-Personal,2026-09-19 14:47:13,Unknown
+Bablu 5553🤍,1a:e3:3c:5d:36:dd,25,6,WPA3-Personal,2026-09-19 14:47:13,Unknown
+OnePlus Nord CE4,0e:55:7d:10:0b:2b,13,6,WPA2-Personal,2026-09-19 14:47:13,Unknown
+only gods B2K,a2:45:58:7a:5a:2c,10,6,WPA3-Personal,2026-09-19 14:47:13,Unknown
+Anish's A15,ba:e1:55:23:d9:79,50,6,WPA2-Personal,2026-09-19 14:47:13,Unknown
+vivo y56,aa:36:a6:6f:88:12,7,153,WPA3-Personal,2026-09-19 14:47:13,Unknown
+EEE-Dept,7c:8b:ca:47:10:9d,10,40,WPA2-Personal,2026-09-19 14:47:13,Unknown
+Makers Space Staff,3a:60:f9:2c:2f:c4,30,11,WPA2-Personal,2026-09-19 14:47:13,Unknown
+3002,34:60:f9:2c:30:04,50,11,WPA2-Personal,2026-09-19 14:48:06,Unknown
+Hi,0a:a1:2d:37:87:c5,10,11,WPA2-Personal,2026-09-19 14:48:06,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3b,14,161,WPA2-Personal,2026-09-19 14:48:06,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,85,11,WPA2-Personal,2026-09-19 14:48:06,Unknown
+Yellishetty Akshay's S24,16:23:08:3c:b5:eb,50,1,WPA2-Personal,2026-09-19 14:48:06,Unknown
+Galaxy A17 5G 4586,8e:0c:83:20:c4:0f,80,11,WPA2-Personal,2026-09-19 14:48:06,Unknown
+REDMI Note 15 5G,d6:6d:17:42:67:70,85,6,WPA2-Personal,2026-09-19 14:48:06,Unknown
+3202,b6:09:b9:ed:e3:8c,45,40,WPA2-Personal,2026-09-19 14:48:06,Unknown
+Redmi 13 5G,4e:3e:00:1e:db:6b,100,40,WPA2-Personal,2026-09-19 14:48:06,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,95,40,WPA2-Personal,2026-09-19 14:48:06,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,100,6,WPA2-Personal,2026-09-19 14:48:06,Unknown
+<Hidden Network>,42:52:a1:0e:d3:41,95,40,WPA2-Personal,2026-09-19 14:48:06,Unknown
+vivo T5 Lite 44W 5G,fa:87:8b:82:11:8e,55,6,WPA2-Personal,2026-09-19 14:48:06,Unknown
+VCE-CIE,16:27:f5:66:b6:9c,10,1,WPA2-Personal,2026-09-19 14:48:06,Unknown
+VCE-CIE,16:27:f5:66:b6:8a,40,11,WPA2-Personal,2026-09-19 14:48:06,Unknown
+OnePlus Nord CE6 Lite d6ed,52:bb:63:99:32:cf,70,1,WPA2-Personal,2026-09-19 14:48:06,Unknown
+vivo Y31 5G,76:b5:f9:da:a5:9a,25,1,WPA2-Personal,2026-09-19 14:48:06,Unknown
+iPhone,4e:5d:70:7c:36:01,12,149,WPA3-Personal,2026-09-19 14:48:06,Unknown
+JioAirfiberA6,20:b5:c6:7e:c3:94,5,40,WPA2-Personal,2026-09-19 14:48:06,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,10,153,Open,2026-09-19 14:48:06,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,5,40,Open,2026-09-19 14:48:06,Unknown
+moto g96 5G,86:2e:6c:63:44:9b,100,11,WPA2-Personal,2026-09-19 14:48:06,Unknown
+Falllllpppp,56:10:10:cb:1a:50,10,11,WPA3-Personal,2026-09-19 14:48:06,Unknown
+realme NARZO 90x 5G 1AD2,c2:4d:a8:c3:91:1a,65,6,WPA3-Personal,2026-09-19 14:48:06,Unknown
+3002,34:60:f9:2c:30:04,45,11,WPA2-Personal,2026-09-19 14:48:13,Unknown
+Hi,0a:a1:2d:37:87:c5,10,11,WPA2-Personal,2026-09-19 14:48:13,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3b,14,161,WPA2-Personal,2026-09-19 14:48:13,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,85,11,WPA2-Personal,2026-09-19 14:48:13,Unknown
+Yellishetty Akshay's S24,16:23:08:3c:b5:eb,50,1,WPA2-Personal,2026-09-19 14:48:13,Unknown
+Galaxy A17 5G 4586,8e:0c:83:20:c4:0f,80,11,WPA2-Personal,2026-09-19 14:48:13,Unknown
+REDMI Note 15 5G,d6:6d:17:42:67:70,85,6,WPA2-Personal,2026-09-19 14:48:13,Unknown
+3202,b6:09:b9:ed:e3:8c,45,40,WPA2-Personal,2026-09-19 14:48:13,Unknown
+Redmi 13 5G,4e:3e:00:1e:db:6b,100,40,WPA2-Personal,2026-09-19 14:48:13,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,95,40,WPA2-Personal,2026-09-19 14:48:13,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,100,6,WPA2-Personal,2026-09-19 14:48:13,Unknown
+<Hidden Network>,42:52:a1:0e:d3:41,95,40,WPA2-Personal,2026-09-19 14:48:13,Unknown
+vivo T5 Lite 44W 5G,fa:87:8b:82:11:8e,55,6,WPA2-Personal,2026-09-19 14:48:13,Unknown
+VCE-CIE,16:27:f5:66:b6:9c,10,1,WPA2-Personal,2026-09-19 14:48:13,Unknown
+VCE-CIE,16:27:f5:66:b6:8a,40,11,WPA2-Personal,2026-09-19 14:48:13,Unknown
+OnePlus Nord CE6 Lite d6ed,52:bb:63:99:32:cf,70,1,WPA2-Personal,2026-09-19 14:48:13,Unknown
+vivo Y31 5G,76:b5:f9:da:a5:9a,25,1,WPA2-Personal,2026-09-19 14:48:13,Unknown
+iPhone,4e:5d:70:7c:36:01,12,149,WPA3-Personal,2026-09-19 14:48:13,Unknown
+JioAirfiberA6,20:b5:c6:7e:c3:94,5,40,WPA2-Personal,2026-09-19 14:48:13,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,10,153,Open,2026-09-19 14:48:13,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,5,40,Open,2026-09-19 14:48:13,Unknown
+moto g96 5G,86:2e:6c:63:44:9b,100,11,WPA2-Personal,2026-09-19 14:48:13,Unknown
+Falllllpppp,56:10:10:cb:1a:50,10,11,WPA3-Personal,2026-09-19 14:48:13,Unknown
+realme NARZO 90x 5G 1AD2,c2:4d:a8:c3:91:1a,65,6,WPA3-Personal,2026-09-19 14:48:13,Unknown
+3002,34:60:f9:2c:30:04,65,11,WPA2-Personal,2026-09-19 14:48:19,Unknown
+Hi,0a:a1:2d:37:87:c5,10,11,WPA2-Personal,2026-09-19 14:48:19,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3b,14,161,WPA2-Personal,2026-09-19 14:48:19,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,85,11,WPA2-Personal,2026-09-19 14:48:19,Unknown
+Yellishetty Akshay's S24,16:23:08:3c:b5:eb,50,1,WPA2-Personal,2026-09-19 14:48:19,Unknown
+Galaxy A17 5G 4586,8e:0c:83:20:c4:0f,80,11,WPA2-Personal,2026-09-19 14:48:19,Unknown
+REDMI Note 15 5G,d6:6d:17:42:67:70,85,6,WPA2-Personal,2026-09-19 14:48:19,Unknown
+3202,b6:09:b9:ed:e3:8c,45,40,WPA2-Personal,2026-09-19 14:48:19,Unknown
+Redmi 13 5G,4e:3e:00:1e:db:6b,100,40,WPA2-Personal,2026-09-19 14:48:19,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,95,40,WPA2-Personal,2026-09-19 14:48:19,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,100,6,WPA2-Personal,2026-09-19 14:48:19,Unknown
+<Hidden Network>,42:52:a1:0e:d3:41,95,40,WPA2-Personal,2026-09-19 14:48:19,Unknown
+vivo T5 Lite 44W 5G,fa:87:8b:82:11:8e,55,6,WPA2-Personal,2026-09-19 14:48:19,Unknown
+VCE-CIE,16:27:f5:66:b6:9c,10,1,WPA2-Personal,2026-09-19 14:48:19,Unknown
+VCE-CIE,16:27:f5:66:b6:8a,40,11,WPA2-Personal,2026-09-19 14:48:19,Unknown
+OnePlus Nord CE6 Lite d6ed,52:bb:63:99:32:cf,70,1,WPA2-Personal,2026-09-19 14:48:19,Unknown
+vivo Y31 5G,76:b5:f9:da:a5:9a,25,1,WPA2-Personal,2026-09-19 14:48:19,Unknown
+iPhone,4e:5d:70:7c:36:01,12,149,WPA3-Personal,2026-09-19 14:48:19,Unknown
+JioAirfiberA6,20:b5:c6:7e:c3:94,5,40,WPA2-Personal,2026-09-19 14:48:19,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,10,153,Open,2026-09-19 14:48:19,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,5,40,Open,2026-09-19 14:48:19,Unknown
+moto g96 5G,86:2e:6c:63:44:9b,100,11,WPA2-Personal,2026-09-19 14:48:19,Unknown
+Falllllpppp,56:10:10:cb:1a:50,10,11,WPA3-Personal,2026-09-19 14:48:19,Unknown
+realme NARZO 90x 5G 1AD2,c2:4d:a8:c3:91:1a,65,6,WPA3-Personal,2026-09-19 14:48:19,Unknown
+3002,34:60:f9:2c:30:04,70,11,WPA2-Personal,2026-09-19 14:48:37,Unknown
+Hi,0a:a1:2d:37:87:c5,10,11,WPA2-Personal,2026-09-19 14:48:37,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3b,14,161,WPA2-Personal,2026-09-19 14:48:37,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,85,11,WPA2-Personal,2026-09-19 14:48:37,Unknown
+Yellishetty Akshay's S24,16:23:08:3c:b5:eb,50,1,WPA2-Personal,2026-09-19 14:48:37,Unknown
+Galaxy A17 5G 4586,8e:0c:83:20:c4:0f,80,11,WPA2-Personal,2026-09-19 14:48:37,Unknown
+REDMI Note 15 5G,d6:6d:17:42:67:70,85,6,WPA2-Personal,2026-09-19 14:48:37,Unknown
+3202,b6:09:b9:ed:e3:8c,45,40,WPA2-Personal,2026-09-19 14:48:37,Unknown
+Redmi 13 5G,4e:3e:00:1e:db:6b,100,40,WPA2-Personal,2026-09-19 14:48:37,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,95,40,WPA2-Personal,2026-09-19 14:48:37,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,100,6,WPA2-Personal,2026-09-19 14:48:37,Unknown
+<Hidden Network>,42:52:a1:0e:d3:41,95,40,WPA2-Personal,2026-09-19 14:48:37,Unknown
+vivo T5 Lite 44W 5G,fa:87:8b:82:11:8e,55,6,WPA2-Personal,2026-09-19 14:48:37,Unknown
+VCE-CIE,16:27:f5:66:b6:9c,10,1,WPA2-Personal,2026-09-19 14:48:37,Unknown
+VCE-CIE,16:27:f5:66:b6:8a,40,11,WPA2-Personal,2026-09-19 14:48:37,Unknown
+OnePlus Nord CE6 Lite d6ed,52:bb:63:99:32:cf,70,1,WPA2-Personal,2026-09-19 14:48:37,Unknown
+vivo Y31 5G,76:b5:f9:da:a5:9a,25,1,WPA2-Personal,2026-09-19 14:48:37,Unknown
+iPhone,4e:5d:70:7c:36:01,12,149,WPA3-Personal,2026-09-19 14:48:37,Unknown
+JioAirfiberA6,20:b5:c6:7e:c3:94,5,40,WPA2-Personal,2026-09-19 14:48:37,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,10,153,Open,2026-09-19 14:48:37,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,5,40,Open,2026-09-19 14:48:37,Unknown
+moto g96 5G,86:2e:6c:63:44:9b,100,11,WPA2-Personal,2026-09-19 14:48:37,Unknown
+Falllllpppp,56:10:10:cb:1a:50,10,11,WPA3-Personal,2026-09-19 14:48:37,Unknown
+realme NARZO 90x 5G 1AD2,c2:4d:a8:c3:91:1a,65,6,WPA3-Personal,2026-09-19 14:48:37,Unknown
+TP-Link_6790,0c:ef:15:e8:67:90,100,10,WPA2-Personal,2026-09-20 22:53:48,Unknown
+TP-Link_4208,98:03:8e:eb:42:08,10,10,WPA2-Personal,2026-09-20 22:53:48,Unknown
+TP-Link_F57E,e0:d3:62:56:f5:7e,7,10,WPA2-Personal,2026-09-20 22:53:48,Unknown
+Vivo T3,ae:a4:68:ab:22:5d,45,5,WPA3-Personal,2026-09-20 22:53:48,Unknown
+TP-Link_534A,0c:ef:15:e9:53:4a,70,4,WPA2-Personal,2026-09-20 22:53:48,Unknown
+JioPrivateNet,30:b6:2d:98:9e:a0,100,11,WPA2-Enterprise,2026-09-20 22:53:48,Unknown
+TP-Link_6790,0c:ef:15:e8:67:90,100,10,WPA2-Personal,2026-09-20 22:54:16,Unknown
+TP-Link_4208,98:03:8e:eb:42:08,10,10,WPA2-Personal,2026-09-20 22:54:16,Unknown
+TP-Link_F57E,e0:d3:62:56:f5:7e,7,10,WPA2-Personal,2026-09-20 22:54:16,Unknown
+Vivo T3,ae:a4:68:ab:22:5d,45,5,WPA3-Personal,2026-09-20 22:54:16,Unknown
+TP-Link_534A,0c:ef:15:e9:53:4a,70,4,WPA2-Personal,2026-09-20 22:54:16,Unknown
+JioPrivateNet,30:b6:2d:98:9e:a0,100,11,WPA2-Enterprise,2026-09-20 22:54:16,Unknown
+Buddi ^_^,ba:99:26:75:b2:be,100,6,WPA3-Personal,2026-09-21 09:16:09,Unknown
+Buddi ^_^,ba:99:26:75:b2:be,85,6,WPA3-Personal,2026-09-21 09:16:33,Unknown
+OPPO A5 Pro,96:3a:ac:67:08:d9,25,6,WPA3-Personal,2026-09-21 09:16:33,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,70,6,Open,2026-09-21 09:16:33,Unknown
+Galaxy F17 5G 6076,ea:8b:c3:ba:ff:65,100,6,WPA2-Personal,2026-09-21 09:16:33,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,100,6,Open,2026-09-21 09:16:33,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,45,157,Open,2026-09-21 09:16:33,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,75,40,Open,2026-09-21 09:16:33,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,25,40,Open,2026-09-21 09:16:33,Unknown
+Redmi 10,a6:25:48:70:50:38,75,11,WPA2-Personal,2026-09-21 09:16:33,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,14,153,Open,2026-09-21 09:16:33,Unknown
+realme P1,62:43:e3:66:73:ed,100,11,WPA3-Personal,2026-09-21 09:16:33,Unknown
+Isolemnlyswearthatiamuptonogood,a2:db:20:57:e1:ea,100,11,WPA2-Personal,2026-09-21 09:16:33,Unknown
+vivo Y22,9a:18:9a:b9:96:7c,25,6,WPA2-Personal,2026-09-21 09:16:33,Unknown
+Sami’s iphone,76:b6:7f:0a:ce:7b,35,6,WPA2-Personal,2026-09-21 09:16:33,Unknown
+Buddi ^_^,ba:99:26:75:b2:be,100,6,WPA3-Personal,2026-09-21 09:16:59,Unknown
+OPPO A5 Pro,96:3a:ac:67:08:d9,25,6,WPA3-Personal,2026-09-21 09:16:59,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,70,6,Open,2026-09-21 09:16:59,Unknown
+Galaxy F17 5G 6076,ea:8b:c3:ba:ff:65,100,6,WPA2-Personal,2026-09-21 09:16:59,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,100,6,Open,2026-09-21 09:16:59,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d1,45,157,Open,2026-09-21 09:16:59,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,75,40,Open,2026-09-21 09:16:59,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,25,40,Open,2026-09-21 09:16:59,Unknown
+Redmi 10,a6:25:48:70:50:38,75,11,WPA2-Personal,2026-09-21 09:16:59,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,14,153,Open,2026-09-21 09:16:59,Unknown
+realme P1,62:43:e3:66:73:ed,100,11,WPA3-Personal,2026-09-21 09:16:59,Unknown
+Isolemnlyswearthatiamuptonogood,a2:db:20:57:e1:ea,100,11,WPA2-Personal,2026-09-21 09:16:59,Unknown
+vivo Y22,9a:18:9a:b9:96:7c,25,6,WPA2-Personal,2026-09-21 09:16:59,Unknown
+Sami’s iphone,76:b6:7f:0a:ce:7b,35,6,WPA2-Personal,2026-09-21 09:16:59,Unknown
+Buddi ^_^,ba:99:26:75:b2:be,100,6,WPA3-Personal,2026-09-21 09:26:21,Unknown
+Buddi ^_^,ba:99:26:75:b2:be,100,6,WPA3-Personal,2026-09-21 09:26:30,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 09:26:30,Unknown
+iPhone 14 Plus,66:81:53:8d:15:3f,5,6,WPA2-Personal,2026-09-21 09:26:30,Unknown
+iQOO Z10 Lite 5G,02:39:72:c3:9a:38,8,44,WPA2-Personal,2026-09-21 09:26:30,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,30,40,Open,2026-09-21 09:26:30,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,20,40,Open,2026-09-21 09:26:30,Unknown
+VCE Campus WiFi,e8:48:b8:3d:3f:ee,8,11,Open,2026-09-21 09:26:30,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-21 09:26:30,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,60,6,Open,2026-09-21 09:26:30,Unknown
+Redmi 13 5G,16:d0:f2:6f:79:4c,100,40,WPA2-Personal,2026-09-21 09:26:30,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,55,153,Open,2026-09-21 09:26:30,Unknown
+Isolemnlyswearthatiamuptonogood,a2:db:20:57:e1:ea,100,11,WPA2-Personal,2026-09-21 09:26:30,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:26:30,Unknown
+realme P1,62:43:e3:66:73:ed,100,11,WPA3-Personal,2026-09-21 09:26:30,Unknown
+Vishal Varma,ba:40:56:29:83:d9,90,1,WPA2-Personal,2026-09-21 09:26:30,Unknown
+OPPO A5 Pro,96:3a:ac:67:08:d9,30,6,WPA3-Personal,2026-09-21 09:26:30,Unknown
+Buddi ^_^,ba:99:26:75:b2:be,100,6,WPA3-Personal,2026-09-21 09:26:44,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 09:26:44,Unknown
+iPhone 14 Plus,66:81:53:8d:15:3f,5,6,WPA2-Personal,2026-09-21 09:26:44,Unknown
+iQOO Z10 Lite 5G,02:39:72:c3:9a:38,8,44,WPA2-Personal,2026-09-21 09:26:44,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:bb,30,40,Open,2026-09-21 09:26:44,Unknown
+VCE Campus WiFi,50:91:e3:77:05:37,20,40,Open,2026-09-21 09:26:44,Unknown
+VCE Campus WiFi,e8:48:b8:3d:3f:ee,8,11,Open,2026-09-21 09:26:44,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d1:ba,100,11,Open,2026-09-21 09:26:44,Unknown
+VCE Campus WiFi,3c:52:a1:0e:d2:d0,60,6,Open,2026-09-21 09:26:44,Unknown
+Redmi 13 5G,16:d0:f2:6f:79:4c,100,40,WPA2-Personal,2026-09-21 09:26:44,Unknown
+TP-Link_5GHz_0EC495,3c:52:a1:0e:c4:95,55,153,Open,2026-09-21 09:26:44,Unknown
+Isolemnlyswearthatiamuptonogood,a2:db:20:57:e1:ea,100,11,WPA2-Personal,2026-09-21 09:26:44,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:26:44,Unknown
+realme P1,62:43:e3:66:73:ed,100,11,WPA3-Personal,2026-09-21 09:26:44,Unknown
+Vishal Varma,ba:40:56:29:83:d9,90,1,WPA2-Personal,2026-09-21 09:26:44,Unknown
+OPPO A5 Pro,96:3a:ac:67:08:d9,30,6,WPA3-Personal,2026-09-21 09:26:44,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:32:49,Unknown
+Hi,0a:a1:2d:37:87:c5,100,11,WPA2-Personal,2026-09-21 09:32:49,Unknown
+hello,22:fa:1a:65:e8:85,100,6,Open,2026-09-21 09:32:49,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,20,36,WPA3-Personal,2026-09-21 09:32:49,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,50,149,WPA3-Personal,2026-09-21 09:32:49,Unknown
+OPPO Reno5 Pro 5G,ca:34:75:b3:41:81,30,13,WPA2-Personal,2026-09-21 09:32:49,Unknown
+honey,da:58:0c:b0:89:85,100,11,WPA2-Personal,2026-09-21 09:32:49,Unknown
+K Anusha's F17,3a:f8:97:a8:ea:d6,85,11,WPA2-Personal,2026-09-21 09:32:49,Unknown
+Avinash_360,1a:d4:9b:80:8c:5c,100,1,WPA2-Personal,2026-09-21 09:32:49,Unknown
+VCE-CIE,16:27:f5:66:b6:9c,55,1,WPA2-Personal,2026-09-21 09:32:49,Unknown
+VCE-SAC,10:27:f5:66:b6:9c,50,1,WPA2-Personal,2026-09-21 09:32:49,Unknown
+VCE-SAC,10:27:f5:66:b6:8a,40,11,WPA2-Personal,2026-09-21 09:32:49,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,25,40,WPA2-Personal,2026-09-21 09:32:49,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,100,6,WPA2-Personal,2026-09-21 09:32:49,Unknown
+Redmi 13 5G,16:d0:f2:6f:79:4c,100,40,WPA2-Personal,2026-09-21 09:32:49,Unknown
+<Hidden Network>,42:52:a1:0e:d3:41,40,40,WPA2-Personal,2026-09-21 09:32:49,Unknown
+Vishnuu,42:cb:a6:dd:27:53,70,6,WPA3-Personal,2026-09-21 09:32:49,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,100,6,WPA2-Personal,2026-09-21 09:32:49,Unknown
+Redmi Note 11,92:df:60:6b:60:16,25,6,WPA2-Personal,2026-09-21 09:32:49,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,50,11,WPA2-Personal,2026-09-21 09:32:49,Unknown
+OPPO Reno15 Pro Mini 5G 1A2E,c2:13:48:fd:98:ea,9,1,WPA2-Personal,2026-09-21 09:32:49,Unknown
+Samsung,06:66:4d:d7:4e:2a,50,6,WPA2-Personal,2026-09-21 09:32:49,Unknown
+R_I_S_H_I_,d2:a7:e7:68:fa:eb,7,11,WPA3-Personal,2026-09-21 09:32:49,Unknown
+3002,34:60:f9:2c:30:04,10,11,WPA2-Personal,2026-09-21 09:32:49,Unknown
+Anish's A15,ba:e1:55:23:d9:79,10,6,WPA2-Personal,2026-09-21 09:32:49,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:33:46,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:33:59,Unknown
+honey,da:58:0c:b0:89:85,100,11,WPA2-Personal,2026-09-21 09:33:59,Unknown
+OPPO A6 5G e76w,be:a8:ed:33:de:bb,70,11,WPA2-Personal,2026-09-21 09:33:59,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,95,149,WPA3-Personal,2026-09-21 09:33:59,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,15,36,WPA3-Personal,2026-09-21 09:33:59,Unknown
+<Hidden Network>,42:52:a1:0e:d3:41,10,40,WPA2-Personal,2026-09-21 09:33:59,Unknown
+Redmi 13 5G,16:d0:f2:6f:79:4c,100,40,WPA2-Personal,2026-09-21 09:33:59,Unknown
+OPPO F27 5G,56:c7:6e:fb:32:9f,100,1,WPA2-Personal,2026-09-21 09:33:59,Unknown
+hello,22:fa:1a:65:e8:85,100,6,Open,2026-09-21 09:33:59,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,95,6,WPA2-Personal,2026-09-21 09:33:59,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,100,6,WPA2-Personal,2026-09-21 09:33:59,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:37:44,Unknown
+honey,da:58:0c:b0:89:85,100,11,WPA2-Personal,2026-09-21 09:37:44,Unknown
+Hi,0a:a1:2d:37:87:c5,100,11,WPA2-Personal,2026-09-21 09:37:44,Unknown
+hello,22:fa:1a:65:e8:85,100,6,Open,2026-09-21 09:37:44,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,90,149,WPA3-Personal,2026-09-21 09:37:44,Unknown
+Redmi 13 5G,16:d0:f2:6f:79:4c,100,40,WPA2-Personal,2026-09-21 09:37:44,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,45,40,WPA2-Personal,2026-09-21 09:37:44,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,100,6,WPA2-Personal,2026-09-21 09:37:44,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,12,36,WPA3-Personal,2026-09-21 09:37:44,Unknown
+Harshaaa,36:8b:c3:3f:12:60,100,1,WPA3-Personal,2026-09-21 09:37:44,Unknown
+Avinash_360,1a:d4:9b:80:8c:5c,100,1,WPA2-Personal,2026-09-21 09:37:44,Unknown
+vivo Y58 5G,06:b9:b0:c5:48:25,75,1,WPA2-Personal,2026-09-21 09:37:44,Unknown
+OPPO Reno5 Pro 5G,ca:34:75:b3:41:81,10,13,WPA2-Personal,2026-09-21 09:37:44,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,100,6,WPA2-Personal,2026-09-21 09:37:44,Unknown
+Redmi Note 11,92:df:60:6b:60:16,20,6,WPA2-Personal,2026-09-21 09:37:44,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 09:37:44,Unknown
+iPhone,ee:62:9d:f5:65:28,55,6,WPA2-Personal,2026-09-21 09:37:44,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,15,6,Open,2026-09-21 09:37:44,Unknown
+Vishnuu,42:cb:a6:dd:27:53,70,6,WPA3-Personal,2026-09-21 09:37:44,Unknown
+vce,08:bd:43:65:42:a2,13,5,WPA2-Personal,2026-09-21 09:37:44,Unknown
+Samsung,06:66:4d:d7:4e:2a,5,6,WPA2-Personal,2026-09-21 09:37:44,Unknown
+OPPO F27 Pro+ 5G B7F2,36:59:8a:8e:cc:db,75,11,WPA2-Personal,2026-09-21 09:37:44,Unknown
+Redmi 12 5G,6e:a4:61:69:25:50,12,11,WPA2-Personal,2026-09-21 09:37:44,Unknown
+K Anusha's F17,3a:f8:97:a8:ea:d6,90,11,WPA2-Personal,2026-09-21 09:37:44,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,10,11,WPA2-Personal,2026-09-21 09:37:44,Unknown
+OPPO A6 5G e76w,be:a8:ed:33:de:bb,35,11,WPA2-Personal,2026-09-21 09:37:44,Unknown
+SYED,2e:e2:ed:e6:53:a6,15,6,WPA2-Personal,2026-09-21 09:37:44,Unknown
+<Hidden Network>,42:52:a1:0e:d3:41,45,40,WPA2-Personal,2026-09-21 09:37:44,Unknown
+VCE-SAC,10:27:f5:66:b6:8a,35,11,WPA2-Personal,2026-09-21 09:37:44,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,15,1,Open,2026-09-21 09:37:44,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:41:45,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:41:58,Unknown
+Vishnuu,42:cb:a6:dd:27:53,15,6,WPA3-Personal,2026-09-21 09:41:58,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,90,149,WPA3-Personal,2026-09-21 09:41:58,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,30,36,WPA3-Personal,2026-09-21 09:41:58,Unknown
+vce,08:bd:43:65:42:a2,10,5,WPA2-Personal,2026-09-21 09:41:58,Unknown
+3202,b6:09:b9:ed:e3:8c,100,40,WPA2-Personal,2026-09-21 09:41:58,Unknown
+Redmi 13 5G,16:d0:f2:6f:79:4c,100,40,WPA2-Personal,2026-09-21 09:41:58,Unknown
+Harshaaa,36:8b:c3:3f:12:60,100,1,WPA3-Personal,2026-09-21 09:41:58,Unknown
+OPPO F27 5G,56:c7:6e:fb:32:9f,100,1,WPA2-Personal,2026-09-21 09:41:58,Unknown
+OPPO A6 5G e76w,be:a8:ed:33:de:bb,85,11,WPA2-Personal,2026-09-21 09:41:58,Unknown
+Hi,0a:a1:2d:37:87:c5,100,11,WPA2-Personal,2026-09-21 09:41:58,Unknown
+OPPO F27 Pro+ 5G B7F2,36:59:8a:8e:cc:db,70,11,WPA2-Personal,2026-09-21 09:41:58,Unknown
+Redmi 9,e2:83:24:3b:03:5b,7,6,WPA2-Personal,2026-09-21 09:41:58,Unknown
+Samsung,06:66:4d:d7:4e:2a,14,6,WPA2-Personal,2026-09-21 09:41:58,Unknown
+9381176782,fa:f6:4b:cb:52:b2,12,6,WPA3-Personal,2026-09-21 09:41:58,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 09:41:58,Unknown
+iQOO Neo 10R,56:9d:c6:4e:82:7d,14,6,WPA2-Personal,2026-09-21 09:41:58,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,100,6,WPA2-Personal,2026-09-21 09:41:58,Unknown
+SYED,2e:e2:ed:e6:53:a6,12,6,WPA2-Personal,2026-09-21 09:41:58,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:43:24,Unknown
+Vishnuu,42:cb:a6:dd:27:53,15,6,WPA3-Personal,2026-09-21 09:43:24,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,90,149,WPA3-Personal,2026-09-21 09:43:24,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,30,36,WPA3-Personal,2026-09-21 09:43:24,Unknown
+vce,08:bd:43:65:42:a2,10,5,WPA2-Personal,2026-09-21 09:43:24,Unknown
+3202,b6:09:b9:ed:e3:8c,100,40,WPA2-Personal,2026-09-21 09:43:24,Unknown
+Redmi 13 5G,16:d0:f2:6f:79:4c,100,40,WPA2-Personal,2026-09-21 09:43:24,Unknown
+Harshaaa,36:8b:c3:3f:12:60,100,1,WPA3-Personal,2026-09-21 09:43:24,Unknown
+OPPO F27 5G,56:c7:6e:fb:32:9f,100,1,WPA2-Personal,2026-09-21 09:43:24,Unknown
+OPPO A6 5G e76w,be:a8:ed:33:de:bb,85,11,WPA2-Personal,2026-09-21 09:43:24,Unknown
+Hi,0a:a1:2d:37:87:c5,100,11,WPA2-Personal,2026-09-21 09:43:24,Unknown
+OPPO F27 Pro+ 5G B7F2,36:59:8a:8e:cc:db,70,11,WPA2-Personal,2026-09-21 09:43:24,Unknown
+Redmi 9,e2:83:24:3b:03:5b,7,6,WPA2-Personal,2026-09-21 09:43:24,Unknown
+Samsung,06:66:4d:d7:4e:2a,14,6,WPA2-Personal,2026-09-21 09:43:24,Unknown
+9381176782,fa:f6:4b:cb:52:b2,12,6,WPA3-Personal,2026-09-21 09:43:24,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 09:43:24,Unknown
+iQOO Neo 10R,56:9d:c6:4e:82:7d,14,6,WPA2-Personal,2026-09-21 09:43:24,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,100,6,WPA2-Personal,2026-09-21 09:43:24,Unknown
+SYED,2e:e2:ed:e6:53:a6,12,6,WPA2-Personal,2026-09-21 09:43:24,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:43:36,Unknown
+Vishnuu,42:cb:a6:dd:27:53,15,6,WPA3-Personal,2026-09-21 09:43:36,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,90,149,WPA3-Personal,2026-09-21 09:43:36,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,30,36,WPA3-Personal,2026-09-21 09:43:36,Unknown
+vce,08:bd:43:65:42:a2,10,5,WPA2-Personal,2026-09-21 09:43:36,Unknown
+3202,b6:09:b9:ed:e3:8c,100,40,WPA2-Personal,2026-09-21 09:43:36,Unknown
+Redmi 13 5G,16:d0:f2:6f:79:4c,100,40,WPA2-Personal,2026-09-21 09:43:36,Unknown
+Harshaaa,36:8b:c3:3f:12:60,100,1,WPA3-Personal,2026-09-21 09:43:36,Unknown
+OPPO F27 5G,56:c7:6e:fb:32:9f,100,1,WPA2-Personal,2026-09-21 09:43:36,Unknown
+OPPO A6 5G e76w,be:a8:ed:33:de:bb,85,11,WPA2-Personal,2026-09-21 09:43:36,Unknown
+Hi,0a:a1:2d:37:87:c5,100,11,WPA2-Personal,2026-09-21 09:43:36,Unknown
+OPPO F27 Pro+ 5G B7F2,36:59:8a:8e:cc:db,70,11,WPA2-Personal,2026-09-21 09:43:36,Unknown
+Redmi 9,e2:83:24:3b:03:5b,7,6,WPA2-Personal,2026-09-21 09:43:36,Unknown
+Samsung,06:66:4d:d7:4e:2a,14,6,WPA2-Personal,2026-09-21 09:43:36,Unknown
+9381176782,fa:f6:4b:cb:52:b2,12,6,WPA3-Personal,2026-09-21 09:43:36,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 09:43:36,Unknown
+iQOO Neo 10R,56:9d:c6:4e:82:7d,14,6,WPA2-Personal,2026-09-21 09:43:36,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,100,6,WPA2-Personal,2026-09-21 09:43:36,Unknown
+SYED,2e:e2:ed:e6:53:a6,12,6,WPA2-Personal,2026-09-21 09:43:36,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:43:44,Unknown
+Vishnuu,42:cb:a6:dd:27:53,15,6,WPA3-Personal,2026-09-21 09:43:44,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,90,149,WPA3-Personal,2026-09-21 09:43:44,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,30,36,WPA3-Personal,2026-09-21 09:43:44,Unknown
+vce,08:bd:43:65:42:a2,10,5,WPA2-Personal,2026-09-21 09:43:44,Unknown
+3202,b6:09:b9:ed:e3:8c,100,40,WPA2-Personal,2026-09-21 09:43:44,Unknown
+Redmi 13 5G,16:d0:f2:6f:79:4c,100,40,WPA2-Personal,2026-09-21 09:43:44,Unknown
+Harshaaa,36:8b:c3:3f:12:60,100,1,WPA3-Personal,2026-09-21 09:43:44,Unknown
+OPPO F27 5G,56:c7:6e:fb:32:9f,100,1,WPA2-Personal,2026-09-21 09:43:44,Unknown
+OPPO A6 5G e76w,be:a8:ed:33:de:bb,85,11,WPA2-Personal,2026-09-21 09:43:44,Unknown
+Hi,0a:a1:2d:37:87:c5,100,11,WPA2-Personal,2026-09-21 09:43:44,Unknown
+OPPO F27 Pro+ 5G B7F2,36:59:8a:8e:cc:db,70,11,WPA2-Personal,2026-09-21 09:43:44,Unknown
+Redmi 9,e2:83:24:3b:03:5b,7,6,WPA2-Personal,2026-09-21 09:43:44,Unknown
+Samsung,06:66:4d:d7:4e:2a,14,6,WPA2-Personal,2026-09-21 09:43:44,Unknown
+9381176782,fa:f6:4b:cb:52:b2,12,6,WPA3-Personal,2026-09-21 09:43:44,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 09:43:44,Unknown
+iQOO Neo 10R,56:9d:c6:4e:82:7d,14,6,WPA2-Personal,2026-09-21 09:43:44,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,100,6,WPA2-Personal,2026-09-21 09:43:44,Unknown
+SYED,2e:e2:ed:e6:53:a6,12,6,WPA2-Personal,2026-09-21 09:43:44,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:44:14,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:45:48,Unknown
+Avinash_360,1a:d4:9b:80:8c:5c,100,1,WPA2-Personal,2026-09-21 09:45:48,Unknown
+vivo Y58 5G,06:b9:b0:c5:48:25,100,1,WPA2-Personal,2026-09-21 09:45:48,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,100,149,WPA3-Personal,2026-09-21 09:45:48,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,35,40,WPA2-Personal,2026-09-21 09:45:48,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,100,6,WPA2-Personal,2026-09-21 09:45:48,Unknown
+Redmi 13 5G,16:d0:f2:6f:79:4c,100,40,WPA2-Personal,2026-09-21 09:45:48,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 09:45:48,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,20,36,WPA3-Personal,2026-09-21 09:45:48,Unknown
+Harshaaa,36:8b:c3:3f:12:60,100,1,WPA3-Personal,2026-09-21 09:45:48,Unknown
+OPPO F27 5G,56:c7:6e:fb:32:9f,100,1,WPA2-Personal,2026-09-21 09:45:48,Unknown
+Harsha's S24,da:26:34:be:bf:54,100,11,WPA2-Personal,2026-09-21 09:45:48,Unknown
+K Anusha's F17,3a:f8:97:a8:ea:d6,75,11,WPA2-Personal,2026-09-21 09:45:48,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,100,6,WPA2-Personal,2026-09-21 09:45:48,Unknown
+3202,b6:09:b9:ed:e3:8c,100,40,WPA2-Personal,2026-09-21 09:45:48,Unknown
+iQOO Neo 10R,56:9d:c6:4e:82:7d,9,6,WPA2-Personal,2026-09-21 09:45:48,Unknown
+E-Class Room,e8:48:b8:9b:7a:0e,12,6,WPA2-Personal,2026-09-21 09:45:48,Unknown
+hello,26:10:51:fa:f0:c4,100,11,Open,2026-09-21 09:45:48,Unknown
+honey,da:58:0c:b0:89:85,100,11,WPA2-Personal,2026-09-21 09:45:48,Unknown
+Hi,0a:a1:2d:37:87:c5,100,11,WPA2-Personal,2026-09-21 09:45:48,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:48:14,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:48:22,Unknown
+hello,26:10:51:fa:f0:c4,100,11,Open,2026-09-21 09:48:22,Unknown
+Hi,0a:a1:2d:37:87:c5,100,11,WPA2-Personal,2026-09-21 09:48:22,Unknown
+honey,da:58:0c:b0:89:85,100,11,WPA2-Personal,2026-09-21 09:48:22,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 09:48:22,Unknown
+vce,08:bd:43:65:42:a2,10,5,WPA2-Personal,2026-09-21 09:48:22,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,95,149,WPA3-Personal,2026-09-21 09:48:22,Unknown
+OPPO F27 5G,56:c7:6e:fb:32:9f,100,1,WPA2-Personal,2026-09-21 09:48:22,Unknown
+3202,b6:09:b9:ed:e3:8c,80,40,WPA2-Personal,2026-09-21 09:48:22,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,50,40,WPA2-Personal,2026-09-21 09:48:22,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,80,6,WPA2-Personal,2026-09-21 09:48:22,Unknown
+Redmi 13 5G,16:d0:f2:6f:79:4c,100,40,WPA2-Personal,2026-09-21 09:48:22,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,25,36,WPA3-Personal,2026-09-21 09:48:22,Unknown
+OPPO A6 5G e76w,be:a8:ed:33:de:bb,85,11,WPA2-Personal,2026-09-21 09:48:22,Unknown
+Vishnuu,42:cb:a6:dd:27:53,20,6,WPA3-Personal,2026-09-21 09:48:22,Unknown
+SYED,2e:e2:ed:e6:53:a6,35,6,WPA2-Personal,2026-09-21 09:48:22,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,100,6,WPA2-Personal,2026-09-21 09:48:22,Unknown
+OPPO Reno5 Pro 5G,ca:34:75:b3:41:81,10,13,WPA2-Personal,2026-09-21 09:48:22,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:48:35,Unknown
+hello,26:10:51:fa:f0:c4,100,11,Open,2026-09-21 09:48:35,Unknown
+Hi,0a:a1:2d:37:87:c5,100,11,WPA2-Personal,2026-09-21 09:48:35,Unknown
+honey,da:58:0c:b0:89:85,100,11,WPA2-Personal,2026-09-21 09:48:35,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 09:48:35,Unknown
+vce,08:bd:43:65:42:a2,10,5,WPA2-Personal,2026-09-21 09:48:35,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,95,149,WPA3-Personal,2026-09-21 09:48:35,Unknown
+OPPO F27 5G,56:c7:6e:fb:32:9f,100,1,WPA2-Personal,2026-09-21 09:48:35,Unknown
+3202,b6:09:b9:ed:e3:8c,80,40,WPA2-Personal,2026-09-21 09:48:35,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,50,40,WPA2-Personal,2026-09-21 09:48:35,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,80,6,WPA2-Personal,2026-09-21 09:48:35,Unknown
+Redmi 13 5G,16:d0:f2:6f:79:4c,100,40,WPA2-Personal,2026-09-21 09:48:35,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,25,36,WPA3-Personal,2026-09-21 09:48:35,Unknown
+OPPO A6 5G e76w,be:a8:ed:33:de:bb,85,11,WPA2-Personal,2026-09-21 09:48:35,Unknown
+Vishnuu,42:cb:a6:dd:27:53,20,6,WPA3-Personal,2026-09-21 09:48:35,Unknown
+SYED,2e:e2:ed:e6:53:a6,35,6,WPA2-Personal,2026-09-21 09:48:35,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,100,6,WPA2-Personal,2026-09-21 09:48:35,Unknown
+OPPO Reno5 Pro 5G,ca:34:75:b3:41:81,10,13,WPA2-Personal,2026-09-21 09:48:35,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 09:49:16,Unknown
+hello,26:10:51:fa:f0:c4,100,11,Open,2026-09-21 09:49:16,Unknown
+Hi,0a:a1:2d:37:87:c5,100,11,WPA2-Personal,2026-09-21 09:49:16,Unknown
+honey,da:58:0c:b0:89:85,100,11,WPA2-Personal,2026-09-21 09:49:16,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 09:49:16,Unknown
+vce,08:bd:43:65:42:a2,10,5,WPA2-Personal,2026-09-21 09:49:16,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,95,149,WPA3-Personal,2026-09-21 09:49:16,Unknown
+OPPO F27 5G,56:c7:6e:fb:32:9f,100,1,WPA2-Personal,2026-09-21 09:49:16,Unknown
+3202,b6:09:b9:ed:e3:8c,80,40,WPA2-Personal,2026-09-21 09:49:16,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,50,40,WPA2-Personal,2026-09-21 09:49:16,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,80,6,WPA2-Personal,2026-09-21 09:49:16,Unknown
+Redmi 13 5G,16:d0:f2:6f:79:4c,100,40,WPA2-Personal,2026-09-21 09:49:16,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,25,36,WPA3-Personal,2026-09-21 09:49:16,Unknown
+OPPO A6 5G e76w,be:a8:ed:33:de:bb,85,11,WPA2-Personal,2026-09-21 09:49:16,Unknown
+Vishnuu,42:cb:a6:dd:27:53,20,6,WPA3-Personal,2026-09-21 09:49:16,Unknown
+SYED,2e:e2:ed:e6:53:a6,35,6,WPA2-Personal,2026-09-21 09:49:16,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,100,6,WPA2-Personal,2026-09-21 09:49:16,Unknown
+OPPO Reno5 Pro 5G,ca:34:75:b3:41:81,10,13,WPA2-Personal,2026-09-21 09:49:16,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 10:02:14,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 10:02:23,Unknown
+OPPO A6 5G e76w,be:a8:ed:33:de:bb,50,11,WPA2-Personal,2026-09-21 10:02:23,Unknown
+JioFi3_A85173,b0:52:16:a8:51:73,9,9,WPA2-Personal,2026-09-21 10:02:23,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,20,6,Open,2026-09-21 10:02:23,Unknown
+SYED,2e:e2:ed:e6:53:a6,20,6,WPA2-Personal,2026-09-21 10:02:23,Unknown
+Redmi Note 12,72:f6:cc:9e:da:9d,10,7,WPA2-Personal,2026-09-21 10:02:23,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,100,6,WPA2-Personal,2026-09-21 10:02:23,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,90,149,WPA3-Personal,2026-09-21 10:02:23,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,15,36,WPA3-Personal,2026-09-21 10:02:23,Unknown
+3202,b6:09:b9:ed:e3:8c,95,40,WPA2-Personal,2026-09-21 10:02:23,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,70,40,WPA2-Personal,2026-09-21 10:02:23,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,100,6,WPA2-Personal,2026-09-21 10:02:23,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 10:02:23,Unknown
+Spoorthyy,16:98:e1:53:d1:bb,12,6,WPA2-Personal,2026-09-21 10:02:23,Unknown
+Vishnuu,42:cb:a6:dd:27:53,25,6,WPA3-Personal,2026-09-21 10:02:23,Unknown
+iQOO Neo 10R,56:9d:c6:4e:82:7d,5,6,WPA2-Personal,2026-09-21 10:02:23,Unknown
+9381176782,fa:f6:4b:cb:52:b2,5,6,WPA3-Personal,2026-09-21 10:02:23,Unknown
+VCE-SAC,10:27:f5:66:b6:8a,50,11,WPA2-Personal,2026-09-21 10:02:23,Unknown
+ECE_Dept,50:91:e3:76:fd:aa,7,11,WPA2-Personal,2026-09-21 10:02:23,Unknown
+OPPO F27 Pro+ 5G B7F2,36:59:8a:8e:cc:db,85,11,WPA2-Personal,2026-09-21 10:02:23,Unknown
+CSM-Dept,ec:75:0c:8c:a1:3a,55,11,WPA2-Personal,2026-09-21 10:02:23,Unknown
+honey,da:58:0c:b0:89:85,100,11,WPA2-Personal,2026-09-21 10:02:23,Unknown
+OPPO F27 5G,56:c7:6e:fb:32:9f,100,1,WPA2-Personal,2026-09-21 10:02:23,Unknown
+Harsha's S24,da:26:34:be:bf:54,100,1,OWE,2026-09-21 10:02:23,Unknown
+vivo Y58 5G,06:b9:b0:c5:48:25,100,1,WPA2-Personal,2026-09-21 10:02:23,Unknown
+VCE,5e:d0:97:4e:17:bc,100,13,WPA2-Personal,2026-09-21 10:02:23,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 10:04:46,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 10:04:55,Unknown
+OPPO A6 5G e76w,be:a8:ed:33:de:bb,40,11,WPA2-Personal,2026-09-21 10:04:55,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,100,6,WPA2-Personal,2026-09-21 10:04:55,Unknown
+Avinash_360,1a:d4:9b:80:8c:5c,100,1,WPA2-Personal,2026-09-21 10:04:55,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,100,149,WPA3-Personal,2026-09-21 10:04:55,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,25,36,WPA3-Personal,2026-09-21 10:04:55,Unknown
+3202,b6:09:b9:ed:e3:8c,75,40,WPA2-Personal,2026-09-21 10:04:55,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,45,40,WPA2-Personal,2026-09-21 10:04:55,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,100,6,WPA2-Personal,2026-09-21 10:04:55,Unknown
+Evil Twin,46:a4:5d:89:ac:d2,100,11,Open,2026-09-21 10:04:55,Unknown
+ECE-HOD,50:c7:bf:8c:3f:93,11,6,WPA2-Personal,2026-09-21 10:04:55,Unknown
+9381176782,fa:f6:4b:cb:52:b2,12,6,WPA3-Personal,2026-09-21 10:04:55,Unknown
+iPhone,8a:fa:d6:55:62:7e,10,6,WPA2-Personal,2026-09-21 10:04:55,Unknown
+Spoorthyy,16:98:e1:53:d1:bb,13,6,WPA2-Personal,2026-09-21 10:04:55,Unknown
+Vishnuu,42:cb:a6:dd:27:53,45,6,WPA3-Personal,2026-09-21 10:04:55,Unknown
+SYED,2e:e2:ed:e6:53:a6,25,6,WPA2-Personal,2026-09-21 10:04:55,Unknown
+Spirit💥,16:89:7d:40:2e:73,11,6,Open,2026-09-21 10:04:55,Unknown
+E-Class Room,e8:48:b8:9b:7a:0e,5,6,WPA2-Personal,2026-09-21 10:04:55,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 10:04:55,Unknown
+VCE Campus WiFi,50:91:e3:77:05:36,20,1,Open,2026-09-21 10:04:55,Unknown
+vivo Y58 5G,06:b9:b0:c5:48:25,85,1,WPA2-Personal,2026-09-21 10:04:55,Unknown
+Harsha's S24,da:26:34:be:bf:54,100,1,OWE,2026-09-21 10:04:55,Unknown
+OPPO F27 5G,56:c7:6e:fb:32:9f,100,1,WPA2-Personal,2026-09-21 10:04:55,Unknown
+VCE,5e:d0:97:4e:17:bc,100,13,WPA2-Personal,2026-09-21 10:04:55,Unknown
+TP-Link_2.4GHz_0EC494,3c:52:a1:0e:c4:94,10,6,Open,2026-09-21 10:04:55,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 10:38:23,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 10:39:12,Unknown
+vivo T4 Lite 5G,22:0d:53:e7:06:2a,55,11,WPA2-Personal,2026-09-21 10:39:12,Unknown
+VCE-SAC,10:27:f5:66:b6:8a,65,11,WPA2-Personal,2026-09-21 10:39:12,Unknown
+V2037,0e:e7:47:f9:80:92,100,6,WPA2-Personal,2026-09-21 10:39:12,Unknown
+Avinash_360,1a:d4:9b:80:8c:5c,100,1,WPA2-Personal,2026-09-21 10:39:12,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,75,149,WPA3-Personal,2026-09-21 10:39:12,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,50,40,WPA2-Personal,2026-09-21 10:39:12,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,75,6,WPA2-Personal,2026-09-21 10:39:12,Unknown
+3202,b6:09:b9:ed:e3:8c,90,40,WPA2-Personal,2026-09-21 10:39:12,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,15,36,WPA3-Personal,2026-09-21 10:39:12,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,100,6,WPA2-Personal,2026-09-21 10:39:12,Unknown
+Galaxy A34,4a:f0:1a:24:ab:8d,85,6,WPA2-Personal,2026-09-21 10:39:12,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 10:39:12,Unknown
+Hi,0a:a1:2d:37:87:c5,95,11,WPA2-Personal,2026-09-21 10:39:12,Unknown
+honey,da:58:0c:b0:89:85,90,11,WPA2-Personal,2026-09-21 10:39:12,Unknown
+Evil Twin,d6:08:4f:f7:a8:06,100,1,Open,2026-09-21 10:39:12,Unknown
+kushi🩷🩷,26:c5:e2:1d:e5:c6,100,13,WPA2-Personal,2026-09-21 10:39:28,Unknown
+vivo T4 Lite 5G,22:0d:53:e7:06:2a,55,11,WPA2-Personal,2026-09-21 10:39:28,Unknown
+VCE-SAC,10:27:f5:66:b6:8a,65,11,WPA2-Personal,2026-09-21 10:39:28,Unknown
+V2037,0e:e7:47:f9:80:92,100,6,WPA2-Personal,2026-09-21 10:39:28,Unknown
+Avinash_360,1a:d4:9b:80:8c:5c,100,1,WPA2-Personal,2026-09-21 10:39:28,Unknown
+Nothing,8e:7a:2e:ef:0f:ff,75,149,WPA3-Personal,2026-09-21 10:39:28,Unknown
+IT-Dept,3c:52:a1:0e:d3:41,50,40,WPA2-Personal,2026-09-21 10:39:28,Unknown
+IT-Dept,3c:52:a1:0e:d3:40,75,6,WPA2-Personal,2026-09-21 10:39:28,Unknown
+3202,b6:09:b9:ed:e3:8c,90,40,WPA2-Personal,2026-09-21 10:39:28,Unknown
+Redmi 13C 5G,16:8f:df:c2:d2:3c,15,36,WPA3-Personal,2026-09-21 10:39:28,Unknown
+Needi kadu,be:ca:30:d8:e1:dc,100,6,WPA2-Personal,2026-09-21 10:39:28,Unknown
+Galaxy A34,4a:f0:1a:24:ab:8d,85,6,WPA2-Personal,2026-09-21 10:39:28,Unknown
+Ashish Krishna,a2:75:6b:b5:95:78,100,6,WPA2-Personal,2026-09-21 10:39:28,Unknown
+Hi,0a:a1:2d:37:87:c5,95,11,WPA2-Personal,2026-09-21 10:39:28,Unknown
+honey,da:58:0c:b0:89:85,90,11,WPA2-Personal,2026-09-21 10:39:28,Unknown
+Evil Twin,d6:08:4f:f7:a8:06,100,1,Open,2026-09-21 10:39:28,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 12:31:49,Unknown
