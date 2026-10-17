@@ -1,0 +1,293 @@
+import subprocess
+import re
+import socket
+import urllib.request
+import os
+import sys
+
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
+
+def get_saved_windows_profiles():
+    """
+    Retrieves the list of saved Wi-Fi profiles configured in Windows.
+    Uses 'netsh wlan show profiles'.
+    Returns a dict mapping SSID -> profile info dictionary.
+    """
+    profiles = {}
+    try:
+        res = subprocess.run(
+            ["netsh", "wlan", "show", "profiles"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="ignore",
+            timeout=5
+        )
+        if res.returncode != 0:
+            return profiles
+
+        for line in res.stdout.splitlines():
+            line = line.strip()
+            # Match 'All User Profile : ProfileName'
+            m = re.match(r"^All User Profile\s*:\s*(.*)$", line)
+            if m:
+                pname = m.group(1).strip()
+                if pname:
+                    profiles[pname] = {"name": pname}
+
+    except Exception:
+        pass
+
+    return profiles
+
+
+def get_profile_security_details(profile_name):
+    """
+    Retrieves security details (Authentication, Encryption, PMF) for a specific profile.
+    Uses 'netsh wlan show profile name="<profile_name>"'.
+    """
+    details = {
+        "Authentication": "Unknown",
+        "Cipher": "Unknown",
+        "PMF_Enabled": False
+    }
+    try:
+        res = subprocess.run(
+            ["netsh", "wlan", "show", "profile", f"name={profile_name}"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="ignore",
+            timeout=5
+        )
+        if res.returncode != 0:
+            return details
+
+        auths = []
+        ciphers = []
+        for line in res.stdout.splitlines():
+            line = line.strip()
+            if line.startswith("Authentication"):
+                parts = line.split(":", 1)
+                if len(parts) > 1:
+                    auths.append(parts[1].strip())
+            elif line.startswith("Cipher"):
+                parts = line.split(":", 1)
+                if len(parts) > 1:
+                    ciphers.append(parts[1].strip())
+            elif "pmf" in line.lower() and "true" in line.lower():
+                details["PMF_Enabled"] = True
+
+        if auths:
+            # WPA3 or WPA2 preferred
+            details["Authentication"] = auths[0]
+            if any("wpa3" in a.lower() for a in auths):
+                details["PMF_Enabled"] = True
+        if ciphers:
+            details["Cipher"] = ciphers[0]
+
+    except Exception:
+        pass
+
+    return details
+
+
+def get_active_wifi_interface():
+    """
+    Inspects current Wi-Fi connection status using 'netsh wlan show interfaces'.
+    Returns connected SSID, BSSID, Channel, Band, Signal, Radio, Authentication, Cipher.
+    """
+    status = {
+        "State": "disconnected",
+        "SSID": "",
+        "BSSID": "",
+        "Channel": 0,
+        "Band": "",
+        "Signal": 0,
+        "Radio": "",
+        "Authentication": "",
+        "Cipher": "",
+        "Profile": ""
+    }
+    try:
+        res = subprocess.run(
+            ["netsh", "wlan", "show", "interfaces"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="ignore",
+            timeout=5
+        )
+        if res.returncode != 0:
+            return status
+
+        for line in res.stdout.splitlines():
+            line = line.strip()
+            if line.startswith("State"):
+                parts = line.split(":", 1)
+                if len(parts) > 1:
+                    status["State"] = parts[1].strip().lower()
+            elif line.startswith("SSID") and not line.startswith("AP BSSID"):
+                parts = line.split(":", 1)
+                if len(parts) > 1:
+                    status["SSID"] = parts[1].strip()
+            elif line.startswith("AP BSSID") or line.startswith("BSSID"):
+                parts = line.split(":", 1)
+                if len(parts) > 1:
+                    status["BSSID"] = parts[1].strip().lower()
+            elif line.startswith("Channel"):
+                m = re.search(r"(\d+)", line)
+                if m:
+                    status["Channel"] = int(m.group(1))
+            elif line.startswith("Band"):
+                parts = line.split(":", 1)
+                if len(parts) > 1:
+                    status["Band"] = parts[1].strip()
+            elif line.startswith("Signal"):
+                m = re.search(r"(\d+)%", line)
+                if m:
+                    status["Signal"] = int(m.group(1))
+            elif line.startswith("Radio type"):
+                parts = line.split(":", 1)
+                if len(parts) > 1:
+                    status["Radio"] = parts[1].strip()
+            elif line.startswith("Authentication"):
+                parts = line.split(":", 1)
+                if len(parts) > 1:
+                    status["Authentication"] = parts[1].strip()
+            elif line.startswith("Cipher"):
+                parts = line.split(":", 1)
+                if len(parts) > 1:
+                    status["Cipher"] = parts[1].strip()
+            elif line.startswith("Profile"):
+                parts = line.split(":", 1)
+                if len(parts) > 1:
+                    status["Profile"] = parts[1].strip()
+
+    except Exception:
+        pass
+
+    return status
+
+
+def get_default_gateway_and_ip():
+    """
+    Retrieves current IPv4 Address, Default Gateway IP, and Gateway MAC address (via ARP).
+    """
+    info = {
+        "IP": "",
+        "Gateway_IP": "",
+        "Gateway_MAC": "",
+        "DNS_Servers": []
+    }
+    try:
+        res = subprocess.run(
+            ["ipconfig", "/all"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="ignore",
+            timeout=5
+        )
+        in_wifi_adapter = False
+        collecting_gateway = False
+        for line in res.stdout.splitlines():
+            line_strip = line.strip()
+            if "Wireless LAN adapter" in line:
+                in_wifi_adapter = True
+            elif "adapter" in line_strip and not line_strip.startswith("Wireless"):
+                in_wifi_adapter = False
+                collecting_gateway = False
+
+            if in_wifi_adapter:
+                if "IPv4 Address" in line:
+                    m = re.search(r"(\d+\.\d+\.\d+\.\d+)", line)
+                    if m:
+                        info["IP"] = m.group(1)
+                elif "Default Gateway" in line:
+                    collecting_gateway = True
+                    m = re.search(r"(\d+\.\d+\.\d+\.\d+)", line)
+                    if m:
+                        info["Gateway_IP"] = m.group(1)
+                elif collecting_gateway:
+                    if line_strip and not ":" in line_strip:
+                        m = re.search(r"(\d+\.\d+\.\d+\.\d+)", line_strip)
+                        if m and not info["Gateway_IP"]:
+                            info["Gateway_IP"] = m.group(1)
+                    elif ":" in line_strip:
+                        collecting_gateway = False
+
+                if "DNS Servers" in line:
+                    m = re.search(r"(\d+\.\d+\.\d+\.\d+)", line)
+                    if m:
+                        info["DNS_Servers"].append(m.group(1))
+
+        # Lookup Gateway MAC via ARP
+        if info["Gateway_IP"]:
+            arp_res = subprocess.run(
+                ["arp", "-a", info["Gateway_IP"]],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="ignore",
+                timeout=5
+            )
+            for l in arp_res.stdout.splitlines():
+                if info["Gateway_IP"] in l:
+                    m_mac = re.search(r"([0-9a-fA-F]{2}[:-][0-9a-fA-F]{2}[:-][0-9a-fA-F]{2}[:-][0-9a-fA-F]{2}[:-][0-9a-fA-F]{2}[:-][0-9a-fA-F]{2})", l)
+                    if m_mac:
+                        info["Gateway_MAC"] = m_mac.group(1).lower().replace("-", ":")
+                        break
+
+    except Exception:
+        pass
+
+    return info
+
+
+def check_captive_portal(timeout=3):
+    """
+    Checks if connected network is intercepted by an unexpected captive portal.
+    Uses standard HTTP 204 probe (connectivitycheck.gstatic.com/generate_204).
+    Returns (is_captive_portal: bool, message: str).
+    """
+    test_url = "http://connectivitycheck.gstatic.com/generate_204"
+    try:
+        req = urllib.request.Request(
+            test_url,
+            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+        )
+        with urllib.request.urlopen(req, timeout=timeout) as response:
+            code = response.getcode()
+            if code == 204:
+                return False, "Direct Internet connectivity verified (HTTP 204 No Content)."
+            elif code in [301, 302, 307]:
+                return True, f"Captive portal detected: HTTP redirect to {response.headers.get('Location', 'login page')}."
+            else:
+                body = response.read(512).decode("utf-8", errors="ignore").lower()
+                if "login" in body or "portal" in body or "<html" in body:
+                    return True, "Captive portal detected: HTTP 204 request returned HTML login page."
+                return False, f"HTTP status {code} received."
+    except urllib.error.HTTPError as e:
+        if e.code in [301, 302, 307]:
+            return True, f"Captive portal detected: HTTP {e.code} redirect."
+        return False, f"HTTP error {e.code} during probe."
+    except Exception as e:
+        return False, f"Probe could not reach test endpoint ({e}). (Offline or local network only)."
+
+
+if __name__ == "__main__":
+    print("=== Saved Profiles ===")
+    profs = get_saved_windows_profiles()
+    print(f"Found {len(profs)} profiles:", list(profs.keys())[:10])
+    print("\n=== Active Interface ===")
+    print(get_active_wifi_interface())
+    print("\n=== Gateway & IP ===")
+    print(get_default_gateway_and_ip())
+    print("\n=== Captive Portal Check ===")
+    print(check_captive_portal())

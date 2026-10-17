@@ -1,4 +1,4 @@
-﻿import subprocess
+import subprocess
 import re
 import csv
 import os
@@ -15,6 +15,8 @@ def scan_wifi():
     Scans nearby Wi-Fi networks using Windows netsh command:
     netsh wlan show networks mode=bssid
     Returns a list of dictionaries with real AP observations.
+    Gracefully handles missing permissions, disabled Wi-Fi adapters,
+    or stopped wlansvc services.
     """
     try:
         result = subprocess.run(
@@ -24,7 +26,20 @@ def scan_wifi():
             encoding="utf-8",
             errors="ignore"
         )
+        if result.returncode != 0:
+            err_msg = result.stderr.strip() or result.stdout.strip()
+            if "wlansvc" in err_msg.lower() or "service" in err_msg.lower():
+                print("Notice: Windows WLAN AutoConfig service (wlansvc) is not running.")
+            elif "interface" in err_msg.lower():
+                print("Notice: No active Wi-Fi interface detected or Wi-Fi adapter is disabled.")
+            else:
+                print(f"Notice from Wi-Fi scanner: {err_msg}")
+            return []
+
         raw_output = result.stdout
+    except FileNotFoundError:
+        print("Error: 'netsh' command not found. This scanner requires a Windows environment.")
+        return []
     except Exception as e:
         print(f"Error executing netsh command: {e}")
         return []
@@ -79,6 +94,7 @@ def scan_wifi():
                 "Signal": 0,
                 "Channel": 1,
                 "Security": current_auth,
+                "Encryption": current_enc,
                 "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "Label": "Unknown"
             }
@@ -98,6 +114,34 @@ def scan_wifi():
                 current_ap["Channel"] = int(chan_match.group(1))
             continue
 
+        # Band: e.g. 'Band : 5 GHz'
+        if current_ap is not None and line.startswith("Band"):
+            parts = line.split(":", 1)
+            if len(parts) > 1:
+                current_ap["Band"] = parts[1].strip()
+            continue
+
+        # Radio type: e.g. 'Radio type : 802.11ax'
+        if current_ap is not None and line.startswith("Radio type"):
+            parts = line.split(":", 1)
+            if len(parts) > 1:
+                current_ap["Radio"] = parts[1].strip()
+            continue
+
+        # Basic rates: e.g. 'Basic rates (Mbps) : 6 12 24'
+        if current_ap is not None and "basic rates" in line.lower():
+            parts = line.split(":", 1)
+            if len(parts) > 1:
+                current_ap["BasicRates"] = parts[1].strip()
+            continue
+
+        # Other rates: e.g. 'Other rates (Mbps) : 9 18 36 48 54'
+        if current_ap is not None and "other rates" in line.lower():
+            parts = line.split(":", 1)
+            if len(parts) > 1:
+                current_ap["OtherRates"] = parts[1].strip()
+            continue
+
     if current_ap is not None:
         networks.append(current_ap)
 
@@ -107,7 +151,7 @@ def scan_wifi():
 def save_observations_to_csv(networks, csv_path=None):
     """
     Appends scanned networks to wifi_observations.csv.
-    Maintains raw real observations with timestamps.
+    Maintains raw real observations with timestamps and error safety.
     """
     if not networks:
         return
@@ -115,25 +159,28 @@ def save_observations_to_csv(networks, csv_path=None):
     if csv_path is None:
         csv_path = get_default_dataset_path()
 
-    os.makedirs(os.path.dirname(csv_path), exist_ok=True)
-    file_exists = os.path.exists(csv_path) and os.path.getsize(csv_path) > 0
+    try:
+        os.makedirs(os.path.dirname(os.path.abspath(csv_path)), exist_ok=True)
+        file_exists = os.path.exists(csv_path) and os.path.getsize(csv_path) > 0
 
-    fieldnames = ["SSID", "BSSID", "Signal", "Channel", "Security", "Timestamp", "Label"]
+        fieldnames = ["SSID", "BSSID", "Signal", "Channel", "Security", "Timestamp", "Label"]
 
-    with open(csv_path, "a", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        if not file_exists:
-            writer.writeheader()
-        for net in networks:
-            writer.writerow({
-                "SSID": net.get("SSID", ""),
-                "BSSID": net.get("BSSID", "").lower(),
-                "Signal": net.get("Signal", 0),
-                "Channel": net.get("Channel", 1),
-                "Security": net.get("Security", "Unknown"),
-                "Timestamp": net.get("Timestamp", datetime.now().strftime("%Y-%m-%d %H:%M:%S")),
-                "Label": net.get("Label", "Unknown")
-            })
+        with open(csv_path, "a", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
+            if not file_exists:
+                writer.writeheader()
+            for net in networks:
+                writer.writerow({
+                    "SSID": net.get("SSID", ""),
+                    "BSSID": str(net.get("BSSID", "")).lower(),
+                    "Signal": net.get("Signal", 0),
+                    "Channel": net.get("Channel", 1),
+                    "Security": net.get("Security", "Unknown"),
+                    "Timestamp": net.get("Timestamp", datetime.now().strftime("%Y-%m-%d %H:%M:%S")),
+                    "Label": net.get("Label", "Unknown")
+                })
+    except Exception as e:
+        print(f"Warning: Could not save observation to CSV ({e}). Continuing operation.")
 
 
 if __name__ == "__main__":

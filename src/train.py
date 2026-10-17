@@ -1,13 +1,20 @@
-﻿import os
+import os
 import pandas as pd
 import numpy as np
 import joblib
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import GroupShuffleSplit, train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.metrics import (
+    accuracy_score,
+    precision_score,
+    recall_score,
+    f1_score,
+    confusion_matrix,
+    classification_report
+)
 from .features import FEATURE_COLUMNS
 
 
@@ -19,6 +26,14 @@ def get_model_paths():
         "knn": os.path.join(base_dir, "models", "knn_model.pkl"),
         "random_forest": os.path.join(base_dir, "models", "random_forest_model.pkl")
     }
+
+
+def compute_rates(y_true, y_pred):
+    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])
+    tn, fp, fn, tp = cm.ravel()
+    fpr = (fp / (fp + tn)) * 100.0 if (fp + tn) > 0 else 0.0
+    fnr = (fn / (fn + tp)) * 100.0 if (fn + tp) > 0 else 0.0
+    return tn, fp, fn, tp, fpr, fnr
 
 
 def train_models():
@@ -41,72 +56,98 @@ def train_models():
     print("==================================================")
     print("        MACHINE LEARNING MODEL TRAINING           ")
     print("==================================================")
-    print(f"Total dataset size: {len(df)} samples")
-    print(f"Features ({len(FEATURE_COLUMNS)}): {FEATURE_COLUMNS}")
+    print(f"Total dataset size : {len(df)} samples")
+    print(f"Features ({len(FEATURE_COLUMNS)})        : {FEATURE_COLUMNS}")
     print(f"Target distribution:\n  Legitimate (0): {(y == 0).sum()}\n  Evil Twin (1) : {(y == 1).sum()}\n")
 
-    # Stratified Train/Test split (80% train, 20% test) to prevent data leakage
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.20, random_state=42, stratify=y
-    )
+    # Group-aware splitting to prevent data leakage across train and test partitions
+    # If Group column exists, split by group so same networks don't leak into test set
+    if "Group" in df.columns and df["Group"].nunique() > 2:
+        gss = GroupShuffleSplit(n_splits=1, test_size=0.20, random_state=42)
+        train_idx, test_idx = next(gss.split(X, y, groups=df["Group"]))
+        X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]
+        y_train, y_test = y.iloc[train_idx], y.iloc[test_idx]
+        print(f"Partition method   : GroupShuffleSplit (no network identity leakage)")
+    else:
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, y, test_size=0.20, random_state=42, stratify=y
+        )
+        print(f"Partition method   : Stratified train_test_split")
 
-    print(f"Training set size: {len(X_train)} samples")
-    print(f"Testing set size : {len(X_test)} samples\n")
+    print(f"Training set size  : {len(X_train)} samples")
+    print(f"Testing set size   : {len(X_test)} samples\n")
 
     # 1. K-Nearest Neighbors (KNN) with StandardScaler Pipeline
-    # StandardScaler ensures that continuous features (Signal, Channel) and
-    # binary indicator flags (BSSIDKnown, ChannelMatch, SecurityMatch) have balanced distance weights.
-    knn = make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=3, weights="distance"))
+    knn = make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=5, weights="distance"))
     knn.fit(X_train, y_train)
-
     knn_pred = knn.predict(X_test)
-    knn_acc = accuracy_score(y_test, knn_pred) * 100.0
 
-    # 2. Random Forest Classifier
-    rf = RandomForestClassifier(n_estimators=50, max_depth=6, random_state=42)
+    # 2. Random Forest Classifier with balanced class weights
+    rf = RandomForestClassifier(
+        n_estimators=100,
+        max_depth=5,
+        min_samples_split=4,
+        class_weight="balanced",
+        random_state=42
+    )
     rf.fit(X_train, y_train)
-
     rf_pred = rf.predict(X_test)
-    rf_acc = accuracy_score(y_test, rf_pred) * 100.0
 
     # ----------------------------------------------------
-    # Model Evaluation Reports
+    # Detailed Honest Evaluation Metrics
     # ----------------------------------------------------
+    knn_acc = accuracy_score(y_test, knn_pred) * 100.0
+    knn_prec = precision_score(y_test, knn_pred, zero_division=0) * 100.0
+    knn_rec = recall_score(y_test, knn_pred, zero_division=0) * 100.0
+    knn_f1 = f1_score(y_test, knn_pred, zero_division=0) * 100.0
+    tn_k, fp_k, fn_k, tp_k, fpr_k, fnr_k = compute_rates(y_test, knn_pred)
+
+    rf_acc = accuracy_score(y_test, rf_pred) * 100.0
+    rf_prec = precision_score(y_test, rf_pred, zero_division=0) * 100.0
+    rf_rec = recall_score(y_test, rf_pred, zero_division=0) * 100.0
+    rf_f1 = f1_score(y_test, rf_pred, zero_division=0) * 100.0
+    tn_r, fp_r, fn_r, tp_r, fpr_r, fnr_r = compute_rates(y_test, rf_pred)
+
     print("--------------------------------------------------")
-    print("             MODEL EVALUATION RESULTS             ")
+    print("         HONEST MODEL EVALUATION METRICS          ")
     print("--------------------------------------------------")
-    print(f"1. K-Nearest Neighbors (KNN) Accuracy : {knn_acc:.2f}%")
-    print(f"2. Random Forest Accuracy             : {rf_acc:.2f}%")
+    print(f"{'Metric':<22} {'KNN Model':<16} {'Random Forest':<16}")
+    print("-" * 54)
+    print(f"{'Accuracy':<22} {knn_acc:>8.2f}%       {rf_acc:>8.2f}%")
+    print(f"{'Precision (Evil Twin)':<22} {knn_prec:>8.2f}%       {rf_prec:>8.2f}%")
+    print(f"{'Recall (Evil Twin)':<22} {knn_rec:>8.2f}%       {rf_rec:>8.2f}%")
+    print(f"{'F1-Score':<22} {knn_f1:>8.2f}%       {rf_f1:>8.2f}%")
+    print(f"{'False Positive Rate':<22} {fpr_k:>8.2f}%       {fpr_r:>8.2f}%")
+    print(f"{'False Negative Rate':<22} {fnr_k:>8.2f}%       {fnr_r:>8.2f}%")
     print("--------------------------------------------------\n")
 
-    # Target comparison
-    TARGET = 98.0
-    print(f"Target Accuracy : ~{TARGET:.1f}%")
-    print(f"KNN vs Target   : {'Achieved' if knn_acc >= TARGET else f'Difference of {TARGET - knn_acc:.2f}%'}")
-    print(f"RF vs Target    : {'Achieved' if rf_acc >= TARGET else f'Difference of {TARGET - rf_acc:.2f}%'}\n")
-
-    # Detailed Confusion Matrix
     print("=== KNN Confusion Matrix ===")
-    cm_knn = confusion_matrix(y_test, knn_pred)
-    print(f"  True Legitimate: {cm_knn[0, 0]} | False Evil Twin: {cm_knn[0, 1] if cm_knn.shape[1] > 1 else 0}")
-    print(f"  False Legitimate: {cm_knn[1, 0] if cm_knn.shape[0] > 1 else 0} | True Evil Twin: {cm_knn[1, 1] if cm_knn.shape[0] > 1 and cm_knn.shape[1] > 1 else 0}\n")
+    print(f"  True Legitimate (TN) : {tn_k:<4} | False Evil Twin (FP) : {fp_k:<4}")
+    print(f"  False Legitimate (FN): {fn_k:<4} | True Evil Twin (TP)  : {tp_k:<4}\n")
 
     print("=== Random Forest Confusion Matrix ===")
-    cm_rf = confusion_matrix(y_test, rf_pred)
-    print(f"  True Legitimate: {cm_rf[0, 0]} | False Evil Twin: {cm_rf[0, 1] if cm_rf.shape[1] > 1 else 0}")
-    print(f"  False Legitimate: {cm_rf[1, 0] if cm_rf.shape[0] > 1 else 0} | True Evil Twin: {cm_rf[1, 1] if cm_rf.shape[0] > 1 and cm_rf.shape[1] > 1 else 0}\n")
+    print(f"  True Legitimate (TN) : {tn_r:<4} | False Evil Twin (FP) : {fp_r:<4}")
+    print(f"  False Legitimate (FN): {fn_r:<4} | True Evil Twin (TP)  : {tp_r:<4}\n")
 
     print("=== Random Forest Classification Report ===")
-    print(classification_report(y_test, rf_pred, target_names=["Legitimate (0)", "Evil Twin (1)"]))
+    print(classification_report(y_test, rf_pred, target_names=["Legitimate (0)", "Evil Twin (1)"], zero_division=0))
 
-    # Save Models
+    # Feature Importance for Random Forest
+    importances = rf.feature_importances_
+    sorted_idx = np.argsort(importances)[::-1]
+    print("=== Random Forest Feature Importances ===")
+    for rank, idx in enumerate(sorted_idx, 1):
+        print(f"  {rank}. {FEATURE_COLUMNS[idx]:<18}: {importances[idx] * 100:.2f}%")
+    print()
+
+    # Save models
     os.makedirs(paths["models_dir"], exist_ok=True)
     joblib.dump(knn, paths["knn"])
     joblib.dump(rf, paths["random_forest"])
 
-    print(f"Models saved successfully:")
-    print(f"- KNN Model          : {paths['knn']}")
-    print(f"- Random Forest Model: {paths['random_forest']}")
+    print(f"Models successfully serialized:")
+    print(f"- KNN: {paths['knn']}")
+    print(f"- RF : {paths['random_forest']}")
     print("==================================================")
 
     return knn, rf
