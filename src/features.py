@@ -344,11 +344,11 @@ def is_dual_band_pair(ap_a, ap_b):
     return True
 
 
-def analyze_scanned_relationships(scan_records):
+def analyze_scanned_relationships(scan_records, history_df=None):
     """
     Analyzes contextual relationships among scanned APs:
-    - Identifies dual-band router pairs (2.4 GHz + 5 GHz).
-    - Identifies consistent multi-AP same-OUI deployments.
+    - Identifies dual-band router pairs (2.4 GHz + 5 GHz) across current scan or
+      against a verified TRUSTED_BASELINE partner in history.
     - Ignores hidden SSIDs so distinct hidden routers are not grouped as duplicates.
     Returns a dict mapping bssid -> relationship info dictionary.
     """
@@ -366,23 +366,44 @@ def analyze_scanned_relationships(scan_records):
         by_ssid.setdefault(ssid, []).append(r)
 
     for ssid, aps in by_ssid.items():
-        if len(aps) < 2:
-            continue
-        for i in range(len(aps)):
-            bssid_i = sanitize_bssid(aps[i].get("BSSID", ""))
-            for j in range(i + 1, len(aps)):
-                bssid_j = sanitize_bssid(aps[j].get("BSSID", ""))
-                if is_dual_band_pair(aps[i], aps[j]):
-                    relationships[bssid_i] = {
-                        "is_dual_band": True,
-                        "partner_bssid": bssid_j,
-                        "note": "Dual-band router radios correlated (matching OUI, consecutive MAC, complementary band, identical security)"
-                    }
-                    relationships[bssid_j] = {
-                        "is_dual_band": True,
-                        "partner_bssid": bssid_i,
-                        "note": "Dual-band router radios correlated (matching OUI, consecutive MAC, complementary band, identical security)"
-                    }
+        if len(aps) >= 2:
+            for i in range(len(aps)):
+                bssid_i = sanitize_bssid(aps[i].get("BSSID", ""))
+                for j in range(i + 1, len(aps)):
+                    bssid_j = sanitize_bssid(aps[j].get("BSSID", ""))
+                    if is_dual_band_pair(aps[i], aps[j]):
+                        relationships[bssid_i] = {
+                            "is_dual_band": True,
+                            "partner_bssid": bssid_j,
+                            "note": "Dual-band router radios correlated (matching OUI, consecutive MAC, complementary band, identical security)"
+                        }
+                        relationships[bssid_j] = {
+                            "is_dual_band": True,
+                            "partner_bssid": bssid_i,
+                            "note": "Dual-band router radios correlated (matching OUI, consecutive MAC, complementary band, identical security)"
+                        }
+
+        # Also correlate single-band observations against verified TRUSTED_BASELINE partners in history
+        if history_df is not None and not history_df.empty and "SSID" in history_df.columns:
+            verified_partners = history_df[
+                (history_df["SSID"].astype(str).str.strip() == ssid)
+                & (history_df["Trust Status"].astype(str).str.strip() == "TRUSTED_BASELINE")
+            ]
+            if not verified_partners.empty:
+                partner_rows = verified_partners.to_dict(orient="records")
+                for ap in aps:
+                    bssid_ap = sanitize_bssid(ap.get("BSSID", ""))
+                    if not bssid_ap or bssid_ap in relationships:
+                        continue
+                    for p_row in partner_rows:
+                        if is_dual_band_pair(ap, p_row):
+                            partner_bssid = sanitize_bssid(p_row.get("BSSID", ""))
+                            relationships[bssid_ap] = {
+                                "is_dual_band": True,
+                                "partner_bssid": partner_bssid,
+                                "note": "Dual-band router correlated with verified baseline partner in history."
+                            }
+                            break
 
     return relationships
 

@@ -43,7 +43,7 @@ During the real scans recorded on `2026-11-26 14:09:01`, `14:09:15`, and `14:09:
    - Integrated `IsolationForest` unsupervised anomaly detection (`load_isolation_forest()`, `+10` supporting weight when `-1`) alongside Random Forest (Primary) and KNN (Comparison), calibrated `channel_deviation=10` so normal weak-signal home routers undergoing auto-channel shifts stay `UNVERIFIED NETWORK BUT SAFE`, and adopted the 4-state verdict names (`SAFE`, `UNVERIFIED NETWORK BUT SAFE`, `UNVERIFIED NETWORK AND UNSAFE`, `UNSAFE`).
    - Added `severity` and `source` fields to every `ScoreBreakdown` entry.
 5. **`app.py`, `EvilTwinDetector.pyw`, `src/db_manager.py`, `static/js/app.js`, `templates/*.html`, `main.py`, `gui.py`**: Added `POST /api/network/untrust`, reversible `Verify & Trust Baseline` / `Revoke Verification` buttons, explicit `Manual Verification` status, 4-state UI badges/charts, `Random Forest (Primary)` / `KNN (Comparison)` / `Isolation Forest (Anomaly)` reporting + SQLite columns, and standalone desktop launcher/shortcut/PyInstaller `.spec`.
-6. **`tests/test_scenarios.py`**: Expanded automated test suite to 29 deterministic unit and Flask integration tests (including `test_25_isolation_forest_and_gopu_home_weak_signal_no_false_positive` and `test_web_04_unverified_network_labels_and_desktop_software_launcher`).
+6. **`tests/test_scenarios.py`**: Expanded automated test suite to 30 deterministic unit and Flask integration tests (including `test_25_isolation_forest_and_gopu_home_weak_signal_no_false_positive`, `test_26_dual_band_shiva_auto_channel_and_single_band_dropout`, and `test_web_04_unverified_network_labels_and_desktop_software_launcher`).
 
 ---
 
@@ -81,7 +81,7 @@ During the real scans recorded on `2026-11-26 14:09:01`, `14:09:15`, and `14:09:
 
 ## 6. Automated Tests & Results
 
-Executed `python -m py_compile ...` and `python -m unittest -v tests/test_scenarios.py` after final edits: **29 / 29 PASSED**.
+Executed `python -m py_compile ...` and `python -m unittest -v tests/test_scenarios.py` after final edits: **30 / 30 PASSED**.
 
 - **Core, False-Positive & Isolation Forest Regression Tests (`test_01`–`test_25`):**
   - Known legitimate home network (`SAFE`), `SHIVA` (`WPA2-Personal / CCMP`, Ch 44, 100%, with saved `WPA3-Personal` profile across repeated scans -> `UNVERIFIED NETWORK BUT SAFE`, `0` pts), mobile hotspot (`100%` signal -> `UNVERIFIED NETWORK BUT SAFE`, `0` pts), new network, unfamiliar BSSID on known/verified SSID (`UNVERIFIED NETWORK AND UNSAFE`, not `UNSAFE`), college Wi-Fi, mesh network, repeater, consecutive & non-consecutive dual-band routers, security text variations & mixed mode, actual security downgrade against verified baseline, missing security/channel (`0` pts, uncertainty), ML overrides, ML disagreement (`UNVERIFIED NETWORK AND UNSAFE`), suspicious AP scanned 5 times (never promoted), history poisoning, manual verification + fingerprint change detection + revocation, mislabelled suspicious AP in history re-evaluated cleanly (`UNVERIFIED NETWORK BUT SAFE`), and Isolation Forest + weak-signal home router (`GOPU HOME` at 10% signal + channel `1->6` -> `UNVERIFIED NETWORK BUT SAFE`).

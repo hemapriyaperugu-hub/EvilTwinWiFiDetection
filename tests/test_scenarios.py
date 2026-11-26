@@ -893,6 +893,75 @@ class TestEvilTwinScenarios(unittest.TestCase):
         self.assertEqual(anom_res[0]["RiskScore"], 10)
         self.assertEqual(anom_res[0]["Classification"], STATUS_NEW_UNVERIFIED)
 
+    def test_26_dual_band_shiva_auto_channel_and_single_band_dropout(self):
+        """Dual-band partner radios (2.4 GHz ea:62 + 5 GHz ea:63) never false-positive via ML or dropout."""
+        hist = pd.DataFrame([
+            {
+                "SSID": "SHIVA",
+                "BSSID": "16:32:51:69:ea:63",
+                "Security": "WPA2-Personal",
+                "Encryption": "CCMP",
+                "Channel": 44,
+                "Band": "5 GHz",
+                "Signal": 100,
+                "Last Signal": 100,
+                "Last Channel": 44,
+                "Last Security": "WPA2-Personal",
+                "OUI": "16:32:51",
+                "Fingerprint": "ssid=SHIVA|bssid=16:32:51:69:ea:63|oui=16:32:51|sec=WPA2-Personal|enc=CCMP|ch=44|band=5 GHz",
+                "First Seen": "2026-10-17 12:57:33",
+                "Last Seen": "2026-11-26 21:25:39",
+                "Observation Count": 38,
+                "Previous Classification": "SAFE",
+                "Trust Status": TRUST_ESTABLISHED,
+                "Verified": "Yes",
+                "Verified At": "2026-11-26 14:33:34",
+                "Verified Fingerprint": "ssid=SHIVA|bssid=16:32:51:69:ea:63|oui=16:32:51|sec=WPA2-Personal|enc=CCMP|ch=44|band=5 GHz",
+                "Suspicious Indicators": "",
+                "Changes": ""
+            },
+            {
+                "SSID": "SHIVA",
+                "BSSID": "16:32:51:69:ea:62",
+                "Security": "WPA2-Personal",
+                "Encryption": "CCMP",
+                "Channel": 6,
+                "Band": "2.4 GHz",
+                "Signal": 100,
+                "Last Signal": 100,
+                "Last Channel": 1,
+                "Last Security": "WPA2-Personal",
+                "OUI": "16:32:51",
+                "Fingerprint": "ssid=SHIVA|bssid=16:32:51:69:ea:62|oui=16:32:51|sec=WPA2-Personal|enc=CCMP|ch=6|band=2.4 GHz",
+                "First Seen": "2026-10-17 13:05:20",
+                "Last Seen": "2026-11-26 21:25:39",
+                "Observation Count": 5,
+                "Previous Classification": "UNVERIFIED NETWORK BUT SAFE",
+                "Trust Status": TRUST_UNVERIFIED,
+                "Verified": "No",
+                "Verified At": "",
+                "Verified Fingerprint": "",
+                "Suspicious Indicators": "",
+                "Changes": ""
+            }
+        ], columns=HISTORY_COLUMNS)
+
+        both_bands = [
+            {"SSID": "SHIVA", "BSSID": "16:32:51:69:ea:62", "Signal": 100, "Channel": 1, "Band": "2.4 GHz", "Security": "WPA2-Personal", "Encryption": "CCMP"},
+            {"SSID": "SHIVA", "BSSID": "16:32:51:69:ea:63", "Signal": 100, "Channel": 44, "Band": "5 GHz", "Security": "WPA2-Personal", "Encryption": "CCMP"},
+        ]
+        with mock.patch("src.predict.get_saved_windows_profiles", return_value={}):
+            res_both, _ = analyze_scanned_networks(both_bands, history_df=hist)
+            by_bssid = {r["BSSID"]: r for r in res_both}
+            self.assertEqual(by_bssid["16:32:51:69:ea:63"]["Classification"], STATUS_KNOWN_CONSISTENT)
+            self.assertEqual(by_bssid["16:32:51:69:ea:62"]["Classification"], STATUS_NEW_UNVERIFIED)
+            self.assertEqual(by_bssid["16:32:51:69:ea:62"]["RiskScore"], 0)
+
+            # Even if 5 GHz radio drops out of one scan, 2.4 GHz still correlates with verified 5 GHz partner
+            res_single, _ = analyze_scanned_networks([both_bands[0]], history_df=hist)
+            self.assertEqual(res_single[0]["Classification"], STATUS_NEW_UNVERIFIED)
+            self.assertLess(res_single[0]["RiskScore"], 25)
+
 
 class TestWebApplicationAndDatabase(unittest.TestCase):
     """

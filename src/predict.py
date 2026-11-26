@@ -363,6 +363,19 @@ def assess_network_risk(
     ml_both_legit = (knn_prediction == 0 and rf_prediction == 0)
     ml_disagree = (knn_prediction != rf_prediction)
 
+    is_clean_dual_band = (
+        is_dual_band
+        and not is_security_downgrade
+        and not is_security_shift
+        and not is_open_or_wep
+        and not is_security_missing
+        and not is_bssid_ssid_mismatch
+        and not bssid_collision
+        and not is_unfamiliar_bssid_known_ssid
+        and (sec_tier is not None and sec_tier >= 2)
+    )
+    ml_penalty_applicable = not is_clean_dual_band
+
     # --------------------------------------------------------
     # SCORING ENGINE (NON-OVERLAPPING DIMENSIONS, MAX 100)
     # --------------------------------------------------------
@@ -535,7 +548,14 @@ def assess_network_risk(
 
     # 6. Machine Learning Supporting Evidence Dimension
     # Random Forest (primary) + KNN (comparison) + Isolation Forest (anomaly detection)
-    if ml_both_attack:
+    if not ml_penalty_applicable and (ml_both_attack or ml_disagree):
+        observed_evidence.append(
+            f"Note: Supervised ML flagged concurrent multi-band features "
+            f"(RF={'Legitimate' if rf_prediction == 0 else 'Evil Twin'}, "
+            f"KNN={'Legitimate' if knn_prediction == 0 else 'Evil Twin'}), suppressed because dual-band hardware correlation "
+            f"with matching OUI ({diag['OUI']}) and compatible security passed rule checks."
+        )
+    elif ml_both_attack:
         add_score(
             "ML Consensus: Evil Twin",
             RISK_WEIGHTS["ml_both_attack"],
@@ -636,8 +656,7 @@ def assess_network_risk(
         or is_unfamiliar_bssid_known_ssid
         or bssid_collision
         or is_bssid_ssid_mismatch
-        or ml_disagree
-        or ml_both_attack
+        or (ml_penalty_applicable and (ml_disagree or ml_both_attack))
         or is_open_or_wep
         or is_security_missing
     ):
@@ -868,7 +887,7 @@ def analyze_scanned_networks(
         history_df=history_df,
         saved_profiles_details=profile_details_cache
     )
-    relationships = analyze_scanned_relationships(scanned_networks)
+    relationships = analyze_scanned_relationships(scanned_networks, history_df=history_df)
     consistent_multiap_ssids = _detect_consistent_multiap(scanned_networks)
 
     all_bssids = [
