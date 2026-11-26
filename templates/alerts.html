@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Threat Alerts — Evil Twin Wi-Fi Detection{% endblock %}
+{% block page_title %}Threat Alerts{% endblock %}
+{% block page_subtitle %}Real alerts generated from UNVERIFIED NETWORK AND UNSAFE and UNSAFE detections{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="toolbar">
+    <div class="toolbar-group">
+      <a href="{{ url_for('alerts_page', severity='ALL', unack='1' if only_unack else '0') }}" class="btn btn-sm {% if active_severity == 'ALL' %}btn-primary{% endif %}">All Severities</a>
+      <a href="{{ url_for('alerts_page', severity='HIGH', unack='1' if only_unack else '0') }}" class="btn btn-sm {% if active_severity == 'HIGH' %}btn-danger{% endif %}">High Risk Only</a>
+      <a href="{{ url_for('alerts_page', severity='MEDIUM', unack='1' if only_unack else '0') }}" class="btn btn-sm {% if active_severity == 'MEDIUM' %}btn-primary{% endif %}">Medium / Suspicious</a>
+    </div>
+    <div class="toolbar-group">
+      {% if only_unack %}
+        <a href="{{ url_for('alerts_page', severity=active_severity, unack='0') }}" class="btn btn-sm">Show Acknowledged Too</a>
+      {% else %}
+        <a href="{{ url_for('alerts_page', severity=active_severity, unack='1') }}" class="btn btn-sm">Unacknowledged Only</a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if alerts %}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Severity</th>
+            <th>Timestamp</th>
+            <th>SSID &amp; BSSID</th>
+            <th>Classification</th>
+            <th>Risk</th>
+            <th>Detection Reason</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for a in alerts %}
+          <tr>
+            <td>
+              <span class="badge {% if a.severity == 'HIGH' %}badge-high{% else %}badge-suspicious{% endif %}">
+                {{ a.severity }}
+              </span>
+            </td>
+            <td style="font-size:12px;white-space:nowrap;">{{ a.timestamp }}</td>
+            <td>
+              <strong>{{ a.ssid }}</strong><br>
+              <span class="mono" style="color:var(--text-dim);">{{ a.bssid }}</span>
+            </td>
+            <td>
+              <span class="badge {% if a.classification == 'UNSAFE' or 'HIGH RISK' in a.classification %}badge-high{% else %}badge-suspicious{% endif %}">
+                {{ a.classification }}
+              </span>
+            </td>
+            <td><strong>{{ a.risk_score }}/100</strong></td>
+            <td style="max-width:300px;font-size:12px;color:var(--text-muted);">{{ a.reason }}</td>
+            <td>
+              {% if a.acknowledged %}
+                <span class="badge badge-muted">Acknowledged</span>
+              {% else %}
+                <span class="badge badge-high">Open</span>
+              {% endif %}
+            </td>
+            <td style="white-space:nowrap;">
+              {% if a.scan_result_id %}
+                <a href="{{ url_for('network_details', result_id=a.scan_result_id) }}" class="btn btn-sm">Inspect</a>
+              {% endif %}
+              {% if a.acknowledged %}
+                <button type="button" class="btn btn-sm" onclick="toggleAckAlert({{ a.id }}, false)">Reopen</button>
+              {% else %}
+                <button type="button" class="btn btn-sm btn-success" onclick="toggleAckAlert({{ a.id }}, true)">Acknowledge</button>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="empty-state">No alerts recorded matching the current filter. Alerts are created automatically when scans detect suspicious or high-risk APs.</div>
+  {% endif %}
+</div>
+{% endblock %}

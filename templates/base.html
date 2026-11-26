@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Evil Twin Wi-Fi Detection System{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-title">EVIL TWIN GUARD</div>
+        <div class="brand-sub">Wireless Security Monitor (Local)</div>
+      </div>
+
+      <nav class="nav">
+        <a href="{{ url_for('dashboard') }}" class="nav-link {% if current_endpoint == 'dashboard' %}active{% endif %}">
+          <span>Dashboard</span>
+        </a>
+        <a href="{{ url_for('scanner_page') }}" class="nav-link {% if current_endpoint == 'scanner_page' %}active{% endif %}">
+          <span>Wi-Fi Scanner</span>
+        </a>
+        <a href="{{ url_for('alerts_page') }}" class="nav-link {% if current_endpoint == 'alerts_page' %}active{% endif %}">
+          <span>Threat Alerts</span>
+          <span id="sidebarAlertBadge" class="nav-badge" {% if unack_alerts_count == 0 %}style="display:none"{% endif %}>
+            {{ unack_alerts_count }}
+          </span>
+        </a>
+        <a href="{{ url_for('history_page') }}" class="nav-link {% if current_endpoint in ('history_page', 'scan_detail_page') %}active{% endif %}">
+          <span>Scan &amp; AP History</span>
+        </a>
+        <a href="{{ url_for('reports_page') }}" class="nav-link {% if current_endpoint == 'reports_page' %}active{% endif %}">
+          <span>Reports</span>
+        </a>
+        <a href="{{ url_for('settings_page') }}" class="nav-link {% if current_endpoint == 'settings_page' %}active{% endif %}">
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div>Windows <code>netsh</code> Passive Monitor</div>
+        <div>KNN + Random Forest + Rules</div>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div>
+          <div class="page-title">{% block page_title %}Security Overview{% endblock %}</div>
+          <div class="page-subtitle">{% block page_subtitle %}Local passive Wi-Fi risk assessment{% endblock %}</div>
+        </div>
+        <div class="toolbar-group">
+          <a href="{{ url_for('scanner_page') }}" class="btn btn-primary btn-sm">Open Scanner</a>
+        </div>
+      </header>
+
+      <main class="content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, msg in messages %}
+              <div class="banner banner-{{ category }}">{{ msg }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

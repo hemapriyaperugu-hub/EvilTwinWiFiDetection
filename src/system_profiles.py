@@ -1,15 +1,26 @@
-import subprocess
+import locale
 import re
-import socket
-import urllib.request
-import os
+import subprocess
 import sys
+import urllib.error
+import urllib.request
 
 if sys.platform == "win32":
     try:
         sys.stdout.reconfigure(encoding="utf-8")
     except Exception:
         pass
+
+
+def _decode_bytes(raw_bytes):
+    if not raw_bytes:
+        return ""
+    for enc in ("utf-8", locale.getpreferredencoding(False) or "cp1252"):
+        try:
+            return raw_bytes.decode(enc)
+        except UnicodeDecodeError:
+            continue
+    return raw_bytes.decode("utf-8", errors="replace")
 
 
 def get_saved_windows_profiles():
@@ -23,18 +34,15 @@ def get_saved_windows_profiles():
         res = subprocess.run(
             ["netsh", "wlan", "show", "profiles"],
             capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="ignore",
             timeout=5
         )
         if res.returncode != 0:
             return profiles
 
-        for line in res.stdout.splitlines():
+        stdout_text = _decode_bytes(res.stdout)
+        for line in stdout_text.splitlines():
             line = line.strip()
-            # Match 'All User Profile : ProfileName'
-            m = re.match(r"^All User Profile\s*:\s*(.*)$", line)
+            m = re.match(r"^(?:All User Profile|User Profile)\s*:\s*(.*)$", line, re.IGNORECASE)
             if m:
                 pname = m.group(1).strip()
                 if pname:
@@ -52,43 +60,53 @@ def get_profile_security_details(profile_name):
     Uses 'netsh wlan show profile name="<profile_name>"'.
     """
     details = {
-        "Authentication": "Unknown",
-        "Cipher": "Unknown",
+        "Authentication": "Unavailable",
+        "Authentications": [],
+        "Cipher": "Unavailable",
+        "Ciphers": [],
         "PMF_Enabled": False
     }
+    if not profile_name:
+        return details
+
     try:
         res = subprocess.run(
             ["netsh", "wlan", "show", "profile", f"name={profile_name}"],
             capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="ignore",
             timeout=5
         )
         if res.returncode != 0:
             return details
 
+        stdout_text = _decode_bytes(res.stdout)
         auths = []
         ciphers = []
-        for line in res.stdout.splitlines():
+        for line in stdout_text.splitlines():
             line = line.strip()
-            if line.startswith("Authentication"):
+            low = line.lower()
+            if low.startswith("authentication"):
                 parts = line.split(":", 1)
-                if len(parts) > 1:
+                if len(parts) > 1 and parts[1].strip():
                     auths.append(parts[1].strip())
-            elif line.startswith("Cipher"):
+            elif low.startswith("cipher"):
                 parts = line.split(":", 1)
-                if len(parts) > 1:
+                if len(parts) > 1 and parts[1].strip():
                     ciphers.append(parts[1].strip())
-            elif "pmf" in line.lower() and "true" in line.lower():
+            elif "pmf" in low and ("true" in low or "enabled" in low):
                 details["PMF_Enabled"] = True
 
         if auths:
-            # WPA3 or WPA2 preferred
-            details["Authentication"] = auths[0]
-            if any("wpa3" in a.lower() for a in auths):
+            details["Authentications"] = auths
+            has_wpa2 = any("wpa2" in a.lower() for a in auths)
+            has_wpa3 = any("wpa3" in a.lower() for a in auths)
+            if has_wpa2 and has_wpa3:
+                details["Authentication"] = "WPA2/WPA3-Personal"
+            else:
+                details["Authentication"] = auths[0]
+            if has_wpa3:
                 details["PMF_Enabled"] = True
         if ciphers:
+            details["Ciphers"] = ciphers
             details["Cipher"] = ciphers[0]
 
     except Exception:
@@ -106,9 +124,9 @@ def get_active_wifi_interface():
         "State": "disconnected",
         "SSID": "",
         "BSSID": "",
-        "Channel": 0,
+        "Channel": None,
         "Band": "",
-        "Signal": 0,
+        "Signal": None,
         "Radio": "",
         "Authentication": "",
         "Cipher": "",
@@ -118,53 +136,52 @@ def get_active_wifi_interface():
         res = subprocess.run(
             ["netsh", "wlan", "show", "interfaces"],
             capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="ignore",
             timeout=5
         )
         if res.returncode != 0:
             return status
 
-        for line in res.stdout.splitlines():
+        stdout_text = _decode_bytes(res.stdout)
+        for line in stdout_text.splitlines():
             line = line.strip()
-            if line.startswith("State"):
+            low = line.lower()
+            if low.startswith("state"):
                 parts = line.split(":", 1)
                 if len(parts) > 1:
                     status["State"] = parts[1].strip().lower()
-            elif line.startswith("SSID") and not line.startswith("AP BSSID"):
+            elif low.startswith("ssid") and not low.startswith("ap bssid"):
                 parts = line.split(":", 1)
                 if len(parts) > 1:
                     status["SSID"] = parts[1].strip()
-            elif line.startswith("AP BSSID") or line.startswith("BSSID"):
+            elif low.startswith("ap bssid") or low.startswith("bssid"):
                 parts = line.split(":", 1)
                 if len(parts) > 1:
-                    status["BSSID"] = parts[1].strip().lower()
-            elif line.startswith("Channel"):
+                    status["BSSID"] = parts[1].strip().lower().replace("-", ":")
+            elif low.startswith("channel"):
                 m = re.search(r"(\d+)", line)
                 if m:
                     status["Channel"] = int(m.group(1))
-            elif line.startswith("Band"):
+            elif low.startswith("band"):
                 parts = line.split(":", 1)
                 if len(parts) > 1:
                     status["Band"] = parts[1].strip()
-            elif line.startswith("Signal"):
-                m = re.search(r"(\d+)%", line)
+            elif low.startswith("signal"):
+                m = re.search(r"(\d+)\s*%", line)
                 if m:
                     status["Signal"] = int(m.group(1))
-            elif line.startswith("Radio type"):
+            elif low.startswith("radio type"):
                 parts = line.split(":", 1)
                 if len(parts) > 1:
                     status["Radio"] = parts[1].strip()
-            elif line.startswith("Authentication"):
+            elif low.startswith("authentication"):
                 parts = line.split(":", 1)
                 if len(parts) > 1:
                     status["Authentication"] = parts[1].strip()
-            elif line.startswith("Cipher"):
+            elif low.startswith("cipher"):
                 parts = line.split(":", 1)
                 if len(parts) > 1:
                     status["Cipher"] = parts[1].strip()
-            elif line.startswith("Profile"):
+            elif low.startswith("profile"):
                 parts = line.split(":", 1)
                 if len(parts) > 1:
                     status["Profile"] = parts[1].strip()
@@ -189,14 +206,12 @@ def get_default_gateway_and_ip():
         res = subprocess.run(
             ["ipconfig", "/all"],
             capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="ignore",
             timeout=5
         )
+        stdout_text = _decode_bytes(res.stdout)
         in_wifi_adapter = False
         collecting_gateway = False
-        for line in res.stdout.splitlines():
+        for line in stdout_text.splitlines():
             line_strip = line.strip()
             if "Wireless LAN adapter" in line:
                 in_wifi_adapter = True
@@ -215,7 +230,7 @@ def get_default_gateway_and_ip():
                     if m:
                         info["Gateway_IP"] = m.group(1)
                 elif collecting_gateway:
-                    if line_strip and not ":" in line_strip:
+                    if line_strip and ":" not in line_strip:
                         m = re.search(r"(\d+\.\d+\.\d+\.\d+)", line_strip)
                         if m and not info["Gateway_IP"]:
                             info["Gateway_IP"] = m.group(1)
@@ -227,19 +242,19 @@ def get_default_gateway_and_ip():
                     if m:
                         info["DNS_Servers"].append(m.group(1))
 
-        # Lookup Gateway MAC via ARP
         if info["Gateway_IP"]:
             arp_res = subprocess.run(
                 ["arp", "-a", info["Gateway_IP"]],
                 capture_output=True,
-                text=True,
-                encoding="utf-8",
-                errors="ignore",
                 timeout=5
             )
-            for l in arp_res.stdout.splitlines():
+            arp_text = _decode_bytes(arp_res.stdout)
+            for l in arp_text.splitlines():
                 if info["Gateway_IP"] in l:
-                    m_mac = re.search(r"([0-9a-fA-F]{2}[:-][0-9a-fA-F]{2}[:-][0-9a-fA-F]{2}[:-][0-9a-fA-F]{2}[:-][0-9a-fA-F]{2}[:-][0-9a-fA-F]{2})", l)
+                    m_mac = re.search(
+                        r"([0-9a-fA-F]{2}[:-][0-9a-fA-F]{2}[:-][0-9a-fA-F]{2}[:-][0-9a-fA-F]{2}[:-][0-9a-fA-F]{2}[:-][0-9a-fA-F]{2})",
+                        l
+                    )
                     if m_mac:
                         info["Gateway_MAC"] = m_mac.group(1).lower().replace("-", ":")
                         break

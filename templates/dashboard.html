@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — Evil Twin Wi-Fi Detection{% endblock %}
+{% block page_title %}Cybersecurity Monitoring Dashboard{% endblock %}
+{% block page_subtitle %}Aggregated metrics from actual stored scans, fingerprints, and alerts{% endblock %}
+
+{% block content %}
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-label">Total Networks Detected</div>
+    <div class="stat-value">{{ stats.total_networks_unique }}</div>
+  </div>
+  <div class="stat-card known">
+    <div class="stat-label">Safe (Verified)</div>
+    <div class="stat-value">{{ stats.known_count }}</div>
+  </div>
+  <div class="stat-card new">
+    <div class="stat-label">Unverified Network but Safe</div>
+    <div class="stat-value">{{ stats.new_count }}</div>
+  </div>
+  <div class="stat-card suspicious">
+    <div class="stat-label">Unverified Network and Unsafe</div>
+    <div class="stat-value">{{ stats.suspicious_count }}</div>
+  </div>
+  <div class="stat-card high-risk">
+    <div class="stat-label">Unsafe (Evil Twin)</div>
+    <div class="stat-value">{{ stats.high_risk_count }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Total Scans Performed</div>
+    <div class="stat-value">{{ stats.total_scans }}</div>
+  </div>
+</div>
+
+{% if not stats.has_scans %}
+  <div class="card">
+    <div class="empty-state">
+      <h3 style="margin-bottom:8px;color:var(--text-main);">No Wi-Fi Scans Performed Yet</h3>
+      <p style="margin-bottom:14px;">All dashboard statistics and charts reflect actual stored scan results. Run your first scan using the Windows Wi-Fi adapter.</p>
+      <a href="{{ url_for('scanner_page') }}" class="btn btn-primary">Go to Wi-Fi Scanner</a>
+    </div>
+  </div>
+{% else %}
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Latest Scan Status</div>
+      <a href="{{ url_for('scanner_page') }}" class="btn btn-sm btn-primary">Run New Scan</a>
+    </div>
+    <div class="toolbar">
+      <div>
+        <strong>Timestamp:</strong> {{ stats.latest_scan.timestamp }} &nbsp;|&nbsp;
+        <strong>Status:</strong>
+        {% if stats.latest_scan.status == 'SUCCESS' %}
+          <span class="badge badge-known">SUCCESS</span>
+        {% elif stats.latest_scan.status == 'EMPTY' %}
+          <span class="badge badge-muted">EMPTY (0 APs)</span>
+        {% else %}
+          <span class="badge badge-high">FAILED</span>
+        {% endif %}
+        &nbsp;|&nbsp;
+        <strong>APs Found:</strong> {{ stats.latest_scan.total_networks }}
+        {% if stats.latest_scan.active_ssid %}
+          &nbsp;|&nbsp; <strong>Connected SSID:</strong> {{ stats.latest_scan.active_ssid }}
+        {% endif %}
+      </div>
+      {% if stats.latest_scan.error_message %}
+        <div class="banner banner-danger" style="width:100%;margin-top:10px;margin-bottom:0;">
+          {{ stats.latest_scan.error_message }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Network Classification Distribution</div>
+      </div>
+      <div class="chart-box">
+        <canvas id="chartClassification"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Network Risk Score Distribution</div>
+      </div>
+      <div class="chart-box">
+        <canvas id="chartRiskBuckets"></canvas>
+      </div>
+    </div>
+  </div>
+
+  {% if stats.scan_timeline|length > 1 %}
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Scan Activity Over Time</div>
+    </div>
+    <div class="chart-box">
+      <canvas id="chartTimeline"></canvas>
+    </div>
+    <div class="chart-legend">
+      <span><span class="legend-dot" style="background:#38bdf8;"></span>Total Networks Detected</span>
+      <span><span class="legend-dot" style="background:#ef4444;"></span>Suspicious / High-Risk APs</span>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Suspicious &amp; High-Risk Network Summary</div>
+        <a href="{{ url_for('alerts_page') }}" class="btn btn-sm">All Alerts</a>
+      </div>
+      {% if stats.suspicious_summary %}
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>SSID</th>
+                <th>BSSID</th>
+                <th>Risk</th>
+                <th>Classification</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ap in stats.suspicious_summary %}
+              <tr>
+                <td><strong>{{ ap.ssid }}</strong></td>
+                <td class="mono">{{ ap.bssid }}</td>
+                <td><strong>{{ ap.risk_score }}/100</strong></td>
+                <td>
+                  <span class="badge {% if ap.classification == 'UNSAFE' or 'HIGH RISK' in ap.classification %}badge-high{% else %}badge-suspicious{% endif %}">
+                    {{ ap.classification }}
+                  </span>
+                </td>
+                <td><a href="{{ url_for('network_details', result_id=ap.id) }}" class="btn btn-sm">Details</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div class="empty-state">No suspicious or high-risk APs in stored observations.</div>
+      {% endif %}
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Recent Alerts</div>
+        <a href="{{ url_for('alerts_page') }}" class="btn btn-sm">Manage Alerts</a>
+      </div>
+      {% if stats.recent_alerts %}
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Severity</th>
+                <th>SSID</th>
+                <th>Reason</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for a in stats.recent_alerts %}
+              <tr>
+                <td>
+                  <span class="badge {% if a.severity == 'HIGH' %}badge-high{% else %}badge-suspicious{% endif %}">
+                    {{ a.severity }}
+                  </span>
+                </td>
+                <td><strong>{{ a.ssid }}</strong><br><span class="mono" style="color:var(--text-dim);">{{ a.bssid }}</span></td>
+                <td style="font-size:12px;color:var(--text-muted);">{{ a.reason }}</td>
+                <td style="font-size:12px;white-space:nowrap;">{{ a.timestamp }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div class="empty-state">No threat alerts generated yet.</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Recent Scans</div>
+      <a href="{{ url_for('history_page') }}" class="btn btn-sm">Full History</a>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Scan #</th>
+            <th>Timestamp</th>
+            <th>Status</th>
+            <th>Networks</th>
+            <th>Suspicious</th>
+            <th>High Risk</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in stats.recent_scans %}
+          <tr>
+            <td>#{{ s.id }}</td>
+            <td>{{ s.timestamp }}</td>
+            <td>
+              <span class="badge {% if s.status == 'SUCCESS' %}badge-known{% elif s.status == 'FAILED' %}badge-high{% else %}badge-muted{% endif %}">
+                {{ s.status }}
+              </span>
+            </td>
+            <td>{{ s.total_networks }}</td>
+            <td>{{ s.suspicious_count }}</td>
+            <td>{{ s.high_risk_count }}</td>
+            <td><a href="{{ url_for('scan_detail_page', scan_id=s.id) }}" class="btn btn-sm">Open Scan</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+{% if stats.has_scans %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const clsData = [
+      { label: "Safe", value: {{ stats.known_count }}, color: "#10b981" },
+      { label: "Unv. But Safe", value: {{ stats.new_count }}, color: "#2dd4bf" },
+      { label: "Unv. & Unsafe", value: {{ stats.suspicious_count }}, color: "#f59e0b" },
+      { label: "Unsafe", value: {{ stats.high_risk_count }}, color: "#ef4444" }
+    ];
+    drawBarChart("chartClassification", clsData);
+
+    const riskData = [
+      { label: "Low (0-24)", value: {{ stats.risk_buckets["0-24 (Low)"] }}, color: "#10b981" },
+      { label: "Mod (25-59)", value: {{ stats.risk_buckets["25-59 (Moderate)"] }}, color: "#f59e0b" },
+      { label: "High (60-100)", value: {{ stats.risk_buckets["60-100 (High)"] }}, color: "#ef4444" }
+    ];
+    drawBarChart("chartRiskBuckets", riskData);
+
+    {% if stats.scan_timeline|length > 1 %}
+    const timeline = {{ stats.scan_timeline | tojson }};
+    drawTimelineChart("chartTimeline", timeline);
+    {% endif %}
+  });
+</script>
+{% endif %}
+{% endblock %}

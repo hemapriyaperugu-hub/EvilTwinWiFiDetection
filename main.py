@@ -1,5 +1,4 @@
 import sys
-import os
 
 # Enable UTF-8 console output on Windows
 if sys.platform == "win32":
@@ -8,7 +7,7 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-from src.scanner import scan_wifi, save_observations_to_csv
+from src.scanner import scan_wifi_detailed, save_observations_to_csv
 from src.history import load_history, update_history
 from src.predict import (
     analyze_scanned_networks,
@@ -51,15 +50,20 @@ def display_active_connection_analysis():
     if iface.get("State") != "connected":
         return
 
+    sig_val = iface.get("Signal")
+    sig_str = f"{sig_val}%" if sig_val is not None else "Unavailable"
+    ch_val = iface.get("Channel")
+    ch_str = str(ch_val) if ch_val is not None else "Unavailable"
+
     print("======================================================================")
     print("                CURRENT ACTIVE WI-FI CONNECTION STATUS")
     print("======================================================================")
-    print(f"  Connected SSID     : {iface.get('SSID')}")
-    print(f"  Connected BSSID    : {iface.get('BSSID')}")
-    print(f"  Operating Band     : {iface.get('Band')} (Channel {iface.get('Channel')})")
-    print(f"  Signal (RSSI)      : {iface.get('Signal')}%")
-    print(f"  Physical Radio     : {iface.get('Radio')} with {iface.get('Cipher')} encryption")
-    print(f"  Security Suite     : {iface.get('Authentication')}")
+    print(f"  Connected SSID     : {iface.get('SSID') or 'Unavailable'}")
+    print(f"  Connected BSSID    : {iface.get('BSSID') or 'Unavailable'}")
+    print(f"  Operating Band     : {iface.get('Band') or 'Unavailable'} (Channel {ch_str})")
+    print(f"  Signal             : {sig_str}")
+    print(f"  Physical Radio     : {iface.get('Radio') or 'Unavailable'} with {iface.get('Cipher') or 'Unavailable'} encryption")
+    print(f"  Security Suite     : {iface.get('Authentication') or 'Unavailable'}")
 
     net_info = get_default_gateway_and_ip()
     if net_info.get("IP"):
@@ -70,13 +74,12 @@ def display_active_connection_analysis():
             gw_oui = net_info['Gateway_MAC'][:8]
             ap_oui = iface.get('BSSID', '')[:8]
             if gw_oui and ap_oui and gw_oui == ap_oui:
-                print("  Gateway Integrity  : Gateway MAC matches Wi-Fi Access Point hardware OUI (legitimate router).")
+                print("  Gateway Integrity  : Gateway MAC matches Wi-Fi Access Point hardware OUI.")
             elif net_info['Gateway_MAC']:
                 print("  Gateway Integrity  : Separate router/bridge MAC detected on local network.")
         if net_info.get("DNS_Servers"):
             print(f"  DNS Server(s)      : {', '.join(net_info['DNS_Servers'])}")
 
-    # Captive portal check
     is_portal, portal_msg = check_captive_portal()
     if is_portal:
         print(f"\n  [!] Captive Portal : {portal_msg}")
@@ -89,28 +92,31 @@ def display_active_connection_analysis():
 
 def main():
     print("======================================================================")
-    print("       EVIDENCE-BASED WI-FI CONNECTION RISK ASSESSMENT SYSTEM")
-    print("       Multi-Dimensional Analysis: ML (KNN + RF) + RF + Cryptography")
+    print("       EVIDENCE-BASED WI-FI EVIL TWIN DETECTION SYSTEM")
+    print("       Multi-Dimensional Analysis: Rules + History + ML (KNN & RF)")
     print("======================================================================\n")
 
-    # Ensure models exist and are valid
     ensure_models_ready()
-
-    # Display active connection diagnostics if currently connected
     display_active_connection_analysis()
 
     # ---------------------------------------------------------
     # STEP 1 - Scan Wi-Fi
     # ---------------------------------------------------------
     print("[Step 1] Scanning nearby Wi-Fi networks using built-in adapter...")
-    scanned_networks = scan_wifi()
+    scan_res = scan_wifi_detailed()
 
-    if not scanned_networks:
-        print("\n[!] No Wi-Fi access points detected in range.")
+    if not scan_res["success"]:
+        print(f"\n[ERROR] Wi-Fi scan failed: {scan_res['error']}")
+        print("    A failed scan is NOT treated as a safe network environment.")
         print("    Troubleshooting steps:")
         print("    1. Verify Wi-Fi is toggled ON in Windows Settings.")
-        print("    2. Ensure the WLAN AutoConfig service is active.")
+        print("    2. Ensure the WLAN AutoConfig service (wlansvc) is running.")
         print("    3. Check that your Wi-Fi adapter is enabled.\n")
+        return
+
+    scanned_networks = scan_res["networks"]
+    if not scanned_networks:
+        print("\n[!] Scan succeeded, but no Wi-Fi access points are currently in range.\n")
         return
 
     print(f"Found {len(scanned_networks)} Access Point(s) visible.\n")
@@ -143,54 +149,70 @@ def main():
     for i, res in enumerate(results, start=1):
         print(f"\n[AP {i}]")
         print(f"  SSID               : {res['SSID']}")
-        print(f"  BSSID (MAC)        : {res['BSSID']}")
-        print(f"  Frequency Band     : {res['Band']} (Channel {res['Channel']})")
-        print(f"  Signal Strength    : {res['Signal']}%")
-        print(f"  Advertised Security: {res['Security']} ({res.get('Encryption', 'CCMP')})")
-        if res.get("Radio") and res["Radio"] != "Unknown":
+        print(f"  BSSID              : {res['BSSID']} (OUI: {res['OUI']})")
+        print(f"  Security           : {res['Security']} (Encryption: {res['Encryption']})")
+        print(f"  Channel            : {res['Channel']} ({res['Band']})")
+        print(f"  Signal             : {res['SignalDisplay']}")
+        if res.get("Radio") and res["Radio"] != "Unavailable":
             print(f"  Physical Radio PHY : {res['Radio']}")
+        if res.get("MissingFeatures"):
+            print(f"  Unavailable Fields : {', '.join(res['MissingFeatures'])}")
 
-        print(f"\n  Trust Baseline     : {res['TrustState']}")
+        print(f"\n  Classification     : {res['RiskBadge']} {res['RiskCategory']}")
+        print(f"  Trust Baseline     : {res['TrustState']}")
 
-        print("\n  Machine Learning Evaluation:")
-        print(f"    - KNN Model          : {res['KNN_Pred']}")
-        print(f"    - Random Forest      : {res['RF_Pred']}")
-
-        print("\n  Observed Evidence & Factors:")
-        for ev in res["ObservedEvidence"]:
-            print(f"    [+] {ev}")
-
+        print("\n  Reasons:")
+        for reason in res["Reasons"]:
+            print(f"    - {reason}")
         if res["WarningIndicators"]:
-            print("\n  Warning Indicators & Anomalies:")
             for warn in res["WarningIndicators"]:
-                print(f"    [!] {warn}")
+                print(f"    - [WARNING] {warn}")
 
-        print(f"\n  RISK ASSESSMENT    : {res['RiskBadge']} {res['RiskCategory']}")
-        print(f"  ACTION ADVICE      : {res['SummaryAdvice']}")
+        knn_conf_str = f" (confidence: {res['KNN_Confidence']}%)" if res.get("KNN_Confidence") is not None else ""
+        rf_conf_str = f" (confidence: {res['RF_Confidence']}%)" if res.get("RF_Confidence") is not None else ""
+        iso_score_str = f" (score: {res['IsoForest_Score']})" if res.get("IsoForest_Score") is not None else ""
+        print("\n  ML Results:")
+        print(f"    - Random Forest (Primary)    : {res['RF_Pred']}{rf_conf_str}")
+        print(f"    - KNN (Comparison)           : {res['KNN_Pred']}{knn_conf_str}")
+        print(f"    - Isolation Forest (Anomaly) : {res.get('IsoForest_Pred', 'Unavailable')}{iso_score_str}")
+        print(f"    - Supervised Consensus       : {res['ML_Agreement']}")
+
+        print("\n  Final Decision:")
+        print(f"    - {res['FinalDecision']}")
+        print(f"    - Advice: {res['SummaryAdvice']}")
+
+        print("\n  Risk Score:")
+        print(f"    - {res['RiskScore']} / {res['RiskScoreMax']} — {res['RiskScoreMeaning']}")
+        if res["ScoreBreakdown"]:
+            for item in res["ScoreBreakdown"]:
+                print(f"      * +{item['points']} pts [{item['factor']}]: {item['reason']}")
+        else:
+            print("      * +0 pts: No warning indicators contributed to risk score.")
+
         print("-" * 70)
 
     # ---------------------------------------------------------
-    # STEP 6 - Lower-Risk Network Recommendations
+    # STEP 6 - Known & Consistent Network Summary
     # ---------------------------------------------------------
     print("\n======================================================================")
-    print("              RECOMMENDED LOWER-RISK NETWORKS IN RANGE")
+    print("              SAFE (VERIFIED BASELINE) NETWORKS IN RANGE")
     print("======================================================================\n")
 
     if safer_candidates:
         for rank, cand in enumerate(safer_candidates[:3], start=1):
             print(f"  {rank}. SSID: {cand['SSID']} [{cand['BSSID']}]")
             print(f"     Signal Strength  : {cand['Signal']}%")
-            print(f"     Assessment Status: {cand['RiskCategory']}")
+            print(f"     Status           : {cand['RiskCategory']}")
             print()
-        print("  Notice: System does not connect automatically; choose your network via Windows Wi-Fi menu.")
+        print("  Notice: System does not connect automatically; verify before connecting.")
     else:
-        print("  No networks currently meet the Lower-Risk criteria.")
-        print("  Check the individual Warning Indicators and Action Advice above.")
+        print("  No networks currently meet the verified SAFE baseline criteria.")
+        print("  Review Classification, Reasons, and Risk Score details above.")
 
     # ---------------------------------------------------------
-    # STEP 7 - Update local network history
+    # STEP 7 - Update local network history with assessment context
     # ---------------------------------------------------------
-    update_history(scanned_networks)
+    update_history(scanned_networks, assessments=results)
     print("\n======================================================================")
     print("Network history updated in dataset/network_history.csv.")
     print("Scan cycle completed successfully.")

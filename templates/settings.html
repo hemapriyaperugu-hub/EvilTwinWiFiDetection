@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Settings — Evil Twin Wi-Fi Detection{% endblock %}
+{% block page_title %}Application Settings{% endblock %}
+{% block page_subtitle %}Configure scanner timeout, risk thresholds, and local history management{% endblock %}
+
+{% block content %}
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Scanner &amp; Risk Engine Configuration</div>
+    </div>
+    <form method="POST" action="{{ url_for('settings_page') }}">
+      <input type="hidden" name="action" value="save_settings">
+      <table class="kv-table" style="margin-bottom:14px;">
+        <tr>
+          <td><label for="scan_timeout">Scanner Timeout (seconds)</label></td>
+          <td><input type="number" id="scan_timeout" name="scan_timeout" min="3" max="60" value="{{ settings.scan_timeout }}"></td>
+        </tr>
+        <tr>
+          <td><label for="suspicious_threshold">Suspicious Threshold (0–100)</label></td>
+          <td><input type="number" id="suspicious_threshold" name="suspicious_threshold" min="10" max="80" value="{{ settings.suspicious_threshold }}"></td>
+        </tr>
+        <tr>
+          <td><label for="high_risk_threshold">High-Risk Threshold (0–100)</label></td>
+          <td><input type="number" id="high_risk_threshold" name="high_risk_threshold" min="30" max="95" value="{{ settings.high_risk_threshold }}"></td>
+        </tr>
+        <tr>
+          <td><label for="auto_save_observations">Log Raw Scans to CSV</label></td>
+          <td><input type="checkbox" id="auto_save_observations" name="auto_save_observations" {% if settings.auto_save_observations %}checked{% endif %}> Save to <code>wifi_observations.csv</code></td>
+        </tr>
+        <tr>
+          <td><label for="check_captive_portal">Captive Portal Check</label></td>
+          <td><input type="checkbox" id="check_captive_portal" name="check_captive_portal" {% if settings.check_captive_portal %}checked{% endif %}> Run HTTP 204 probe when connected</td>
+        </tr>
+      </table>
+      <button type="submit" class="btn btn-primary">Save Settings</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">History Management &amp; Application Info</div>
+    </div>
+    <table class="kv-table" style="margin-bottom:16px;">
+      <tr><td>Python Version</td><td>{{ info.python_version }}</td></tr>
+      <tr><td>SQLite Database</td><td class="mono" style="word-break:break-all;">{{ info.db_path }}</td></tr>
+      <tr><td>Stored Scan Sessions</td><td>{{ info.scan_count }}</td></tr>
+      <tr><td>AP History File</td><td class="mono" style="word-break:break-all;">{{ info.history_path }}</td></tr>
+      <tr><td>Tracked AP Fingerprints</td><td>{{ info.history_count }}</td></tr>
+    </table>
+
+    <div class="toolbar-group">
+      <a href="{{ url_for('export_history_csv') }}" class="btn btn-sm">Export AP History CSV</a>
+
+      <form method="POST" action="{{ url_for('settings_page') }}" onsubmit="return confirm('Clear all stored scan sessions and alerts from SQLite?');">
+        <input type="hidden" name="action" value="clear_scans">
+        <button type="submit" class="btn btn-sm btn-danger">Clear Scan Sessions &amp; Alerts</button>
+      </form>
+
+      <form method="POST" action="{{ url_for('settings_page') }}" onsubmit="return confirm('Remove unverified and flagged passive entries from network_history.csv while keeping trusted baselines?');">
+        <input type="hidden" name="action" value="clear_unverified_history">
+        <button type="submit" class="btn btn-sm">Clear Unverified AP History</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

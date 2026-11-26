@@ -1,0 +1,58 @@
+name: Build & Deploy Windows Software
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ "v*" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test-and-build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies and PyInstaller
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pyinstaller
+
+      - name: Run automated test suite (29 tests)
+        run: python -m unittest -v tests/test_scenarios.py
+
+      - name: Generate icon and build standalone EvilTwinDetector.exe
+        run: |
+          python -c "import EvilTwinDetector as d; d.ensure_app_icon()"
+          python -m PyInstaller --noconfirm EvilTwinDetector.spec
+
+      - name: Verify standalone .exe bundle
+        shell: pwsh
+        run: |
+          $p = Start-Process -FilePath ".\dist\EvilTwinDetector\EvilTwinDetector.exe" -ArgumentList "--verify-bundle" -Wait -PassThru -NoNewWindow
+          if ($p.ExitCode -ne 0) { exit $p.ExitCode }
+          if (Test-Path ".\dist\EvilTwinDetector\database\eviltwin.db") { Remove-Item ".\dist\EvilTwinDetector\database\eviltwin.db" -Force }
+
+      - name: Package portable Windows archive
+        run: python -c "import shutil; shutil.make_archive('dist/EvilTwinDetector_Portable', 'zip', 'dist/EvilTwinDetector')"
+
+      - name: Upload Windows software build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: EvilTwinDetector-Windows-x64
+          path: dist/EvilTwinDetector_Portable.zip
+
+      - name: Publish GitHub Release (on version tag)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/EvilTwinDetector_Portable.zip
+          generate_release_notes: true

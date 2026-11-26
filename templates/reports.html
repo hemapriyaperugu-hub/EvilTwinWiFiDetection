@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Reports — Evil Twin Wi-Fi Detection{% endblock %}
+{% block page_title %}Report Generation &amp; Exports{% endblock %}
+{% block page_subtitle %}Generate CSV and printable HTML/PDF reports from actual scan sessions{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">Export Scan Reports</div>
+    <a href="{{ url_for('export_history_csv') }}" class="btn btn-sm">Download Full AP History CSV</a>
+  </div>
+  {% if scans %}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Scan #</th>
+            <th>Timestamp</th>
+            <th>Status</th>
+            <th>Total APs</th>
+            <th>Suspicious</th>
+            <th>High Risk</th>
+            <th>Export Formats</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in scans %}
+          <tr>
+            <td>#{{ s.id }}</td>
+            <td>{{ s.timestamp }}</td>
+            <td><span class="badge {% if s.status == 'SUCCESS' %}badge-known{% elif s.status == 'FAILED' %}badge-high{% else %}badge-muted{% endif %}">{{ s.status }}</span></td>
+            <td>{{ s.total_networks }}</td>
+            <td>{{ s.suspicious_count }}</td>
+            <td>{{ s.high_risk_count }}</td>
+            <td style="white-space:nowrap;">
+              <a href="{{ url_for('export_scan_csv', scan_id=s.id) }}" class="btn btn-sm btn-primary">Download CSV</a>
+              <a href="{{ url_for('export_scan_html', scan_id=s.id) }}" class="btn btn-sm" target="_blank">View Printable HTML / PDF</a>
+              <a href="{{ url_for('export_scan_html', scan_id=s.id, download='1') }}" class="btn btn-sm">Download HTML</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="empty-state">No stored scan sessions available to export yet. Run a scan first.</div>
+  {% endif %}
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">Generated Files Saved in <code>Reports/</code></div>
+  </div>
+  {% if saved_files %}
+    <ul class="list-clean mono">
+      {% for f in saved_files %}<li>{{ f }}</li>{% endfor %}
+    </ul>
+  {% else %}
+    <div class="empty-state">No reports exported to <code>Reports/</code> yet. Click an export button above to generate one.</div>
+  {% endif %}
+</div>
+{% endblock %}

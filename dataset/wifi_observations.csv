@@ -1,52 +1,60 @@
 SSID,BSSID,Signal,Channel,Security,Timestamp,Label,Group
-Hostel_BlockB_WiFi,70:4f:57:12:34:56,52,6,WPA2-Personal,2026-09-10 10:00:00,0,legit_known_Hostel_BlockB_WiFi
-TP-Link_6790,0c:ef:15:e8:67:90,55,3,WPA2-Personal,2026-09-10 10:00:00,0,legit_known_TP-Link_6790
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,53,6,WPA2-Personal,2026-09-10 10:00:00,0,legit_known_Hostel_BlockB_WiFi
+TP-Link_6790,0c:ef:15:e8:67:90,58,3,WPA2-Personal,2026-09-10 10:00:00,0,legit_known_TP-Link_6790
 Home_Fiber_5G,50:d4:f7:9a:bc:de,57,36,WPA2-Personal,2026-09-10 10:00:00,0,legit_known_Home_Fiber_5G
-Student_StudyRoom,ac:84:c6:33:44:55,52,11,WPA2-Personal,2026-09-10 10:00:00,0,legit_known_Student_StudyRoom
-Hostel_BlockB_WiFi,70:4f:57:12:34:56,65,6,WPA2-Personal,2026-09-10 10:01:00,0,legit_known_Hostel_BlockB_WiFi
-TP-Link_6790,0c:ef:15:e8:67:90,68,3,WPA2-Personal,2026-09-10 10:01:00,0,legit_known_TP-Link_6790
+Student_StudyRoom,ac:84:c6:33:44:55,55,11,WPA2-Personal,2026-09-10 10:00:00,0,legit_known_Student_StudyRoom
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,66,6,WPA2-Personal,2026-09-10 10:01:00,0,legit_known_Hostel_BlockB_WiFi
+TP-Link_6790,0c:ef:15:e8:67:90,71,3,WPA2-Personal,2026-09-10 10:01:00,0,legit_known_TP-Link_6790
 Home_Fiber_5G,50:d4:f7:9a:bc:de,70,36,WPA2-Personal,2026-09-10 10:01:00,0,legit_known_Home_Fiber_5G
-Student_StudyRoom,ac:84:c6:33:44:55,65,11,WPA2-Personal,2026-09-10 10:01:00,0,legit_known_Student_StudyRoom
-Hostel_BlockB_WiFi,70:4f:57:12:34:56,72,6,WPA2-Personal,2026-09-10 10:02:00,0,legit_known_Hostel_BlockB_WiFi
-TP-Link_6790,0c:ef:15:e8:67:90,75,3,WPA2-Personal,2026-09-10 10:02:00,0,legit_known_TP-Link_6790
+Student_StudyRoom,ac:84:c6:33:44:55,68,11,WPA2-Personal,2026-09-10 10:01:00,0,legit_known_Student_StudyRoom
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,73,6,WPA2-Personal,2026-09-10 10:02:00,0,legit_known_Hostel_BlockB_WiFi
+TP-Link_6790,0c:ef:15:e8:67:90,78,3,WPA2-Personal,2026-09-10 10:02:00,0,legit_known_TP-Link_6790
 Home_Fiber_5G,50:d4:f7:9a:bc:de,77,36,WPA2-Personal,2026-09-10 10:02:00,0,legit_known_Home_Fiber_5G
-Student_StudyRoom,ac:84:c6:33:44:55,72,11,WPA2-Personal,2026-09-10 10:02:00,0,legit_known_Student_StudyRoom
-Hostel_BlockB_WiFi,70:4f:57:12:34:56,79,6,WPA2-Personal,2026-09-10 10:03:00,0,legit_known_Hostel_BlockB_WiFi
-TP-Link_6790,0c:ef:15:e8:67:90,82,3,WPA2-Personal,2026-09-10 10:03:00,0,legit_known_TP-Link_6790
+Student_StudyRoom,ac:84:c6:33:44:55,75,11,WPA2-Personal,2026-09-10 10:02:00,0,legit_known_Student_StudyRoom
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,80,6,WPA2-Personal,2026-09-10 10:03:00,0,legit_known_Hostel_BlockB_WiFi
+TP-Link_6790,0c:ef:15:e8:67:90,85,3,WPA2-Personal,2026-09-10 10:03:00,0,legit_known_TP-Link_6790
 Home_Fiber_5G,50:d4:f7:9a:bc:de,84,36,WPA2-Personal,2026-09-10 10:03:00,0,legit_known_Home_Fiber_5G
-Student_StudyRoom,ac:84:c6:33:44:55,79,11,WPA2-Personal,2026-09-10 10:03:00,0,legit_known_Student_StudyRoom
-Hostel_BlockB_WiFi,70:4f:57:12:34:56,85,6,WPA2-Personal,2026-09-10 10:04:00,0,legit_known_Hostel_BlockB_WiFi
-TP-Link_6790,0c:ef:15:e8:67:90,88,3,WPA2-Personal,2026-09-10 10:04:00,0,legit_known_TP-Link_6790
+Student_StudyRoom,ac:84:c6:33:44:55,82,11,WPA2-Personal,2026-09-10 10:03:00,0,legit_known_Student_StudyRoom
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,86,6,WPA2-Personal,2026-09-10 10:04:00,0,legit_known_Hostel_BlockB_WiFi
+TP-Link_6790,0c:ef:15:e8:67:90,91,3,WPA2-Personal,2026-09-10 10:04:00,0,legit_known_TP-Link_6790
 Home_Fiber_5G,50:d4:f7:9a:bc:de,90,36,WPA2-Personal,2026-09-10 10:04:00,0,legit_known_Home_Fiber_5G
-Student_StudyRoom,ac:84:c6:33:44:55,85,11,WPA2-Personal,2026-09-10 10:04:00,0,legit_known_Student_StudyRoom
-Hostel_BlockB_WiFi,70:4f:57:12:34:56,89,6,WPA2-Personal,2026-09-10 10:05:00,0,legit_known_Hostel_BlockB_WiFi
-TP-Link_6790,0c:ef:15:e8:67:90,92,3,WPA2-Personal,2026-09-10 10:05:00,0,legit_known_TP-Link_6790
+Student_StudyRoom,ac:84:c6:33:44:55,88,11,WPA2-Personal,2026-09-10 10:04:00,0,legit_known_Student_StudyRoom
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,90,6,WPA2-Personal,2026-09-10 10:05:00,0,legit_known_Hostel_BlockB_WiFi
+TP-Link_6790,0c:ef:15:e8:67:90,95,3,WPA2-Personal,2026-09-10 10:05:00,0,legit_known_TP-Link_6790
 Home_Fiber_5G,50:d4:f7:9a:bc:de,94,36,WPA2-Personal,2026-09-10 10:05:00,0,legit_known_Home_Fiber_5G
-Student_StudyRoom,ac:84:c6:33:44:55,89,11,WPA2-Personal,2026-09-10 10:05:00,0,legit_known_Student_StudyRoom
-Hostel_BlockB_WiFi,70:4f:57:12:34:56,95,6,WPA2-Personal,2026-09-10 10:06:00,0,legit_known_Hostel_BlockB_WiFi
-TP-Link_6790,0c:ef:15:e8:67:90,98,3,WPA2-Personal,2026-09-10 10:06:00,0,legit_known_TP-Link_6790
+Student_StudyRoom,ac:84:c6:33:44:55,92,11,WPA2-Personal,2026-09-10 10:05:00,0,legit_known_Student_StudyRoom
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,96,6,WPA2-Personal,2026-09-10 10:06:00,0,legit_known_Hostel_BlockB_WiFi
+TP-Link_6790,0c:ef:15:e8:67:90,100,3,WPA2-Personal,2026-09-10 10:06:00,0,legit_known_TP-Link_6790
 Home_Fiber_5G,50:d4:f7:9a:bc:de,100,36,WPA2-Personal,2026-09-10 10:06:00,0,legit_known_Home_Fiber_5G
-Student_StudyRoom,ac:84:c6:33:44:55,95,11,WPA2-Personal,2026-09-10 10:06:00,0,legit_known_Student_StudyRoom
-Hostel_BlockB_WiFi,70:4f:57:12:34:56,97,6,WPA2-Personal,2026-09-10 10:07:00,0,legit_known_Hostel_BlockB_WiFi
+Student_StudyRoom,ac:84:c6:33:44:55,98,11,WPA2-Personal,2026-09-10 10:06:00,0,legit_known_Student_StudyRoom
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,98,6,WPA2-Personal,2026-09-10 10:07:00,0,legit_known_Hostel_BlockB_WiFi
 TP-Link_6790,0c:ef:15:e8:67:90,100,3,WPA2-Personal,2026-09-10 10:07:00,0,legit_known_TP-Link_6790
 Home_Fiber_5G,50:d4:f7:9a:bc:de,100,36,WPA2-Personal,2026-09-10 10:07:00,0,legit_known_Home_Fiber_5G
-Student_StudyRoom,ac:84:c6:33:44:55,97,11,WPA2-Personal,2026-09-10 10:07:00,0,legit_known_Student_StudyRoom
-Hostel_BlockB_WiFi,70:4f:57:12:34:56,59,6,WPA2-Personal,2026-09-10 10:08:00,0,legit_known_Hostel_BlockB_WiFi
-TP-Link_6790,0c:ef:15:e8:67:90,62,3,WPA2-Personal,2026-09-10 10:08:00,0,legit_known_TP-Link_6790
+Student_StudyRoom,ac:84:c6:33:44:55,100,11,WPA2-Personal,2026-09-10 10:07:00,0,legit_known_Student_StudyRoom
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,60,6,WPA2-Personal,2026-09-10 10:08:00,0,legit_known_Hostel_BlockB_WiFi
+TP-Link_6790,0c:ef:15:e8:67:90,65,3,WPA2-Personal,2026-09-10 10:08:00,0,legit_known_TP-Link_6790
 Home_Fiber_5G,50:d4:f7:9a:bc:de,64,36,WPA2-Personal,2026-09-10 10:08:00,0,legit_known_Home_Fiber_5G
-Student_StudyRoom,ac:84:c6:33:44:55,59,11,WPA2-Personal,2026-09-10 10:08:00,0,legit_known_Student_StudyRoom
-Hostel_BlockB_WiFi,70:4f:57:12:34:56,67,6,WPA2-Personal,2026-09-10 10:09:00,0,legit_known_Hostel_BlockB_WiFi
-TP-Link_6790,0c:ef:15:e8:67:90,70,3,WPA2-Personal,2026-09-10 10:09:00,0,legit_known_TP-Link_6790
+Student_StudyRoom,ac:84:c6:33:44:55,62,11,WPA2-Personal,2026-09-10 10:08:00,0,legit_known_Student_StudyRoom
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,68,6,WPA2-Personal,2026-09-10 10:09:00,0,legit_known_Hostel_BlockB_WiFi
+TP-Link_6790,0c:ef:15:e8:67:90,73,3,WPA2-Personal,2026-09-10 10:09:00,0,legit_known_TP-Link_6790
 Home_Fiber_5G,50:d4:f7:9a:bc:de,72,36,WPA2-Personal,2026-09-10 10:09:00,0,legit_known_Home_Fiber_5G
-Student_StudyRoom,ac:84:c6:33:44:55,67,11,WPA2-Personal,2026-09-10 10:09:00,0,legit_known_Student_StudyRoom
-Hostel_BlockB_WiFi,70:4f:57:12:34:56,82,6,WPA2-Personal,2026-09-10 10:10:00,0,legit_known_Hostel_BlockB_WiFi
-TP-Link_6790,0c:ef:15:e8:67:90,85,3,WPA2-Personal,2026-09-10 10:10:00,0,legit_known_TP-Link_6790
+Student_StudyRoom,ac:84:c6:33:44:55,70,11,WPA2-Personal,2026-09-10 10:09:00,0,legit_known_Student_StudyRoom
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,83,6,WPA2-Personal,2026-09-10 10:10:00,0,legit_known_Hostel_BlockB_WiFi
+TP-Link_6790,0c:ef:15:e8:67:90,88,3,WPA2-Personal,2026-09-10 10:10:00,0,legit_known_TP-Link_6790
 Home_Fiber_5G,50:d4:f7:9a:bc:de,87,36,WPA2-Personal,2026-09-10 10:10:00,0,legit_known_Home_Fiber_5G
-Student_StudyRoom,ac:84:c6:33:44:55,82,11,WPA2-Personal,2026-09-10 10:10:00,0,legit_known_Student_StudyRoom
-Hostel_BlockB_WiFi,70:4f:57:12:34:56,87,6,WPA2-Personal,2026-09-10 10:11:00,0,legit_known_Hostel_BlockB_WiFi
-TP-Link_6790,0c:ef:15:e8:67:90,90,3,WPA2-Personal,2026-09-10 10:11:00,0,legit_known_TP-Link_6790
+Student_StudyRoom,ac:84:c6:33:44:55,85,11,WPA2-Personal,2026-09-10 10:10:00,0,legit_known_Student_StudyRoom
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,88,6,WPA2-Personal,2026-09-10 10:11:00,0,legit_known_Hostel_BlockB_WiFi
+TP-Link_6790,0c:ef:15:e8:67:90,93,3,WPA2-Personal,2026-09-10 10:11:00,0,legit_known_TP-Link_6790
 Home_Fiber_5G,50:d4:f7:9a:bc:de,92,36,WPA2-Personal,2026-09-10 10:11:00,0,legit_known_Home_Fiber_5G
-Student_StudyRoom,ac:84:c6:33:44:55,87,11,WPA2-Personal,2026-09-10 10:11:00,0,legit_known_Student_StudyRoom
+Student_StudyRoom,ac:84:c6:33:44:55,90,11,WPA2-Personal,2026-09-10 10:11:00,0,legit_known_Student_StudyRoom
+TP-Link_6790,0c:ef:15:e8:67:90,74,2,WPA2-Personal,2026-09-10 15:00:00,0,legit_channel_shift_tplink
+TP-Link_6790,0c:ef:15:e8:67:90,80,6,WPA2-Personal,2026-09-10 15:01:00,0,legit_channel_shift_tplink
+TP-Link_6790,0c:ef:15:e8:67:90,69,11,WPA2-Personal,2026-09-10 15:02:00,0,legit_channel_shift_tplink
+TP-Link_6790,0c:ef:15:e8:67:90,86,1,WPA2-Personal,2026-09-10 15:03:00,0,legit_channel_shift_tplink
+Home_Fiber_5G,50:d4:f7:9a:bc:de,72,40,WPA2-Personal,2026-09-10 16:00:00,0,legit_channel_shift_fiber
+Home_Fiber_5G,50:d4:f7:9a:bc:de,79,44,WPA2-Personal,2026-09-10 16:01:00,0,legit_channel_shift_fiber
+Home_Fiber_5G,50:d4:f7:9a:bc:de,84,48,WPA2-Personal,2026-09-10 16:02:00,0,legit_channel_shift_fiber
+Home_Fiber_5G,50:d4:f7:9a:bc:de,68,149,WPA2-Personal,2026-09-10 16:03:00,0,legit_channel_shift_fiber
 Vardhaman_Campus,18:64:72:a1:01:01,61,1,WPA2-Enterprise,2026-09-11 11:00:00,0,legit_campus_multiap
 Vardhaman_Campus,18:64:72:a1:01:02,65,6,WPA2-Enterprise,2026-09-11 11:00:00,0,legit_campus_multiap
 Vardhaman_Campus,18:64:72:a1:01:03,69,11,WPA2-Enterprise,2026-09-11 11:00:00,0,legit_campus_multiap
@@ -131,48 +139,145 @@ DualBand_Home,60:32:b1:01:02:03,92,6,WPA2-Personal,2026-09-13 16:32:00,0,legit_d
 DualBand_Home,60:32:b1:01:02:04,84,44,WPA2-Personal,2026-09-13 16:32:00,0,legit_dualband
 DualBand_Home,60:32:b1:01:02:03,100,6,WPA2-Personal,2026-09-13 16:40:00,0,legit_dualband
 DualBand_Home,60:32:b1:01:02:04,92,44,WPA2-Personal,2026-09-13 16:40:00,0,legit_dualband
-TestWiFi,e0:dc:ff:99:88:77,72,11,Open,2026-09-14 10:00:12,1,rogue_downgrade_TestWiFi
-TestWiFi,e0:dc:ff:99:88:77,85,11,Open,2026-09-14 10:00:25,1,rogue_downgrade_TestWiFi
-TestWiFi,e0:dc:ff:99:88:77,92,11,Open,2026-09-14 10:00:32,1,rogue_downgrade_TestWiFi
-TestWiFi,e0:dc:ff:99:88:77,96,11,Open,2026-09-14 10:00:36,1,rogue_downgrade_TestWiFi
-Hostel_BlockB_WiFi,ee:11:22:33:44:55,68,1,Open,2026-09-14 10:01:08,1,rogue_downgrade_Hostel_BlockB_WiFi
-Hostel_BlockB_WiFi,ee:11:22:33:44:55,82,1,Open,2026-09-14 10:01:22,1,rogue_downgrade_Hostel_BlockB_WiFi
-Hostel_BlockB_WiFi,ee:11:22:33:44:55,90,1,Open,2026-09-14 10:01:30,1,rogue_downgrade_Hostel_BlockB_WiFi
-Hostel_BlockB_WiFi,ee:11:22:33:44:55,95,1,Open,2026-09-14 10:01:35,1,rogue_downgrade_Hostel_BlockB_WiFi
-Vardhaman_Campus,da:a1:19:bb:22:33,75,3,Open,2026-09-14 10:02:15,1,rogue_downgrade_Vardhaman_Campus
-Vardhaman_Campus,da:a1:19:bb:22:33,88,3,Open,2026-09-14 10:02:28,1,rogue_downgrade_Vardhaman_Campus
-Vardhaman_Campus,da:a1:19:bb:22:33,94,3,Open,2026-09-14 10:02:34,1,rogue_downgrade_Vardhaman_Campus
-Vardhaman_Campus,92:c5:31:44:55:66,,9,WPA2-Personal,2026-09-14 11:20:10,1,rogue_enterprise_downgrade
-Vardhaman_Campus,92:c5:31:44:55:66,,9,WPA2-Personal,2026-09-14 11:20:24,1,rogue_enterprise_downgrade
-Vardhaman_Campus,92:c5:31:44:55:66,,9,WPA2-Personal,2026-09-14 11:20:31,1,rogue_enterprise_downgrade
-Vardhaman_Campus,92:c5:31:44:55:66,,9,WPA2-Personal,2026-09-14 11:20:35,1,rogue_enterprise_downgrade
-TP-Link_6790,42:2b:44:b2:97:a9,82,11,WPA2-Personal,2026-09-14 15:00:22,1,rogue_channel_conflict_TP-Link_6790
-TP-Link_6790,42:2b:44:b2:97:a9,92,11,WPA2-Personal,2026-09-14 15:00:32,1,rogue_channel_conflict_TP-Link_6790
-TP-Link_6790,42:2b:44:b2:97:a9,96,11,WPA2-Personal,2026-09-14 15:00:36,1,rogue_channel_conflict_TP-Link_6790
-CoffeeShop_WiFi,f2:90:3a:cc:11:99,86,11,Open,2026-09-14 15:01:26,1,rogue_channel_conflict_CoffeeShop_WiFi
-CoffeeShop_WiFi,f2:90:3a:cc:11:99,94,11,Open,2026-09-14 15:01:34,1,rogue_channel_conflict_CoffeeShop_WiFi
-Airport_Free_WiFi,b8:27:eb:55:44:33,88,8,Open,2026-09-14 15:02:28,1,rogue_channel_conflict_Airport_Free_WiFi
-Airport_Free_WiFi,b8:27:eb:55:44:33,93,8,Open,2026-09-14 15:02:33,1,rogue_channel_conflict_Airport_Free_WiFi
-TP-Link_6790,0c:ef:15:e8:67:90,78,11,WPA2-Personal,2026-09-15 16:30:18,1,rogue_mac_spoofing
-TP-Link_6790,0c:ef:15:e8:67:90,89,11,WPA2-Personal,2026-09-15 16:30:29,1,rogue_mac_spoofing
-TP-Link_6790,0c:ef:15:e8:67:90,95,11,WPA2-Personal,2026-09-15 16:30:35,1,rogue_mac_spoofing
-SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 12:57:33,Unknown
-SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 12:59:01,Unknown
-SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:05:01,Unknown
-SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:05:20,Unknown
-SHIVA,16:32:51:69:ea:62,100,6,WPA2-Personal,2026-10-17 13:05:20,Unknown
-SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,50,11,WPA2-Personal,2026-10-17 13:05:20,Unknown
-74E9D8B9F75E,74:e9:d8:b9:f7:5e,10,5,WPA2-Personal,2026-10-17 13:05:20,Unknown
-SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:15:45,Unknown
-SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:18:40,Unknown
-SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:20:46,Unknown
-SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:21:18,Unknown
-SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:29:23,Unknown
-SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:31:20,Unknown
-SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:33:42,Unknown
-SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:35:51,Unknown
-SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:36:03,Unknown
-SHIVA,16:32:51:69:ea:62,100,6,WPA2-Personal,2026-10-17 13:36:03,Unknown
-SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,30,11,WPA2-Personal,2026-10-17 13:36:03,Unknown
-74E9D8B9F75E,74:e9:d8:b9:f7:5e,12,5,WPA2-Personal,2026-10-17 13:36:03,Unknown
-GOPU HOME,16:32:51:a0:bb:00,11,1,WPA2-Personal,2026-10-17 13:36:03,Unknown
+TestWiFi,00:14:22:01:23:45,54,1,WPA2-Personal,2026-09-14 10:00:00,0,legit_during_attack_TestWiFi
+TestWiFi,e0:dc:ff:99:88:77,72,11,Open,2026-09-14 10:00:00,1,rogue_downgrade_TestWiFi
+TestWiFi,00:14:22:01:23:45,67,1,WPA2-Personal,2026-09-14 10:00:01,0,legit_during_attack_TestWiFi
+TestWiFi,e0:dc:ff:99:88:77,85,11,Open,2026-09-14 10:00:01,1,rogue_downgrade_TestWiFi
+TestWiFi,00:14:22:01:23:45,74,1,WPA2-Personal,2026-09-14 10:00:02,0,legit_during_attack_TestWiFi
+TestWiFi,e0:dc:ff:99:88:77,92,11,Open,2026-09-14 10:00:02,1,rogue_downgrade_TestWiFi
+TestWiFi,00:14:22:01:23:45,78,1,WPA2-Personal,2026-09-14 10:00:03,0,legit_during_attack_TestWiFi
+TestWiFi,e0:dc:ff:99:88:77,96,11,Open,2026-09-14 10:00:03,1,rogue_downgrade_TestWiFi
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,50,6,WPA2-Personal,2026-09-14 10:01:00,0,legit_during_attack_Hostel_BlockB_WiFi
+Hostel_BlockB_WiFi,ee:11:22:33:44:55,68,1,Open,2026-09-14 10:01:00,1,rogue_downgrade_Hostel_BlockB_WiFi
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,64,6,WPA2-Personal,2026-09-14 10:01:01,0,legit_during_attack_Hostel_BlockB_WiFi
+Hostel_BlockB_WiFi,ee:11:22:33:44:55,82,1,Open,2026-09-14 10:01:01,1,rogue_downgrade_Hostel_BlockB_WiFi
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,72,6,WPA2-Personal,2026-09-14 10:01:02,0,legit_during_attack_Hostel_BlockB_WiFi
+Hostel_BlockB_WiFi,ee:11:22:33:44:55,90,1,Open,2026-09-14 10:01:02,1,rogue_downgrade_Hostel_BlockB_WiFi
+Hostel_BlockB_WiFi,70:4f:57:12:34:56,77,6,WPA2-Personal,2026-09-14 10:01:03,0,legit_during_attack_Hostel_BlockB_WiFi
+Hostel_BlockB_WiFi,ee:11:22:33:44:55,95,1,Open,2026-09-14 10:01:03,1,rogue_downgrade_Hostel_BlockB_WiFi
+Vardhaman_Campus,18:64:72:a1:01:01,57,1,WPA2-Enterprise,2026-09-14 10:02:00,0,legit_during_attack_Vardhaman_Campus
+Vardhaman_Campus,da:a1:19:bb:22:33,75,3,Open,2026-09-14 10:02:00,1,rogue_downgrade_Vardhaman_Campus
+Vardhaman_Campus,18:64:72:a1:01:01,70,1,WPA2-Enterprise,2026-09-14 10:02:01,0,legit_during_attack_Vardhaman_Campus
+Vardhaman_Campus,da:a1:19:bb:22:33,88,3,Open,2026-09-14 10:02:01,1,rogue_downgrade_Vardhaman_Campus
+Vardhaman_Campus,18:64:72:a1:01:01,76,1,WPA2-Enterprise,2026-09-14 10:02:02,0,legit_during_attack_Vardhaman_Campus
+Vardhaman_Campus,da:a1:19:bb:22:33,94,3,Open,2026-09-14 10:02:02,1,rogue_downgrade_Vardhaman_Campus
+Student_StudyRoom,ac:84:c6:33:44:55,66,11,WPA2-Personal,2026-09-14 12:00:00,0,legit_during_samech_Student_StudyRoom
+Student_StudyRoom,f6:12:34:56:78:90,81,11,Open,2026-09-14 12:00:00,1,rogue_samech_downgrade_Student_StudyRoom
+Student_StudyRoom,ac:84:c6:33:44:55,74,11,WPA2-Personal,2026-09-14 12:00:01,0,legit_during_samech_Student_StudyRoom
+Student_StudyRoom,f6:12:34:56:78:90,89,11,Open,2026-09-14 12:00:01,1,rogue_samech_downgrade_Student_StudyRoom
+Student_StudyRoom,ac:84:c6:33:44:55,80,11,WPA2-Personal,2026-09-14 12:00:02,0,legit_during_samech_Student_StudyRoom
+Student_StudyRoom,f6:12:34:56:78:90,95,11,Open,2026-09-14 12:00:02,1,rogue_samech_downgrade_Student_StudyRoom
+Home_Fiber_5G,50:d4:f7:9a:bc:de,62,36,WPA2-Personal,2026-09-14 12:01:00,0,legit_during_samech_Home_Fiber_5G
+Home_Fiber_5G,aa:11:22:33:44:99,77,36,Open,2026-09-14 12:01:00,1,rogue_samech_downgrade_Home_Fiber_5G
+Home_Fiber_5G,50:d4:f7:9a:bc:de,71,36,WPA2-Personal,2026-09-14 12:01:01,0,legit_during_samech_Home_Fiber_5G
+Home_Fiber_5G,aa:11:22:33:44:99,86,36,Open,2026-09-14 12:01:01,1,rogue_samech_downgrade_Home_Fiber_5G
+Home_Fiber_5G,50:d4:f7:9a:bc:de,78,36,WPA2-Personal,2026-09-14 12:01:02,0,legit_during_samech_Home_Fiber_5G
+Home_Fiber_5G,aa:11:22:33:44:99,93,36,Open,2026-09-14 12:01:02,1,rogue_samech_downgrade_Home_Fiber_5G
+Vardhaman_Campus,18:64:72:a1:01:02,54,6,WPA2-Enterprise,2026-09-14 11:20:00,0,legit_during_ent_attack
+Vardhaman_Campus,92:c5:31:44:55:66,70,9,WPA2-Personal,2026-09-14 11:20:00,1,rogue_enterprise_downgrade
+Vardhaman_Campus,18:64:72:a1:01:02,68,6,WPA2-Enterprise,2026-09-14 11:20:01,0,legit_during_ent_attack
+Vardhaman_Campus,92:c5:31:44:55:66,84,9,WPA2-Personal,2026-09-14 11:20:01,1,rogue_enterprise_downgrade
+Vardhaman_Campus,18:64:72:a1:01:02,75,6,WPA2-Enterprise,2026-09-14 11:20:02,0,legit_during_ent_attack
+Vardhaman_Campus,92:c5:31:44:55:66,91,9,WPA2-Personal,2026-09-14 11:20:02,1,rogue_enterprise_downgrade
+Vardhaman_Campus,18:64:72:a1:01:02,79,6,WPA2-Enterprise,2026-09-14 11:20:03,0,legit_during_ent_attack
+Vardhaman_Campus,92:c5:31:44:55:66,95,9,WPA2-Personal,2026-09-14 11:20:03,1,rogue_enterprise_downgrade
+TP-Link_6790,0c:ef:15:e8:67:90,62,3,WPA2-Personal,2026-09-14 15:00:00,0,legit_during_conflict_TP-Link_6790
+TP-Link_6790,42:2b:44:b2:97:a9,82,11,WPA2-Personal,2026-09-14 15:00:00,1,rogue_channel_conflict_TP-Link_6790
+TP-Link_6790,0c:ef:15:e8:67:90,72,3,WPA2-Personal,2026-09-14 15:00:01,0,legit_during_conflict_TP-Link_6790
+TP-Link_6790,42:2b:44:b2:97:a9,92,11,WPA2-Personal,2026-09-14 15:00:01,1,rogue_channel_conflict_TP-Link_6790
+TP-Link_6790,0c:ef:15:e8:67:90,76,3,WPA2-Personal,2026-09-14 15:00:02,0,legit_during_conflict_TP-Link_6790
+TP-Link_6790,42:2b:44:b2:97:a9,96,11,WPA2-Personal,2026-09-14 15:00:02,1,rogue_channel_conflict_TP-Link_6790
+CoffeeShop_WiFi,44:48:b1:11:22:33,66,6,Open,2026-09-14 15:01:00,0,legit_during_conflict_CoffeeShop_WiFi
+CoffeeShop_WiFi,f2:90:3a:cc:11:99,86,11,Open,2026-09-14 15:01:00,1,rogue_channel_conflict_CoffeeShop_WiFi
+CoffeeShop_WiFi,44:48:b1:11:22:33,74,6,Open,2026-09-14 15:01:01,0,legit_during_conflict_CoffeeShop_WiFi
+CoffeeShop_WiFi,f2:90:3a:cc:11:99,94,11,Open,2026-09-14 15:01:01,1,rogue_channel_conflict_CoffeeShop_WiFi
+CoffeeShop_WiFi,44:48:b1:11:22:33,77,6,Open,2026-09-14 15:01:02,0,legit_during_conflict_CoffeeShop_WiFi
+CoffeeShop_WiFi,f2:90:3a:cc:11:99,97,11,Open,2026-09-14 15:01:02,1,rogue_channel_conflict_CoffeeShop_WiFi
+Airport_Free_WiFi,3c:37:12:77:88:99,68,1,Open,2026-09-14 15:02:00,0,legit_during_conflict_Airport_Free_WiFi
+Airport_Free_WiFi,b8:27:eb:55:44:33,88,8,Open,2026-09-14 15:02:00,1,rogue_channel_conflict_Airport_Free_WiFi
+Airport_Free_WiFi,3c:37:12:77:88:99,73,1,Open,2026-09-14 15:02:01,0,legit_during_conflict_Airport_Free_WiFi
+Airport_Free_WiFi,b8:27:eb:55:44:33,93,8,Open,2026-09-14 15:02:01,1,rogue_channel_conflict_Airport_Free_WiFi
+Airport_Free_WiFi,3c:37:12:77:88:99,78,1,Open,2026-09-14 15:02:02,0,legit_during_conflict_Airport_Free_WiFi
+Airport_Free_WiFi,b8:27:eb:55:44:33,98,8,Open,2026-09-14 15:02:02,1,rogue_channel_conflict_Airport_Free_WiFi
+TP-Link_6790,0c:ef:15:e8:67:90,60,3,WPA2-Personal,2026-09-15 16:30:00,0,legit_during_mac_spoof
+TP-Link_6790,0c:ef:15:e8:67:90,78,11,WPA2-Personal,2026-09-15 16:30:00,1,rogue_mac_spoofing
+TP-Link_6790,0c:ef:15:e8:67:90,71,3,WPA2-Personal,2026-09-15 16:30:01,0,legit_during_mac_spoof
+TP-Link_6790,0c:ef:15:e8:67:90,89,11,WPA2-Personal,2026-09-15 16:30:01,1,rogue_mac_spoofing
+TP-Link_6790,0c:ef:15:e8:67:90,77,3,WPA2-Personal,2026-09-15 16:30:02,0,legit_during_mac_spoof
+TP-Link_6790,0c:ef:15:e8:67:90,95,11,WPA2-Personal,2026-09-15 16:30:02,1,rogue_mac_spoofing
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 12:57:33,Unknown,
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 12:59:01,Unknown,
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:05:01,Unknown,
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:05:20,Unknown,
+SHIVA,16:32:51:69:ea:62,100,6,WPA2-Personal,2026-10-17 13:05:20,Unknown,
+SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,50,11,WPA2-Personal,2026-10-17 13:05:20,Unknown,
+74E9D8B9F75E,74:e9:d8:b9:f7:5e,10,5,WPA2-Personal,2026-10-17 13:05:20,Unknown,
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:15:45,Unknown,
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:18:40,Unknown,
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:20:46,Unknown,
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:21:18,Unknown,
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:29:23,Unknown,
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:31:20,Unknown,
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:33:42,Unknown,
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:35:51,Unknown,
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-10-17 13:36:03,Unknown,
+SHIVA,16:32:51:69:ea:62,100,6,WPA2-Personal,2026-10-17 13:36:03,Unknown,
+SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,30,11,WPA2-Personal,2026-10-17 13:36:03,Unknown,
+74E9D8B9F75E,74:e9:d8:b9:f7:5e,12,5,WPA2-Personal,2026-10-17 13:36:03,Unknown,
+GOPU HOME,16:32:51:a0:bb:00,11,1,WPA2-Personal,2026-10-17 13:36:03,Unknown,
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:09:01,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:09:15,Unknown
+SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,14,11,WPA2-Personal,2026-11-26 14:09:15,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:09:20,Unknown
+SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,14,11,WPA2-Personal,2026-11-26 14:09:20,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:28:25,Unknown
+SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,15,11,WPA2-Personal,2026-11-26 14:28:25,Unknown
+GOPU HOME,16:32:51:a0:bb:00,12,6,WPA2-Personal,2026-11-26 14:28:25,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:28:41,Unknown
+SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,15,11,WPA2-Personal,2026-11-26 14:28:41,Unknown
+GOPU HOME,16:32:51:a0:bb:00,12,6,WPA2-Personal,2026-11-26 14:28:41,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:28:48,Unknown
+SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,15,11,WPA2-Personal,2026-11-26 14:28:48,Unknown
+GOPU HOME,16:32:51:a0:bb:00,12,6,WPA2-Personal,2026-11-26 14:28:48,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:28:51,Unknown
+SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,15,11,WPA2-Personal,2026-11-26 14:28:51,Unknown
+GOPU HOME,16:32:51:a0:bb:00,12,6,WPA2-Personal,2026-11-26 14:28:51,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:28:59,Unknown
+SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,15,11,WPA2-Personal,2026-11-26 14:28:59,Unknown
+GOPU HOME,16:32:51:a0:bb:00,12,6,WPA2-Personal,2026-11-26 14:28:59,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:29:00,Unknown
+SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,15,11,WPA2-Personal,2026-11-26 14:29:00,Unknown
+GOPU HOME,16:32:51:a0:bb:00,12,6,WPA2-Personal,2026-11-26 14:29:00,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:29:06,Unknown
+SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,15,11,WPA2-Personal,2026-11-26 14:29:06,Unknown
+GOPU HOME,16:32:51:a0:bb:00,12,6,WPA2-Personal,2026-11-26 14:29:06,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:29:39,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:32:08,Unknown
+Buddi ^_^,d6:81:ac:d6:0e:b1,100,11,WPA3-Personal,2026-11-26 14:32:08,Unknown
+GOPU HOME,16:32:51:a0:bb:00,10,6,WPA2-Personal,2026-11-26 14:32:08,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:32:12,Unknown
+Buddi ^_^,d6:81:ac:d6:0e:b1,100,11,WPA3-Personal,2026-11-26 14:32:12,Unknown
+GOPU HOME,16:32:51:a0:bb:00,10,6,WPA2-Personal,2026-11-26 14:32:12,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:32:15,Unknown
+Buddi ^_^,d6:81:ac:d6:0e:b1,100,11,WPA3-Personal,2026-11-26 14:32:15,Unknown
+GOPU HOME,16:32:51:a0:bb:00,10,6,WPA2-Personal,2026-11-26 14:32:15,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:33:43,Unknown
+Buddi ^_^,d6:81:ac:d6:0e:b1,100,11,WPA3-Personal,2026-11-26 14:33:43,Unknown
+GOPU HOME,16:32:51:a0:bb:00,10,6,WPA2-Personal,2026-11-26 14:33:43,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:34:24,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:36:08,Unknown
+SHIVA,16:32:51:69:ea:62,100,1,WPA2-Personal,2026-11-26 14:36:08,Unknown
+SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,35,11,WPA2-Personal,2026-11-26 14:36:08,Unknown
+Buddi ^_^,d6:81:ac:d6:0e:b1,100,11,WPA3-Personal,2026-11-26 14:36:08,Unknown
+GOPU HOME,16:32:51:a0:bb:00,25,6,WPA2-Personal,2026-11-26 14:36:08,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:51:31,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 14:51:52,Unknown
+SRI GEETHANJALI HIGH SCHOOL,be:55:db:4b:2c:36,25,11,WPA2-Personal,2026-11-26 14:51:52,Unknown
+GOPU HOME,16:32:51:a0:bb:00,8,6,WPA2-Personal,2026-11-26 14:51:52,Unknown
+74E9D8B9F75E,74:e9:d8:b9:f7:5e,13,5,WPA2-Personal,2026-11-26 14:51:52,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 15:07:29,Unknown
+GOPU HOME,16:32:51:a0:bb:00,10,6,WPA2-Personal,2026-11-26 15:07:29,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 18:16:10,Unknown
+GOPU HOME,16:32:51:a0:bb:00,35,11,WPA2-Personal,2026-11-26 18:16:10,Unknown
+SHIVA,16:32:51:69:ea:63,100,44,WPA2-Personal,2026-11-26 18:16:55,Unknown
+GOPU HOME,16:32:51:a0:bb:00,35,11,WPA2-Personal,2026-11-26 18:16:55,Unknown

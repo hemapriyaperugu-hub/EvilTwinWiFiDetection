@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Wi-Fi Scanner — Evil Twin Wi-Fi Detection{% endblock %}
+{% block page_title %}Live Windows Wi-Fi Network Scanner{% endblock %}
+{% block page_subtitle %}Passive scan via netsh wlan show networks mode=bssid (no auto-connect, no password collection){% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="toolbar">
+    <div class="toolbar-group">
+      <button id="startScanBtn" type="button" class="btn btn-primary">Start Scan</button>
+      <span id="scanStatusText" style="color:var(--text-muted);font-size:13px;">
+        {% if latest_scan %}
+          Showing latest stored scan ({{ latest_scan.timestamp }} — {{ latest_scan.status }}).
+        {% else %}
+          Ready. Click Start Scan to invoke your Windows Wi-Fi adapter.
+        {% endif %}
+      </span>
+    </div>
+    <div class="toolbar-group" style="font-size:12px;color:var(--text-muted);">
+      <span>Last Scan: <strong id="lastScanTs">{{ latest_scan.timestamp if latest_scan else "None" }}</strong></span>
+      <span>|</span>
+      <span>Networks Found: <strong id="lastScanCount">{{ latest_results|length }}</strong></span>
+      <span>|</span>
+      <span>Thresholds: Suspicious &ge; {{ settings.suspicious_threshold }}, High &ge; {{ settings.high_risk_threshold }}</span>
+    </div>
+  </div>
+
+  <div id="scanErrorBanner" class="banner banner-danger" style="{% if latest_scan and latest_scan.status == 'FAILED' and latest_scan.error_message %}display:block;{% else %}display:none;{% endif %}">
+    {% if latest_scan and latest_scan.status == 'FAILED' %}{{ latest_scan.error_message }}{% endif %}
+  </div>
+
+  <div class="toolbar">
+    <div class="toolbar-group">
+      <input type="text" id="filterSearch" placeholder="Filter by SSID, BSSID, or Security..." style="min-width:250px;">
+      <select id="filterClass">
+        <option value="ALL">All Classifications</option>
+        <option value="UNSAFE">UNSAFE</option>
+        <option value="UNVERIFIED NETWORK AND UNSAFE">UNVERIFIED NETWORK AND UNSAFE</option>
+        <option value="UNVERIFIED NETWORK BUT SAFE">UNVERIFIED NETWORK BUT SAFE</option>
+        <option value="SAFE">SAFE</option>
+      </select>
+    </div>
+    <div class="toolbar-group">
+      <label for="sortSelect" style="font-size:12px;color:var(--text-muted);">Sort:</label>
+      <select id="sortSelect">
+        <option value="risk_desc">Highest Risk Score</option>
+        <option value="signal_desc">Strongest Signal</option>
+        <option value="ssid_asc">SSID (A–Z)</option>
+        <option value="channel_asc">Channel</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>SSID</th>
+          <th>BSSID</th>
+          <th>Signal Quality</th>
+          <th>Channel</th>
+          <th>Security / Encryption</th>
+          <th>Classification</th>
+          <th>Risk Score</th>
+          <th>Detection Reason</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="scannerTableBody"></tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const initialRows = {{ latest_results | tojson }};
+    initScannerPage(initialRows);
+  });
+</script>
+{% endblock %}

@@ -1,13 +1,19 @@
 import os
-import csv
 import pandas as pd
-from datetime import datetime
 from .features import extract_features, FEATURE_COLUMNS
-from .history import load_history, update_history
+from .history import (
+    HISTORY_COLUMNS,
+    TRUST_ESTABLISHED,
+    compute_fingerprint,
+    extract_oui,
+    load_history,
+    save_history_safely
+)
+from .paths import get_data_dir
 
 
 def get_paths():
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base_dir = get_data_dir()
     return {
         "base": base_dir,
         "observations": os.path.join(base_dir, "dataset", "wifi_observations.csv"),
@@ -16,23 +22,26 @@ def get_paths():
     }
 
 
+def _get_seeded_baseline_aps():
+    return [
+        {"SSID": "Hostel_BlockB_WiFi", "BSSID": "70:4f:57:12:34:56", "Channel": 6, "Security": "WPA2-Personal", "Encryption": "CCMP", "Band": "2.4 GHz"},
+        {"SSID": "TP-Link_6790", "BSSID": "0c:ef:15:e8:67:90", "Channel": 3, "Security": "WPA2-Personal", "Encryption": "CCMP", "Band": "2.4 GHz"},
+        {"SSID": "Home_Fiber_5G", "BSSID": "50:d4:f7:9a:bc:de", "Channel": 36, "Security": "WPA2-Personal", "Encryption": "CCMP", "Band": "5 GHz"},
+        {"SSID": "Student_StudyRoom", "BSSID": "ac:84:c6:33:44:55", "Channel": 11, "Security": "WPA2-Personal", "Encryption": "CCMP", "Band": "2.4 GHz"},
+        {"SSID": "Vardhaman_Campus", "BSSID": "18:64:72:a1:01:01", "Channel": 1, "Security": "WPA2-Enterprise", "Encryption": "CCMP", "Band": "2.4 GHz"},
+        {"SSID": "Vardhaman_Campus", "BSSID": "18:64:72:a1:01:02", "Channel": 6, "Security": "WPA2-Enterprise", "Encryption": "CCMP", "Band": "2.4 GHz"},
+        {"SSID": "Vardhaman_Campus", "BSSID": "18:64:72:a1:01:03", "Channel": 11, "Security": "WPA2-Enterprise", "Encryption": "CCMP", "Band": "2.4 GHz"},
+        {"SSID": "TestWiFi", "BSSID": "00:14:22:01:23:45", "Channel": 1, "Security": "WPA2-Personal", "Encryption": "CCMP", "Band": "2.4 GHz"},
+        {"SSID": "CoffeeShop_WiFi", "BSSID": "44:48:b1:11:22:33", "Channel": 6, "Security": "Open", "Encryption": "None", "Band": "2.4 GHz"},
+        {"SSID": "Airport_Free_WiFi", "BSSID": "3c:37:12:77:88:99", "Channel": 1, "Security": "Open", "Encryption": "None", "Band": "2.4 GHz"}
+    ]
+
+
 def seed_baseline_dataset(overwrite_if_exists=False):
     """
-    Creates a realistic, rigorous baseline dataset of real-world Wi-Fi observations
-    and controlled experimental scenarios.
-
-    Ensures balanced and realistic representation:
-    1. Legitimate Known APs (Label=0, BSSIDKnown=1, signals 40-100%).
-    2. Legitimate New/Unverified APs (Label=0, BSSIDKnown=0, signals 45-100%).
-       (Ensures model NEVER equates unknown BSSID alone with Evil Twin).
-    3. Multi-AP Enterprise Campus Wi-Fi (Vardhaman_Campus, channels 1, 6, 11, Label=0).
-    4. Dual-Band Home Routers (2.4 GHz channel 6 + 5 GHz channel 44, Label=0).
-    5. Controlled Evil Twin Attack Scenarios:
-       - Security Downgrade attack (WPA2 -> Open rogue twin, Label=1).
-       - Channel conflict + concurrent broadcast attack (Label=1).
-       - Enterprise Downgrade attack (Enterprise -> Personal rogue twin, Label=1).
-       - Cloned MAC / Spoofed BSSID collision attack (Label=1).
-       - Varied attack signals (60-96%) reflecting varied physical distances.
+    Creates a realistic controlled baseline dataset for ML training and evaluation,
+    while preserving any existing unlabelled real-world scan observations (Label='Unknown')
+    and any non-seeded user records in network_history.csv.
     """
     paths = get_paths()
     obs_path = paths["observations"]
@@ -42,48 +51,52 @@ def seed_baseline_dataset(overwrite_if_exists=False):
         return
 
     os.makedirs(os.path.dirname(obs_path), exist_ok=True)
+    known_legit_aps = _get_seeded_baseline_aps()
+
+    # Preserve existing non-seeded history entries while ensuring seeded baselines use HISTORY_COLUMNS
+    existing_hist = load_history(hist_path) if os.path.exists(hist_path) else pd.DataFrame(columns=HISTORY_COLUMNS)
+    seeded_keys = {(ap["SSID"], ap["BSSID"]) for ap in known_legit_aps}
+
+    hist_rows = []
+    for ap in known_legit_aps:
+        ch_str = str(ap["Channel"])
+        hist_rows.append({
+            "SSID": ap["SSID"],
+            "BSSID": ap["BSSID"],
+            "Security": ap["Security"],
+            "Encryption": ap["Encryption"],
+            "Channel": ch_str,
+            "Band": ap["Band"],
+            "Signal": "75",
+            "Last Signal": "75",
+            "Last Channel": ch_str,
+            "Last Security": ap["Security"],
+            "OUI": extract_oui(ap["BSSID"]),
+            "Fingerprint": compute_fingerprint(ap["SSID"], ap["BSSID"], ap["Security"], ap["Encryption"], ch_str, ap["Band"]),
+            "First Seen": "2026-09-01 09:00:00",
+            "Last Seen": "2026-09-15 18:00:00",
+            "Observation Count": 10,
+            "Previous Classification": "KNOWN / CONSISTENT",
+            "Trust Status": TRUST_ESTABLISHED,
+            "Suspicious Indicators": "",
+            "Changes": ""
+        })
+
+    if not existing_hist.empty:
+        for _, r in existing_hist.iterrows():
+            if (r["SSID"], r["BSSID"]) not in seeded_keys:
+                hist_rows.append(r.to_dict())
+
+    save_history_safely(pd.DataFrame(hist_rows, columns=HISTORY_COLUMNS), hist_path)
 
     records = []
 
-    # ------------------------------------------------------------------
-    # 1. Historical Legitimate Access Points (will be placed in history)
-    # ------------------------------------------------------------------
-    known_legit_aps = [
-        {"SSID": "Hostel_BlockB_WiFi", "BSSID": "70:4f:57:12:34:56", "Channel": 6, "Security": "WPA2-Personal"},
-        {"SSID": "TP-Link_6790", "BSSID": "0c:ef:15:e8:67:90", "Channel": 3, "Security": "WPA2-Personal"},
-        {"SSID": "Home_Fiber_5G", "BSSID": "50:d4:f7:9a:bc:de", "Channel": 36, "Security": "WPA2-Personal"},
-        {"SSID": "Student_StudyRoom", "BSSID": "ac:84:c6:33:44:55", "Channel": 11, "Security": "WPA2-Personal"},
-        {"SSID": "Vardhaman_Campus", "BSSID": "18:64:72:a1:01:01", "Channel": 1, "Security": "WPA2-Enterprise"},
-        {"SSID": "Vardhaman_Campus", "BSSID": "18:64:72:a1:01:02", "Channel": 6, "Security": "WPA2-Enterprise"},
-        {"SSID": "Vardhaman_Campus", "BSSID": "18:64:72:a1:01:03", "Channel": 11, "Security": "WPA2-Enterprise"},
-        {"SSID": "TestWiFi", "BSSID": "00:14:22:01:23:45", "Channel": 1, "Security": "WPA2-Personal"},
-        {"SSID": "CoffeeShop_WiFi", "BSSID": "44:48:b1:11:22:33", "Channel": 6, "Security": "Open"},
-        {"SSID": "Airport_Free_WiFi", "BSSID": "3c:37:12:77:88:99", "Channel": 1, "Security": "Open"}
-    ]
-
-    # Pre-populate history with these known APs
-    hist_entries = []
-    for ap in known_legit_aps:
-        hist_entries.append({
-            "SSID": ap["SSID"],
-            "BSSID": ap["BSSID"],
-            "Channel": str(ap["Channel"]),
-            "Security": ap["Security"],
-            "First Seen": "2026-09-01 09:00:00",
-            "Last Seen": "2026-09-15 18:00:00",
-            "Observation Count": 10
-        })
-    hist_df = pd.DataFrame(hist_entries)
-    hist_df.to_csv(hist_path, index=False)
-
-    # ------------------------------------------------------------------
-    # 2. Observations of Known Legitimate APs across realistic signals
-    # ------------------------------------------------------------------
+    # 1. Known Legitimate APs (consistent)
     signals_variations = [55, 68, 75, 82, 88, 92, 98, 100, 62, 70, 85, 90]
     for i, sig in enumerate(signals_variations):
         t_str = f"2026-09-10 10:{i:02d}:00"
         for ap in known_legit_aps[:4]:
-            s = max(40, min(100, sig + (hash(ap["SSID"]) % 7 - 3)))
+            s = max(40, min(100, sig + (sum(ord(c) for c in ap["SSID"]) % 7 - 3)))
             records.append({
                 "SSID": ap["SSID"],
                 "BSSID": ap["BSSID"],
@@ -95,7 +108,32 @@ def seed_baseline_dataset(overwrite_if_exists=False):
                 "Group": f"legit_known_{ap['SSID']}"
             })
 
-    # Campus Multi-AP scans (Multiple APs broadcasting concurrently, Label=0)
+    # 1b. Legitimate Auto-Channel Shifts (same BSSID + same security, channel changed)
+    # Prevents models from treating ChannelMatch==0 alone as an Evil Twin
+    for i, (ch_shift, sig) in enumerate([(2, 74), (6, 80), (11, 69), (1, 86)]):
+        records.append({
+            "SSID": "TP-Link_6790",
+            "BSSID": "0c:ef:15:e8:67:90",
+            "Signal": sig,
+            "Channel": ch_shift,
+            "Security": "WPA2-Personal",
+            "Timestamp": f"2026-09-10 15:{i:02d}:00",
+            "Label": 0,
+            "Group": "legit_channel_shift_tplink"
+        })
+    for i, (ch_shift, sig) in enumerate([(40, 72), (44, 79), (48, 84), (149, 68)]):
+        records.append({
+            "SSID": "Home_Fiber_5G",
+            "BSSID": "50:d4:f7:9a:bc:de",
+            "Signal": sig,
+            "Channel": ch_shift,
+            "Security": "WPA2-Personal",
+            "Timestamp": f"2026-09-10 16:{i:02d}:00",
+            "Label": 0,
+            "Group": "legit_channel_shift_fiber"
+        })
+
+    # 2. Campus Multi-AP scans (Label=0)
     for i, base_sig in enumerate([65, 74, 82, 88, 92, 78]):
         t_str = f"2026-09-11 11:{i:02d}:00"
         for j, ap in enumerate(known_legit_aps[4:7]):
@@ -110,7 +148,7 @@ def seed_baseline_dataset(overwrite_if_exists=False):
                 "Group": "legit_campus_multiap"
             })
 
-    # Public Wi-Fi legitimate scans (Open security, Label=0)
+    # 2b. Public Open Wi-Fi legitimate scans (Label=0)
     for i, sig in enumerate([60, 72, 80, 86, 94]):
         t_str = f"2026-09-12 12:{i:02d}:00"
         for ap in known_legit_aps[8:]:
@@ -125,10 +163,7 @@ def seed_baseline_dataset(overwrite_if_exists=False):
                 "Group": f"legit_public_{ap['SSID']}"
             })
 
-    # ------------------------------------------------------------------
-    # 3. CRITICAL: Legitimate NEW / UNVERIFIED Networks (BSSID NOT in history, Label=0)
-    # This prevents the model from associating unverified BSSID with an attack!
-    # ------------------------------------------------------------------
+    # 3. Legitimate New / Unverified Networks (BSSIDKnown=0, Label=0)
     new_legit_networks = [
         {"SSID": "SHIVA", "BSSID": "16:32:51:69:ea:63", "Channel": 44, "Security": "WPA2-Personal"},
         {"SSID": "Friends_Hostel_5G", "BSSID": "24:4b:fe:11:22:33", "Channel": 36, "Security": "WPA2-Personal"},
@@ -139,7 +174,6 @@ def seed_baseline_dataset(overwrite_if_exists=False):
         {"SSID": "Lab_302_WiFi", "BSSID": "34:2e:b7:88:99:aa", "Channel": 40, "Security": "WPA2-Personal"},
         {"SSID": "Faculty_Lounge", "BSSID": "50:c7:bf:ab:cd:ef", "Channel": 1, "Security": "WPA2-Personal"}
     ]
-
     for i, ap in enumerate(new_legit_networks):
         for s in [52, 68, 78, 88, 95, 100]:
             records.append({
@@ -153,7 +187,7 @@ def seed_baseline_dataset(overwrite_if_exists=False):
                 "Group": f"legit_new_{ap['SSID']}"
             })
 
-    # Legitimate Dual-band router (Same SSID broadcast on 2.4 GHz ch 6 and 5 GHz ch 44)
+    # Dual-Band router (Label=0)
     for s in [65, 80, 92, 100]:
         t_str = f"2026-09-13 16:{s % 60:02d}:00"
         records.append({
@@ -177,91 +211,149 @@ def seed_baseline_dataset(overwrite_if_exists=False):
             "Group": "legit_dualband"
         })
 
-    # ------------------------------------------------------------------
     # 4. Controlled Evil Twin Attack Scenarios (Label=1)
-    # ------------------------------------------------------------------
-    # Attack Scenario A: Rogue AP with Security Downgrade (WPA2 -> Open)
+    # Note: Concurrent legitimate AP is also present in the same scan Timestamp
+    # where realistic so SameSSIDCount accurately reflects concurrent clones.
+
+    # Scenario A1: Concurrent Security Downgrade on different channel
     rogue_downgrades = [
-        {"SSID": "TestWiFi", "BSSID": "e0:dc:ff:99:88:77", "Channel": 11, "Security": "Open", "Signals": [72, 85, 92, 96]},
-        {"SSID": "Hostel_BlockB_WiFi", "BSSID": "ee:11:22:33:44:55", "Channel": 1, "Security": "Open", "Signals": [68, 82, 90, 95]},
-        {"SSID": "Vardhaman_Campus", "BSSID": "da:a1:19:bb:22:33", "Channel": 3, "Security": "Open", "Signals": [75, 88, 94]}
+        {
+            "SSID": "TestWiFi", "LegitBSSID": "00:14:22:01:23:45", "LegitCh": 1, "LegitSec": "WPA2-Personal",
+            "RogueBSSID": "e0:dc:ff:99:88:77", "RogueCh": 11, "RogueSec": "Open", "Signals": [72, 85, 92, 96]
+        },
+        {
+            "SSID": "Hostel_BlockB_WiFi", "LegitBSSID": "70:4f:57:12:34:56", "LegitCh": 6, "LegitSec": "WPA2-Personal",
+            "RogueBSSID": "ee:11:22:33:44:55", "RogueCh": 1, "RogueSec": "Open", "Signals": [68, 82, 90, 95]
+        },
+        {
+            "SSID": "Vardhaman_Campus", "LegitBSSID": "18:64:72:a1:01:01", "LegitCh": 1, "LegitSec": "WPA2-Enterprise",
+            "RogueBSSID": "da:a1:19:bb:22:33", "RogueCh": 3, "RogueSec": "Open", "Signals": [75, 88, 94]
+        }
     ]
     for i, r in enumerate(rogue_downgrades):
-        for sig in r["Signals"]:
+        for k, sig in enumerate(r["Signals"]):
+            t_str = f"2026-09-14 10:{i:02d}:{k:02d}"
             records.append({
-                "SSID": r["SSID"],
-                "BSSID": r["BSSID"],
-                "Signal": sig,
-                "Channel": r["Channel"],
-                "Security": r["Security"],
-                "Timestamp": f"2026-09-14 10:{i:02d}:{sig % 60:02d}",
-                "Label": 1,
-                "Group": f"rogue_downgrade_{r['SSID']}"
+                "SSID": r["SSID"], "BSSID": r["LegitBSSID"], "Signal": max(45, sig - 18),
+                "Channel": r["LegitCh"], "Security": r["LegitSec"], "Timestamp": t_str,
+                "Label": 0, "Group": f"legit_during_attack_{r['SSID']}"
+            })
+            records.append({
+                "SSID": r["SSID"], "BSSID": r["RogueBSSID"], "Signal": sig,
+                "Channel": r["RogueCh"], "Security": r["RogueSec"], "Timestamp": t_str,
+                "Label": 1, "Group": f"rogue_downgrade_{r['SSID']}"
             })
 
-    # Attack Scenario B: Rogue AP targeting Enterprise Network (Enterprise -> Personal downgrade)
-    for sig in [70, 84, 91, 95]:
+    # Scenario A2: Same-Channel Security Downgrade (ChannelMatch=1, SecurityMatch=0)
+    same_chan_rogues = [
+        {
+            "SSID": "Student_StudyRoom", "LegitBSSID": "ac:84:c6:33:44:55", "Ch": 11, "LegitSec": "WPA2-Personal",
+            "RogueBSSID": "f6:12:34:56:78:90", "RogueSec": "Open", "Signals": [81, 89, 95]
+        },
+        {
+            "SSID": "Home_Fiber_5G", "LegitBSSID": "50:d4:f7:9a:bc:de", "Ch": 36, "LegitSec": "WPA2-Personal",
+            "RogueBSSID": "aa:11:22:33:44:99", "RogueSec": "Open", "Signals": [77, 86, 93]
+        }
+    ]
+    for i, r in enumerate(same_chan_rogues):
+        for k, sig in enumerate(r["Signals"]):
+            t_str = f"2026-09-14 12:{i:02d}:{k:02d}"
+            records.append({
+                "SSID": r["SSID"], "BSSID": r["LegitBSSID"], "Signal": max(45, sig - 15),
+                "Channel": r["Ch"], "Security": r["LegitSec"], "Timestamp": t_str,
+                "Label": 0, "Group": f"legit_during_samech_{r['SSID']}"
+            })
+            records.append({
+                "SSID": r["SSID"], "BSSID": r["RogueBSSID"], "Signal": sig,
+                "Channel": r["Ch"], "Security": r["RogueSec"], "Timestamp": t_str,
+                "Label": 1, "Group": f"rogue_samech_downgrade_{r['SSID']}"
+            })
+
+    # Scenario B: Enterprise -> Personal Downgrade (fixing missing Signal bug!)
+    for k, sig in enumerate([70, 84, 91, 95]):
+        t_str = f"2026-09-14 11:20:{k:02d}"
         records.append({
-            "SSID": "Vardhaman_Campus",
-            "BSSID": "92:c5:31:44:55:66",
-            "Channel": 9,
-            "Security": "WPA2-Personal",
-            "Timestamp": f"2026-09-14 11:20:{sig % 60:02d}",
-            "Label": 1,
-            "Group": "rogue_enterprise_downgrade"
+            "SSID": "Vardhaman_Campus", "BSSID": "18:64:72:a1:01:02", "Signal": max(45, sig - 16),
+            "Channel": 6, "Security": "WPA2-Enterprise", "Timestamp": t_str,
+            "Label": 0, "Group": "legit_during_ent_attack"
+        })
+        records.append({
+            "SSID": "Vardhaman_Campus", "BSSID": "92:c5:31:44:55:66", "Signal": sig,
+            "Channel": 9, "Security": "WPA2-Personal", "Timestamp": t_str,
+            "Label": 1, "Group": "rogue_enterprise_downgrade"
         })
 
-    # Attack Scenario C: Concurrent Rogue AP clone on Conflicting Channel with high proximity signal
+    # Scenario C: Concurrent Conflicting Clone (same security, conflicting channel + BSSID)
     rogue_channel_conflicts = [
-        {"SSID": "TP-Link_6790", "BSSID": "42:2b:44:b2:97:a9", "Channel": 11, "Security": "WPA2-Personal", "Signals": [82, 92, 96]},
-        {"SSID": "CoffeeShop_WiFi", "BSSID": "f2:90:3a:cc:11:99", "Channel": 11, "Security": "Open", "Signals": [86, 94]},
-        {"SSID": "Airport_Free_WiFi", "BSSID": "b8:27:eb:55:44:33", "Channel": 8, "Security": "Open", "Signals": [88, 93]}
+        {
+            "SSID": "TP-Link_6790", "LegitBSSID": "0c:ef:15:e8:67:90", "LegitCh": 3, "Sec": "WPA2-Personal",
+            "RogueBSSID": "42:2b:44:b2:97:a9", "RogueCh": 11, "Signals": [82, 92, 96]
+        },
+        {
+            "SSID": "CoffeeShop_WiFi", "LegitBSSID": "44:48:b1:11:22:33", "LegitCh": 6, "Sec": "Open",
+            "RogueBSSID": "f2:90:3a:cc:11:99", "RogueCh": 11, "Signals": [86, 94, 97]
+        },
+        {
+            "SSID": "Airport_Free_WiFi", "LegitBSSID": "3c:37:12:77:88:99", "LegitCh": 1, "Sec": "Open",
+            "RogueBSSID": "b8:27:eb:55:44:33", "RogueCh": 8, "Signals": [88, 93, 98]
+        }
     ]
     for i, r in enumerate(rogue_channel_conflicts):
-        for sig in r["Signals"]:
+        for k, sig in enumerate(r["Signals"]):
+            t_str = f"2026-09-14 15:{i:02d}:{k:02d}"
             records.append({
-                "SSID": r["SSID"],
-                "BSSID": r["BSSID"],
-                "Signal": sig,
-                "Channel": r["Channel"],
-                "Security": r["Security"],
-                "Timestamp": f"2026-09-14 15:{i:02d}:{sig % 60:02d}",
-                "Label": 1,
-                "Group": f"rogue_channel_conflict_{r['SSID']}"
+                "SSID": r["SSID"], "BSSID": r["LegitBSSID"], "Signal": max(45, sig - 20),
+                "Channel": r["LegitCh"], "Security": r["Sec"], "Timestamp": t_str,
+                "Label": 0, "Group": f"legit_during_conflict_{r['SSID']}"
+            })
+            records.append({
+                "SSID": r["SSID"], "BSSID": r["RogueBSSID"], "Signal": sig,
+                "Channel": r["RogueCh"], "Security": r["Sec"], "Timestamp": t_str,
+                "Label": 1, "Group": f"rogue_channel_conflict_{r['SSID']}"
             })
 
-    # Attack Scenario D: Cloned MAC Spoofing (Attacker copies legitimate BSSID)
-    # Causes concurrent duplicate in same scan session with conflicting channel or signal
-    for sig in [78, 89, 95]:
+    # Scenario D: Cloned MAC Spoofing (concurrent duplicate BSSID on conflicting channel)
+    for k, sig in enumerate([78, 89, 95]):
+        t_str = f"2026-09-15 16:30:{k:02d}"
         records.append({
-            "SSID": "TP-Link_6790",
-            "BSSID": "0c:ef:15:e8:67:90",  # Cloned MAC of legitimate AP
-            "Signal": sig,
-            "Channel": 11,  # Conflicting channel
-            "Security": "WPA2-Personal",
-            "Timestamp": f"2026-09-15 16:30:{sig % 60:02d}",
-            "Label": 1,
-            "Group": "rogue_mac_spoofing"
+            "SSID": "TP-Link_6790", "BSSID": "0c:ef:15:e8:67:90", "Signal": max(45, sig - 18),
+            "Channel": 3, "Security": "WPA2-Personal", "Timestamp": t_str,
+            "Label": 0, "Group": "legit_during_mac_spoof"
+        })
+        records.append({
+            "SSID": "TP-Link_6790", "BSSID": "0c:ef:15:e8:67:90", "Signal": sig,
+            "Channel": 11, "Security": "WPA2-Personal", "Timestamp": t_str,
+            "Label": 1, "Group": "rogue_mac_spoofing"
         })
 
-    # Save to wifi_observations.csv
-    fieldnames = ["SSID", "BSSID", "Signal", "Channel", "Security", "Timestamp", "Label", "Group"]
-    with open(obs_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        for r in records:
-            writer.writerow(r)
+    # Preserve any existing unlabelled real-world scan rows (Label == 'Unknown')
+    unknown_rows = []
+    if os.path.exists(obs_path) and os.path.getsize(obs_path) > 0:
+        try:
+            old_obs = pd.read_csv(obs_path, dtype=str)
+            if not old_obs.empty and "Label" in old_obs.columns:
+                unk = old_obs[~old_obs["Label"].astype(str).isin(["0", "1"])].copy()
+                if not unk.empty:
+                    if "Group" not in unk.columns:
+                        unk["Group"] = ""
+                    unknown_rows = unk.to_dict(orient="records")
+        except Exception:
+            unknown_rows = []
 
-    print(f"Realistic baseline generated with {len(records)} total records.")
-    print(f"- Legitimate samples (0) : {len([r for r in records if r['Label'] == 0])}")
+    fieldnames = ["SSID", "BSSID", "Signal", "Channel", "Security", "Timestamp", "Label", "Group"]
+    out_df = pd.DataFrame(records + unknown_rows, columns=fieldnames)
+    out_df.to_csv(obs_path, index=False)
+
+    print(f"Controlled baseline generated with {len(records)} labelled records (+ {len(unknown_rows)} preserved real scan rows).")
+    print(f"- Legitimate samples (0): {len([r for r in records if r['Label'] == 0])}")
     print(f"- Evil Twin samples (1) : {len([r for r in records if r['Label'] == 1])}")
 
 
 def build_training_dataset():
     """
     Constructs training_dataset.csv from labelled records in wifi_observations.csv.
-    Extracts standardized features while preserving Group identifiers for
-    leakage-free group-based evaluation.
+    Uses only the established baseline history for feature comparison and preserves
+    Group identifiers for leakage-free group-based evaluation.
     """
     paths = get_paths()
     obs_path = paths["observations"]
@@ -275,15 +367,21 @@ def build_training_dataset():
     if df_obs.empty:
         return None
 
-    labelled = df_obs[df_obs["Label"].astype(str).isin(["0", "1", 0, 1])].copy()
+    labelled = df_obs[df_obs["Label"].astype(str).isin(["0", "1", "0.0", "1.0"])].copy()
     if labelled.empty:
         return None
 
-    labelled["Label"] = labelled["Label"].astype(int)
-    history_df = load_history(hist_path)
+    labelled["Label"] = labelled["Label"].astype(float).astype(int)
+    full_hist = load_history(hist_path)
+    # Use only trusted baseline records when constructing training features so
+    # passive unlabelled scans do not leak into training features.
+    if "Trust Status" in full_hist.columns:
+        history_df = full_hist[full_hist["Trust Status"] == TRUST_ESTABLISHED].copy()
+    else:
+        history_df = full_hist
 
     feature_dfs = []
-    for timestamp, group in labelled.groupby("Timestamp", sort=False):
+    for _, group in labelled.groupby("Timestamp", sort=False):
         f_df = extract_features(group, history_df=history_df)
         f_df["Label"] = group["Label"].values
         if "Group" in group.columns:
@@ -293,7 +391,6 @@ def build_training_dataset():
         feature_dfs.append(f_df)
 
     training_df = pd.concat(feature_dfs, ignore_index=True)
-
     cols = FEATURE_COLUMNS + ["Label", "Group"]
     training_df = training_df[cols]
 

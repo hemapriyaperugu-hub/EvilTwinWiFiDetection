@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+{% block title %}Network Details — {{ net.ssid }}{% endblock %}
+{% block page_title %}Access Point Analysis: {{ net.ssid }}{% endblock %}
+{% block page_subtitle %}BSSID {{ net.bssid }} | Detailed Fingerprint, ML Consensus &amp; Risk Explanation{% endblock %}
+
+{% block content %}
+<div class="banner {% if net.classification == 'UNSAFE' or 'HIGH RISK' in net.classification %}banner-danger{% elif net.classification in ['UNVERIFIED NETWORK AND UNSAFE', 'UNVERIFIED / UNSAFE'] or 'SUSPICIOUS' in net.classification %}banner-warning{% elif net.classification == 'SAFE' or 'KNOWN' in net.classification %}banner-success{% else %}banner-info{% endif %}">
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+    <div>
+      <strong>CLASSIFICATION: {{ net.classification }}</strong>
+      <div style="font-size:13px;margin-top:4px;">{{ net.final_decision }}</div>
+    </div>
+    <div style="font-size:20px;font-weight:700;">Risk Score: {{ net.risk_score }} / 100</div>
+  </div>
+</div>
+
+<div id="trustActionMsg" class="banner" style="display:none;"></div>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Network Information</div>
+      <div class="toolbar-group">
+        {% if ap_record and ap_record.get("Verified") == "Yes" %}
+          <button type="button" class="btn btn-sm btn-danger" onclick="untrustAp('{{ net.ssid|e }}', '{{ net.bssid|e }}')">
+            Revoke Verification
+          </button>
+        {% else %}
+          <button type="button" class="btn btn-success btn-sm" onclick="markApTrusted('{{ net.ssid|e }}', '{{ net.bssid|e }}')">
+            Verify &amp; Trust Baseline
+          </button>
+        {% endif %}
+      </div>
+    </div>
+    <table class="kv-table">
+      <tr><td>SSID</td><td><strong>{{ net.ssid }}</strong></td></tr>
+      <tr><td>BSSID (MAC)</td><td class="mono">{{ net.bssid }} (OUI: {{ net.oui }})</td></tr>
+      <tr><td>Channel / Band</td><td>{{ net.channel_display }} ({{ net.band }})</td></tr>
+      <tr><td>Signal Quality</td><td>{{ net.signal_display }} <span style="color:var(--text-dim);font-size:11px;">(Windows netsh %)</span></td></tr>
+      <tr><td>Authentication / Security</td><td>{{ net.security }}</td></tr>
+      <tr><td>Encryption Cipher</td><td>{{ net.encryption }}</td></tr>
+      <tr><td>Physical Radio</td><td>{{ net.radio }}</td></tr>
+      <tr><td>First Observed</td><td>{{ ap_record["First Seen"] if ap_record else "First observation" }}</td></tr>
+      <tr><td>Last Observed</td><td>{{ ap_record["Last Seen"] if ap_record else (scan.timestamp if scan else "Current") }}</td></tr>
+      <tr><td>Observation Count</td><td>{{ ap_record["Observation Count"] if ap_record else 1 }} (Observation count does NOT grant trust)</td></tr>
+      <tr>
+        <td>Manual Verification</td>
+        <td>
+          {% if ap_record and ap_record.get("Verified") == "Yes" %}
+            <span class="badge badge-known">Manually Verified</span>
+            {% if ap_record.get("Verified At") %}<span style="color:var(--text-muted);font-size:12px;">({{ ap_record.get("Verified At") }})</span>{% endif %}
+          {% else %}
+            <span class="badge badge-new">Not Manually Verified</span>
+          {% endif %}
+        </td>
+      </tr>
+      <tr><td>Trust State</td><td>{{ net.trust_state }}</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Detection &amp; ML Results</div>
+    </div>
+    <table class="kv-table">
+      <tr>
+        <td>Random Forest (Primary)</td>
+        <td>
+          <span class="badge {% if net.rf_pred == 'Legitimate' %}badge-known{% else %}badge-high{% endif %}">{{ net.rf_pred }}</span>
+          {% if net.rf_confidence is not none %}
+            <span style="color:var(--text-muted);font-size:12px;">(Model probability: {{ net.rf_confidence }}%)</span>
+          {% else %}
+            <span style="color:var(--text-dim);font-size:12px;">(Confidence unavailable)</span>
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td>KNN (Comparison)</td>
+        <td>
+          <span class="badge {% if net.knn_pred == 'Legitimate' %}badge-known{% else %}badge-high{% endif %}">{{ net.knn_pred }}</span>
+          {% if net.knn_confidence is not none %}
+            <span style="color:var(--text-muted);font-size:12px;">(Model probability: {{ net.knn_confidence }}%)</span>
+          {% else %}
+            <span style="color:var(--text-dim);font-size:12px;">(Confidence unavailable)</span>
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td>Isolation Forest (Anomaly)</td>
+        <td>
+          <span class="badge {% if net.isoforest_pred == 'Normal' %}badge-known{% elif net.isoforest_pred == 'Anomaly' %}badge-suspicious{% else %}badge-muted{% endif %}">{{ net.isoforest_pred or 'Unavailable' }}</span>
+          {% if net.isoforest_score is not none %}
+            <span style="color:var(--text-muted);font-size:12px;">(Anomaly score: {{ net.isoforest_score }})</span>
+          {% endif %}
+        </td>
+      </tr>
+      <tr><td>Supervised Consensus</td><td>{{ net.ml_agreement }}</td></tr>
+      <tr><td>Risk Score Meaning</td><td>{{ net.risk_score_meaning }}</td></tr>
+      <tr><td>Recommended Action</td><td>{{ net.summary_advice }}</td></tr>
+    </table>
+
+    <div style="margin-top:14px;">
+      <div class="card-title" style="margin-bottom:8px;">Risk Score Breakdown (Rule-Based + ML Supporting Factors)</div>
+      {% if net.score_breakdown %}
+        <table>
+          <thead><tr><th>Factor</th><th>Severity</th><th>Source</th><th>Points</th><th>Explanation</th></tr></thead>
+          <tbody>
+            {% for item in net.score_breakdown %}
+            <tr>
+              <td><strong>{{ item.factor }}</strong></td>
+              <td><span class="badge {% if item.severity == 'HIGH' %}badge-high{% elif item.severity == 'MODERATE' %}badge-suspicious{% else %}badge-muted{% endif %}">{{ item.severity or 'INFO' }}</span></td>
+              <td style="font-size:12px;">{{ item.source or 'Rules' }}</td>
+              <td>+{{ item.points }}</td>
+              <td style="font-size:12px;color:var(--text-muted);">{{ item.reason }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <div class="empty-state" style="padding:12px;">+0 points: No warning factors contributed to risk score.</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">Fingerprint Comparison</div>
+  </div>
+  <table class="kv-table">
+    <tr><td>Current Fingerprint</td><td class="mono" style="word-break:break-all;">{{ net.fingerprint or "Unavailable" }}</td></tr>
+    <tr><td>Baseline Fingerprint</td><td class="mono" style="word-break:break-all;">{{ net.baseline_fingerprint or "No established baseline prior to this observation" }}</td></tr>
+    <tr>
+      <td>Changed Characteristics</td>
+      <td>
+        {% if net.changes %}
+          <ul class="list-clean">
+            {% for c in net.changes %}<li>{{ c }}</li>{% endfor %}
+          </ul>
+        {% else %}
+          None detected compared to stored baseline.
+        {% endif %}
+      </td>
+    </tr>
+    {% if net.missing_features %}
+    <tr><td>Unavailable Attributes</td><td>{{ net.missing_features | join(", ") }} (represented as unavailable, never fabricated)</td></tr>
+    {% endif %}
+  </table>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Warning Indicators &amp; Reasons</div>
+    </div>
+    {% if net.warnings %}
+      <div style="margin-bottom:12px;">
+        <strong style="color:var(--high-risk);">Warnings:</strong>
+        <ul class="list-clean" style="margin-top:6px;">
+          {% for w in net.warnings %}<li>{{ w }}</li>{% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    <strong>Observed Analysis Evidence:</strong>
+    <ul class="list-clean" style="margin-top:6px;color:var(--text-muted);">
+      {% for r in net.reasons %}<li>{{ r }}</li>{% endfor %}
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Historical Observations for this AP</div>
+    </div>
+    {% if past_observations %}
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Time</th><th>Signal</th><th>Ch</th><th>Security</th><th>Risk</th><th>Classification</th></tr></thead>
+          <tbody>
+            {% for p in past_observations %}
+            <tr>
+              <td style="font-size:12px;">{{ p.observed_at }}</td>
+              <td>{{ p.signal_pct ~ '%' if p.signal_pct is not none else 'Unavail.' }}</td>
+              <td>{{ p.channel if p.channel is not none else 'Unavail.' }}</td>
+              <td>{{ p.security }}</td>
+              <td>{{ p.risk_score }}/100</td>
+              <td><span class="badge {% if p.classification == 'UNSAFE' or 'HIGH RISK' in p.classification %}badge-high{% elif p.classification in ['UNVERIFIED NETWORK AND UNSAFE', 'UNVERIFIED / UNSAFE'] or 'SUSPICIOUS' in p.classification %}badge-suspicious{% elif p.classification == 'SAFE' or 'KNOWN' in p.classification %}badge-known{% else %}badge-new{% endif %}">{{ p.classification }}</span></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="empty-state">No previous scan history rows recorded in SQLite for this AP.</div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Scan #{{ scan.id }} — Evil Twin Wi-Fi Detection{% endblock %}
+{% block page_title %}Historical Scan #{{ scan.id }}{% endblock %}
+{% block page_subtitle %}Timestamp: {{ scan.timestamp }} | Status: {{ scan.status }}{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="toolbar">
+    <div class="toolbar-group">
+      <a href="{{ url_for('history_page') }}" class="btn btn-sm">&larr; Back to History</a>
+      <span><strong>Total APs:</strong> {{ scan.total_networks }}</span>
+      <span>|</span>
+      <span><strong>Known:</strong> {{ scan.known_count }}</span>
+      <span>|</span>
+      <span><strong>New:</strong> {{ scan.new_count }}</span>
+      <span>|</span>
+      <span><strong>Suspicious:</strong> {{ scan.suspicious_count }}</span>
+      <span>|</span>
+      <span><strong>High Risk:</strong> {{ scan.high_risk_count }}</span>
+    </div>
+    <div class="toolbar-group">
+      <a href="{{ url_for('export_scan_csv', scan_id=scan.id) }}" class="btn btn-sm btn-primary">Export CSV</a>
+      <a href="{{ url_for('export_scan_html', scan_id=scan.id) }}" class="btn btn-sm" target="_blank">Printable HTML Report</a>
+    </div>
+  </div>
+
+  {% if scan.error_message %}
+    <div class="banner banner-danger">{{ scan.error_message }}</div>
+  {% endif %}
+
+  {% if results %}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>SSID</th>
+            <th>BSSID</th>
+            <th>Signal</th>
+            <th>Channel</th>
+            <th>Security</th>
+            <th>RF / KNN / IsoForest</th>
+            <th>Risk</th>
+            <th>Classification</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in results %}
+          <tr>
+            <td><strong>{{ r.ssid }}</strong></td>
+            <td class="mono">{{ r.bssid }}</td>
+            <td>{{ r.signal_display }}</td>
+            <td>{{ r.channel_display }} ({{ r.band }})</td>
+            <td>{{ r.security }} / {{ r.encryption }}</td>
+            <td style="font-size:12px;">RF: {{ r.rf_pred }}<br>KNN: {{ r.knn_pred }}<br>Iso: {{ r.isoforest_pred or 'Unavailable' }}</td>
+            <td><strong>{{ r.risk_score }}/100</strong></td>
+            <td>
+              <span class="badge {% if r.classification == 'UNSAFE' or 'HIGH RISK' in r.classification %}badge-high{% elif r.classification in ['UNVERIFIED NETWORK AND UNSAFE', 'UNVERIFIED / UNSAFE'] or 'SUSPICIOUS' in r.classification %}badge-suspicious{% elif r.classification == 'SAFE' or 'KNOWN' in r.classification %}badge-known{% else %}badge-new{% endif %}">
+                {{ r.classification }}
+              </span>
+            </td>
+            <td><a href="{{ url_for('network_details', result_id=r.id) }}" class="btn btn-sm">View Details</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="empty-state">No access points were captured in this scan session.</div>
+  {% endif %}
+</div>
+{% endblock %}

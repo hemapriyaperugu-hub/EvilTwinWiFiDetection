@@ -1,121 +1,127 @@
-# Wi-Fi Evil Twin & Rogue AP Detection System
+# Evil Twin Wi-Fi Attack Detection System
 
-An evidence-based, client-side Wi-Fi Evil Twin and Rogue Access Point detection system for Windows. Built with Python, combining machine learning consensus (K-Nearest Neighbors + Random Forest), physical RF telemetry, cryptographic validation, and operating system network baselines.
-
----
-
-## 🌟 Key Highlights
-
-- **Evidence-Based Risk Assessment**: Distinguishes between unfamiliar networks and genuine attacks using 3 user-facing risk categories:
-  - 🟢 **LOWER RISK — NO SIGNIFICANT WARNING INDICATORS DETECTED**
-  - 🟡 **UNCERTAIN — VERIFY BEFORE CONNECTING**
-  - 🔴 **HIGH RISK — DO NOT CONNECT**
-- **Dual-Model ML Consensus**: Uses both K-Nearest Neighbors (KNN) and Random Forest (RF) trained on realistic Wi-Fi RF telemetry (signal, channel, multi-AP relationships, cryptographic suites).
-- **Dual-Band AP Correlation**: Recognizes modern 2.4 GHz + 5 GHz dual-band routers (consecutive MAC addresses with matching hardware OUIs), preventing false positives on home and mesh routers.
-- **Windows Profile Integration**: Queries local Windows Wi-Fi profiles (`netsh`) to establish user-verified trust baselines.
-- **Active Gateway & Captive Portal Probing**: Validates default gateway ARP/MAC alignment and performs HTTP 204 connectivity probes to detect MITM/captive portal interception.
-- **Minimal & Zero GUI Dependencies**: Built using standard library `tkinter` and `ttk`. No heavy UI frameworks required—clones and runs instantly on any standard Python installation.
+A local, defensive Windows cybersecurity web application (with CLI and Tkinter GUI support) that inspects nearby Wi-Fi access points using Windows `netsh` scanning, persistent AP fingerprint history, rule-based risk scoring, and three-layer machine learning analysis (**Random Forest** primary + **KNN** comparison + **Isolation Forest** anomaly detection).
 
 ---
 
-## 📸 Interface Preview
+## Objectives
 
-The application features a sleek split-panel layout:
-- **Left Panel**: Discovered Wi-Fi access points with SSID, BSSID, Signal, Channel, Security Suite, and Real-Time Classification.
-- **Right Panel**: Deep analysis breakdown including prominent status banner, RF characteristics, dual-ML outputs, historical baseline, observed evidence bullet points, and actionable connection advice.
+- Scan nearby Wi-Fi networks passively using the built-in Windows Wi-Fi adapter (without connecting or collecting passwords).
+- Detect potential Evil Twin and rogue AP indicators by combining historical fingerprint comparison, security downgrade checks, BSSID/OUI analysis, and ML predictions.
+- Prevent false negatives caused by blindly trusting repeatedly scanned or unverified networks.
+- Present clear, explainable classifications, risk scores, threat alerts, scan history, and exportable reports via a local Flask web dashboard (`http://127.0.0.1:5000`).
 
 ---
 
-## 📁 Project Structure
+## Technology Stack
+
+- **Backend:** Python, Flask
+- **Frontend:** HTML5, CSS3, Vanilla JavaScript (dark cybersecurity UI + offline Canvas charts)
+- **Machine Learning:** Scikit-learn (`RandomForestClassifier` with `SimpleImputer`, `KNeighborsClassifier` with `StandardScaler` + `SimpleImputer`, `IsolationForest` unsupervised anomaly detector trained on legitimate APs), `joblib`, `pandas`, `numpy`
+- **Storage:** SQLite (`database/eviltwin.db`) for scan sessions, per-AP snapshots, alerts, and settings; CSV (`dataset/network_history.csv`, `dataset/wifi_observations.csv`, `dataset/training_dataset.csv`) for AP baselines and ML data
+- **Wi-Fi Scanner:** Native Windows `netsh wlan show networks mode=bssid`, `netsh wlan show interfaces`, `netsh wlan show profiles`
+
+---
+
+## Folder Structure
 
 ```text
 EvilTwinDetection/
-├── dataset/
-│   ├── training_dataset.csv     # Model training dataset
-│   ├── network_history.csv      # Local AP observation baseline
-│   └── wifi_observations.csv    # Raw scan telemetry
-├── models/
-│   ├── knn_model.pkl            # Trained K-Nearest Neighbors model
-│   └── random_forest_model.pkl  # Trained Random Forest model
+├── app.py                     # Flask web application & API routes
+├── main.py                    # Terminal / CLI scanner & report
+├── gui.py                     # Optional Tkinter desktop GUI
+├── run.bat                    # Windows one-click startup script
+├── requirements.txt           # Python dependencies
+├── PROJECT_AUDIT.md           # Initial project audit & architecture review
+├── PROJECT_AUDIT_AND_FIXES.md # Detailed audit log & fix verification
+├── DETECTION_LOGIC.md         # Detection rules, scoring, and anti-poisoning history
+├── README.md                  # Project documentation
 ├── src/
-│   ├── dataset.py               # Dataset generation and synthesis
-│   ├── features.py              # RF feature extraction & dual-band analysis
-│   ├── history.py               # Multi-channel tracking & trust state engine
-│   ├── predict.py               # Evidence-based risk assessment & ML inference
-│   ├── scanner.py               # Native Windows WLAN scanning via netsh
-│   ├── system_profiles.py       # Windows profile query & gateway diagnostics
-│   └── train.py                 # Leakage-free GroupShuffleSplit ML training
-├── tests/
-│   └── test_scenarios.py        # 15 research-grade validation unit tests
-├── gui.py                       # Graphical User Interface (Tkinter)
-├── main.py                      # Terminal / CLI Scanner
-├── requirements.txt             # Minimal dependencies
-└── README.md                    # Project documentation
+│   ├── scanner.py             # Windows netsh WLAN scanning & parser
+│   ├── system_profiles.py     # Saved Windows profiles, gateway & captive portal probe
+│   ├── features.py            # Feature extraction, dual-band & OUI diagnostics
+│   ├── history.py             # Persistent AP fingerprint & trust-state engine
+│   ├── predict.py             # Risk scoring engine, 4-state classifier & ML inference
+│   ├── db_manager.py          # SQLite persistence (scans, scan_results, alerts, settings)
+│   ├── dataset.py             # Controlled training dataset builder
+│   └── train.py               # Leakage-free Group CV training & evaluation
+├── templates/                 # Flask Jinja2 templates (7 pages + printable report)
+├── static/                    # Dark theme CSS & offline JS charts/interactions
+├── dataset/                   # CSV baselines, observations, and training dataset
+├── models/                    # Serialized RF, KNN & Isolation Forest models (+ v1 backups)
+├── database/                  # SQLite database (eviltwin.db created on run)
+├── Reports/                   # Generated CSV and printable HTML reports
+└── tests/
+    └── test_scenarios.py      # Automated scanner, detection, DB & Flask web tests
 ```
 
 ---
 
-## 🚀 Getting Started
+## Quick Launch as Standalone Desktop Software (Windows 11 / 10)
 
-### 1. Prerequisites
-- **Operating System**: Windows 10 or Windows 11 (requires built-in Wi-Fi adapter).
-- **Python Version**: Python 3.8 to 3.14+
-- **Wi-Fi**: Ensure Wi-Fi is turned ON in Windows Settings.
+### 1. Double-Click Desktop App Mode
+Double-click **[`Launch_Software.bat`](Launch_Software.bat)** (or [`EvilTwinDetector.pyw`](EvilTwinDetector.pyw)) to launch with **zero terminal window**:
+- Starts the local Flask + SQLite + 3-model ML engine (`Random Forest + KNN + Isolation Forest`)
+- Opens the cybersecurity dashboard in **Dedicated App Window Mode** (`msedge --app=` / `chrome --app=`)
+- Displays the **Software Control Center** with one-click Dashboard, Scanner, Alerts, Native Tkinter GUI, Reports, and **Create Desktop Shortcut** (`Create_Desktop_Shortcut.bat`).
 
-### 2. Clone the Repository
-```bash
-git clone https://github.com/hemapriyaperugu-hub/EvilTwinWiFiDetection.git
-cd EvilTwinWiFiDetection
-```
+### 2. Build Standalone `.exe` (Optional)
+Run `build_exe.bat` (requires `pyinstaller`) to generate `dist\EvilTwinDetector\EvilTwinDetector.exe`.
 
-### 3. Install Dependencies
-```bash
+### 3. Browser-Only Launch (`run.bat`)
+Double-click `run.bat` to open `http://127.0.0.1:5000` in your default browser.
+
+### Manual Setup & Run
+```powershell
 pip install -r requirements.txt
+python app.py
 ```
+Then open `http://127.0.0.1:5000` in your browser.
 
-*(Note: The GUI uses Python's standard `tkinter` library, so no extra GUI packages like PyQt or PySide are required.)*
+### Optional CLI / Desktop GUI / Model Retraining
+```powershell
+python main.py               # CLI scan & report
+python gui.py                # Desktop Tkinter GUI
+python -m src.dataset        # Rebuild controlled training dataset
+python -m src.train          # Train & evaluate RF + KNN + Isolation Forest
+```
 
 ---
 
-## 💻 How to Run
+## Web Application Pages
 
-### Graphical User Interface (GUI)
-Launch the modern minimal interface:
-```bash
-python gui.py
-```
-Click **"🔍 SCAN WI-FI"** to initiate a scan of all nearby access points. Selecting any network in the left table immediately displays its comprehensive risk breakdown on the right.
+1. **Dashboard (`/`)**: Real statistics from stored scans, classification & risk distributions, scan timeline, recent scans, recent alerts, and suspicious AP summary.
+2. **Wi-Fi Scanner (`/scanner`)**: Triggers live Windows `netsh` scan via `POST /api/scan`, shows loading status/errors, and displays searchable/sortable AP results.
+3. **Network Details (`/network/<id>`)**: Full AP info, current vs baseline fingerprint comparison, changed attributes, Random Forest (Primary), KNN (Comparison), and Isolation Forest (Anomaly Detection) predictions + scores, risk score breakdown, and manual `Verify & Trust Baseline` confirmation.
+4. **Threat Alerts (`/alerts`)**: Severity-filtered alerts generated from actual `UNVERIFIED NETWORK AND UNSAFE` and `UNSAFE` detections with acknowledge/reopen controls.
+5. **Scan & AP History (`/history`)**: Past timestamped scan sessions (clickable to inspect captured APs) and persistent AP fingerprints from `dataset/network_history.csv`.
+6. **Reports (`/reports`)**: Export any stored scan to CSV or printable HTML/PDF (saved to `Reports/`).
+7. **Settings (`/settings`)**: Configure scan timeout, suspicious/high-risk score thresholds, CSV logging, captive portal probe, and clear unverified history or stored scan sessions.
 
-### Terminal / CLI Mode
-Run in standard console mode:
-```bash
-python main.py
-```
+---
 
-### Run Unit & Research Validation Tests
-Execute the automated test suite covering all 15 operational scenarios (dual-band APs, saved profile trust, missing attributes, model disagreements, evil twin attacks, and captive portal probes):
-```bash
+## Classification System & Risk Scoring
+
+- **SAFE**: Matches an explicitly verified `TRUSTED_BASELINE`, consistent BSSID & security, complete critical features, `RiskScore < 25`, and both supervised ML models (`RF` & `KNN`) predict `Legitimate`. *(Does not guarantee absolute safety.)*
+- **UNVERIFIED NETWORK BUT SAFE**: Not registered/verified yet (`OBSERVED_UNVERIFIED`) without warning triggers, or missing non-security attributes (`Signal`, `Channel`) with standard encryption. Repeated passive scans never auto-promote to `SAFE`.
+- **UNVERIFIED NETWORK AND UNSAFE**: `RiskScore >= 25`, security mismatch/downgrade, unfamiliar BSSID on a known SSID, duplicate BSSID collision, open/WEP network, unavailable security attribute, or supervised ML disagreement/attack consensus.
+- **UNSAFE**: `RiskScore >= 60` **and** at least 2 independent warning indicators.
+
+See [DETECTION_LOGIC.md](DETECTION_LOGIC.md) for full weights, thresholds, and anti-poisoning guarantees.
+
+---
+
+## Testing
+
+```powershell
 python -m unittest -v tests/test_scenarios.py
 ```
 
-### Retrain Machine Learning Models
-```bash
-python -m src.train
-```
-
 ---
 
-## 🔬 Detection Methodology
+## Honest Limitations
 
-| Pillar | Detection Factor | Evaluation Purpose |
-|---|---|---|
-| **Cryptographic Suite** | WPA2/WPA3 (CCMP) vs Open/WEP | Detects security downgrades from familiar baselines. |
-| **Physical RF Telemetry** | Channel, Band, Signal | Detects channel hops and anomalous proximity spikes. |
-| **MAC & OUI Correlation** | Vendor OUI & Sub-allocations | Distinguishes legitimate dual-band hardware from rogue clones. |
-| **Machine Learning** | KNN & Random Forest Consensus | Flags non-linear anomalies in multi-access-point environments. |
-| **Host Network Health** | Default Gateway MAC & HTTP 204 | Detects post-connection ARP spoofing and captive portal redirection. |
-
----
-
-## 📜 Academic Disclaimer
-This project was developed for academic, educational, and defense-oriented research purposes. Passive client-side scanning provides risk-informed assessments but cannot offer an absolute mathematical guarantee of network safety. Always exercise caution when connecting to public wireless networks.
+- Windows `netsh` operates via NDIS station scanning and **cannot** capture raw 802.11 management frames (deauthentication floods, beacon interval anomalies, probe requests, or vendor Information Elements).
+- Windows reports signal quality as a **percentage (`0–100%`)**, not hardware-measured dBm.
+- A sophisticated Evil Twin that clones the exact BSSID, SSID, channel, and encryption mode while suppressing or replacing the legitimate AP may not be distinguishable using passive `netsh` scanning alone.
+- ML models are trained on a controlled dataset (`206` labelled samples) and serve strictly as supporting evidence alongside rule-based and fingerprint checks.

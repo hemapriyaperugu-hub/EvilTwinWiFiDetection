@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Evil Twin Scan Report #{{ scan.id }}</title>
+  <style>
+    body { font-family: "Segoe UI", Arial, sans-serif; color: #0f172a; margin: 28px; line-height: 1.45; }
+    h1 { font-size: 20px; margin-bottom: 4px; }
+    .meta { color: #475569; font-size: 13px; margin-bottom: 18px; }
+    .summary { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+    .box { border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px 14px; min-width: 120px; }
+    .box .lbl { font-size: 11px; color: #64748b; text-transform: uppercase; }
+    .box .val { font-size: 18px; font-weight: 700; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 22px; font-size: 12px; }
+    th, td { border: 1px solid #cbd5e1; padding: 8px; text-align: left; vertical-align: top; }
+    th { background: #f1f5f9; }
+    .mono { font-family: Consolas, monospace; }
+    .no-print { margin-bottom: 16px; }
+    @media print { .no-print { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="no-print">
+    <button onclick="window.print()" style="padding:8px 14px;font-weight:bold;cursor:pointer;">Print / Save as PDF</button>
+  </div>
+
+  <h1>Evil Twin Wi-Fi Attack Detection System — Scan Report</h1>
+  <div class="meta">
+    Scan ID: #{{ scan.id }} &nbsp;|&nbsp; Scan Timestamp: {{ scan.timestamp }} &nbsp;|&nbsp;
+    Status: {{ scan.status }} &nbsp;|&nbsp; Report Generated: {{ generated_at }}
+  </div>
+
+  <div class="summary">
+    <div class="box"><div class="lbl">Total Networks</div><div class="val">{{ scan.total_networks }}</div></div>
+    <div class="box"><div class="lbl">Safe (Verified)</div><div class="val">{{ scan.known_count }}</div></div>
+    <div class="box"><div class="lbl">Unverified Net. Safe</div><div class="val">{{ scan.new_count }}</div></div>
+    <div class="box"><div class="lbl">Unverified Net. Unsafe</div><div class="val">{{ scan.suspicious_count }}</div></div>
+    <div class="box"><div class="lbl">Unsafe (Evil Twin)</div><div class="val">{{ scan.high_risk_count }}</div></div>
+  </div>
+
+  <h2>Detected Access Points</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>SSID</th>
+        <th>BSSID</th>
+        <th>Signal (%)</th>
+        <th>Ch / Band</th>
+        <th>Security</th>
+        <th>Classification</th>
+        <th>Risk Score</th>
+        <th>ML Predictions</th>
+        <th>Reasons &amp; Warnings</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in results %}
+      <tr>
+        <td><strong>{{ r.ssid }}</strong></td>
+        <td class="mono">{{ r.bssid }}</td>
+        <td>{{ r.signal_display }}</td>
+        <td>{{ r.channel_display }} ({{ r.band }})</td>
+        <td>{{ r.security }} / {{ r.encryption }}</td>
+        <td><strong>{{ r.classification }}</strong></td>
+        <td>{{ r.risk_score }}/100</td>
+        <td>
+          RF: {{ r.rf_pred }}{% if r.rf_confidence is not none %} ({{ r.rf_confidence }}%){% endif %}<br>
+          KNN: {{ r.knn_pred }}{% if r.knn_confidence is not none %} ({{ r.knn_confidence }}%){% endif %}<br>
+          IsoForest: {{ r.isoforest_pred or 'Unavailable' }}
+        </td>
+        <td>
+          {% if r.warnings %}
+            <strong>Warnings:</strong> {{ r.warnings | join("; ") }}<br>
+          {% endif %}
+          {{ r.reasons | join("; ") }}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Alerts Summary ({{ alerts | length }})</h2>
+  {% if alerts %}
+  <table>
+    <thead><tr><th>Severity</th><th>SSID</th><th>BSSID</th><th>Risk Score</th><th>Reason</th></tr></thead>
+    <tbody>
+      {% for a in alerts %}
+      <tr>
+        <td><strong>{{ a.severity }}</strong></td>
+        <td>{{ a.ssid }}</td>
+        <td class="mono">{{ a.bssid }}</td>
+        <td>{{ a.risk_score }}/100</td>
+        <td>{{ a.reason }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No threat alerts were triggered during this scan.</p>
+  {% endif %}
+</body>
+</html>

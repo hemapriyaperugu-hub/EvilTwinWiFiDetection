@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}Scan &amp; AP History — Evil Twin Wi-Fi Detection{% endblock %}
+{% block page_title %}Scan History &amp; Persistent AP Fingerprints{% endblock %}
+{% block page_subtitle %}Observation count never grants trust; fingerprints are compared across scans{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">Stored Scan Sessions</div>
+  </div>
+  {% if scans %}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Scan ID</th>
+            <th>Timestamp</th>
+            <th>Status</th>
+            <th>Networks</th>
+            <th>Known</th>
+            <th>New</th>
+            <th>Suspicious</th>
+            <th>High Risk</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in scans %}
+          <tr>
+            <td>#{{ s.id }}</td>
+            <td>{{ s.timestamp }}</td>
+            <td>
+              <span class="badge {% if s.status == 'SUCCESS' %}badge-known{% elif s.status == 'FAILED' %}badge-high{% else %}badge-muted{% endif %}">
+                {{ s.status }}
+              </span>
+            </td>
+            <td>{{ s.total_networks }}</td>
+            <td>{{ s.known_count }}</td>
+            <td>{{ s.new_count }}</td>
+            <td>{{ s.suspicious_count }}</td>
+            <td>{{ s.high_risk_count }}</td>
+            <td style="white-space:nowrap;">
+              <a href="{{ url_for('scan_detail_page', scan_id=s.id) }}" class="btn btn-sm">Open Scan</a>
+              <a href="{{ url_for('export_scan_csv', scan_id=s.id) }}" class="btn btn-sm">CSV</a>
+              <a href="{{ url_for('export_scan_html', scan_id=s.id) }}" class="btn btn-sm" target="_blank">HTML</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="empty-state">No scans recorded yet. Run a scan on the Wi-Fi Scanner page to start recording history.</div>
+  {% endif %}
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">Persistent AP Fingerprint Baseline (<code>dataset/network_history.csv</code>)</div>
+    <a href="{{ url_for('export_history_csv') }}" class="btn btn-sm">Export History CSV</a>
+  </div>
+  {% if ap_records %}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>SSID</th>
+            <th>BSSID</th>
+            <th>Baseline Security</th>
+            <th>Baseline Ch</th>
+            <th>Obs. Count</th>
+            <th>Trust Status</th>
+            <th>Last Classification</th>
+            <th>Changes / Warnings</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ap in ap_records %}
+          <tr>
+            <td><strong>{{ ap.SSID }}</strong></td>
+            <td class="mono">{{ ap.BSSID }}</td>
+            <td>{{ ap.Security }}</td>
+            <td>{{ ap.Channel }}</td>
+            <td>{{ ap["Observation Count"] }}</td>
+            <td>
+              <span class="badge {% if ap['Trust Status'] == 'TRUSTED_BASELINE' %}badge-known{% elif ap['Trust Status'] == 'FLAGGED_SUSPICIOUS' %}badge-high{% else %}badge-new{% endif %}">
+                {{ ap["Trust Status"] }}
+              </span>
+            </td>
+            <td>{{ ap["Previous Classification"] }}</td>
+            <td style="max-width:260px;font-size:12px;color:var(--text-muted);">
+              {{ ap.Changes or ap["Suspicious Indicators"] or "None" }}
+            </td>
+            <td>
+              <a href="{{ url_for('network_lookup', ssid=ap.SSID, bssid=ap.BSSID) }}" class="btn btn-sm">Inspect</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="empty-state">AP fingerprint history is empty.</div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,144 +1,185 @@
-import subprocess
-import re
 import csv
+import locale
 import os
+import re
+import subprocess
 from datetime import datetime
+
+from .paths import get_data_dir
+
+
+MAC_PATTERN = re.compile(r"^([0-9a-fA-F]{2}[:-]){5}[0-9a-fA-F]{2}$")
 
 
 def get_default_dataset_path():
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    return os.path.join(base_dir, "dataset", "wifi_observations.csv")
+    return os.path.join(get_data_dir(), "dataset", "wifi_observations.csv")
 
 
-def scan_wifi():
-    """
-    Scans nearby Wi-Fi networks using Windows netsh command:
-    netsh wlan show networks mode=bssid
-    Returns a list of dictionaries with real AP observations.
-    Gracefully handles missing permissions, disabled Wi-Fi adapters,
-    or stopped wlansvc services.
-    """
+def normalize_bssid(raw_bssid):
+    """Normalizes a MAC address string to lowercase colon-separated format, or '' if invalid."""
+    if not raw_bssid:
+        return ""
+    cleaned = str(raw_bssid).strip().lower().replace("-", ":")
+    if MAC_PATTERN.match(cleaned):
+        return cleaned
+    return ""
+
+
+def infer_band_from_channel(channel):
+    """Infers Wi-Fi frequency band from a valid integer channel, or returns None."""
+    if channel is None:
+        return None
     try:
-        result = subprocess.run(
-            ["netsh", "wlan", "show", "networks", "mode=bssid"],
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="ignore"
-        )
-        if result.returncode != 0:
-            err_msg = result.stderr.strip() or result.stdout.strip()
-            if "wlansvc" in err_msg.lower() or "service" in err_msg.lower():
-                print("Notice: Windows WLAN AutoConfig service (wlansvc) is not running.")
-            elif "interface" in err_msg.lower():
-                print("Notice: No active Wi-Fi interface detected or Wi-Fi adapter is disabled.")
-            else:
-                print(f"Notice from Wi-Fi scanner: {err_msg}")
-            return []
+        ch = int(channel)
+    except (TypeError, ValueError):
+        return None
+    if 1 <= ch <= 14:
+        return "2.4 GHz"
+    if 32 <= ch <= 177:
+        return "5 GHz"
+    return None
 
-        raw_output = result.stdout
-    except FileNotFoundError:
-        print("Error: 'netsh' command not found. This scanner requires a Windows environment.")
-        return []
-    except Exception as e:
-        print(f"Error executing netsh command: {e}")
+
+def _decode_subprocess_output(raw_bytes):
+    """Decodes Windows netsh output without silently dropping Unicode SSID characters."""
+    if not raw_bytes:
+        return ""
+    for encoding in ("utf-8", locale.getpreferredencoding(False) or "cp1252"):
+        try:
+            return raw_bytes.decode(encoding)
+        except UnicodeDecodeError:
+            continue
+    return raw_bytes.decode("utf-8", errors="replace")
+
+
+def parse_netsh_output(raw_output, timestamp=None):
+    """
+    Parses output from `netsh wlan show networks mode=bssid`.
+    Preserves Unicode SSIDs, multiple BSSIDs per SSID, and represents
+    unavailable attributes as None instead of fabricating fake defaults.
+    """
+    if not raw_output:
         return []
 
+    scan_ts = timestamp or datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     networks = []
     current_ssid = ""
-    current_auth = "Unknown"
-    current_enc = "Unknown"
+    current_is_hidden = False
+    current_auth = None
+    current_enc = None
+    current_net_type = None
     current_ap = None
 
-    for line in raw_output.splitlines():
-        line = line.strip()
+    for raw_line in raw_output.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
 
-        # Check for SSID header: e.g., 'SSID 1 : NetworkName'
+        # SSID header: e.g., 'SSID 1 : NetworkName' (or 'SSID 1 :' for hidden)
         ssid_match = re.match(r"^SSID\s+\d+\s*:\s*(.*)$", line)
         if ssid_match:
             if current_ap is not None:
                 networks.append(current_ap)
                 current_ap = None
 
-            current_ssid = ssid_match.group(1).strip()
-            if not current_ssid:
+            raw_ssid = ssid_match.group(1).strip()
+            if not raw_ssid:
                 current_ssid = "<Hidden Network>"
-            current_auth = "Unknown"
-            current_enc = "Unknown"
+                current_is_hidden = True
+            else:
+                current_ssid = raw_ssid
+                current_is_hidden = False
+            current_auth = None
+            current_enc = None
+            current_net_type = None
             continue
 
-        # Authentication line
-        if line.startswith("Authentication"):
+        if line.lower().startswith("network type"):
             parts = line.split(":", 1)
-            if len(parts) > 1:
+            if len(parts) > 1 and parts[1].strip():
+                current_net_type = parts[1].strip()
+            continue
+
+        if line.lower().startswith("authentication"):
+            parts = line.split(":", 1)
+            if len(parts) > 1 and parts[1].strip():
                 current_auth = parts[1].strip()
             continue
 
-        # Encryption line
-        if line.startswith("Encryption"):
+        if line.lower().startswith("encryption"):
             parts = line.split(":", 1)
-            if len(parts) > 1:
+            if len(parts) > 1 and parts[1].strip():
                 current_enc = parts[1].strip()
             continue
 
         # BSSID header: e.g., 'BSSID 1 : 0c:ef:15:e8:67:90'
-        bssid_match = re.match(r"^BSSID\s+\d+\s*:\s*([0-9a-fA-F:-]+)", line)
+        bssid_match = re.match(r"^BSSID\s+\d+\s*:\s*(.+)$", line)
         if bssid_match:
             if current_ap is not None:
                 networks.append(current_ap)
 
-            bssid_mac = bssid_match.group(1).strip().lower()
+            bssid_mac = normalize_bssid(bssid_match.group(1))
+            if not bssid_mac:
+                current_ap = None
+                continue
+
             current_ap = {
                 "SSID": current_ssid,
+                "IsHidden": current_is_hidden,
                 "BSSID": bssid_mac,
-                "Signal": 0,
-                "Channel": 1,
+                "Signal": None,
+                "Channel": None,
+                "Band": None,
                 "Security": current_auth,
                 "Encryption": current_enc,
-                "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "NetworkType": current_net_type,
+                "Radio": None,
+                "Timestamp": scan_ts,
                 "Label": "Unknown"
             }
             continue
 
-        # Signal line: e.g., 'Signal : 100%'
-        if current_ap is not None and line.startswith("Signal"):
-            signal_match = re.search(r"(\d+)%", line)
+        if current_ap is None:
+            continue
+
+        if line.lower().startswith("signal"):
+            signal_match = re.search(r"(\d+)\s*%", line)
             if signal_match:
-                current_ap["Signal"] = int(signal_match.group(1))
+                val = int(signal_match.group(1))
+                current_ap["Signal"] = max(0, min(100, val))
             continue
 
-        # Channel line: e.g., 'Channel : 3'
-        if current_ap is not None and line.startswith("Channel"):
-            chan_match = re.search(r"Channel\s*:\s*(\d+)", line)
+        if line.lower().startswith("channel"):
+            chan_match = re.search(r"Channel\s*:\s*(\d+)", line, re.IGNORECASE)
             if chan_match:
-                current_ap["Channel"] = int(chan_match.group(1))
+                ch = int(chan_match.group(1))
+                if ch > 0:
+                    current_ap["Channel"] = ch
+                    if current_ap["Band"] is None:
+                        current_ap["Band"] = infer_band_from_channel(ch)
             continue
 
-        # Band: e.g. 'Band : 5 GHz'
-        if current_ap is not None and line.startswith("Band"):
+        if line.lower().startswith("band"):
             parts = line.split(":", 1)
-            if len(parts) > 1:
+            if len(parts) > 1 and parts[1].strip():
                 current_ap["Band"] = parts[1].strip()
             continue
 
-        # Radio type: e.g. 'Radio type : 802.11ax'
-        if current_ap is not None and line.startswith("Radio type"):
+        if line.lower().startswith("radio type"):
             parts = line.split(":", 1)
-            if len(parts) > 1:
+            if len(parts) > 1 and parts[1].strip():
                 current_ap["Radio"] = parts[1].strip()
             continue
 
-        # Basic rates: e.g. 'Basic rates (Mbps) : 6 12 24'
-        if current_ap is not None and "basic rates" in line.lower():
+        if "basic rates" in line.lower():
             parts = line.split(":", 1)
-            if len(parts) > 1:
+            if len(parts) > 1 and parts[1].strip():
                 current_ap["BasicRates"] = parts[1].strip()
             continue
 
-        # Other rates: e.g. 'Other rates (Mbps) : 9 18 36 48 54'
-        if current_ap is not None and "other rates" in line.lower():
+        if "other rates" in line.lower():
             parts = line.split(":", 1)
-            if len(parts) > 1:
+            if len(parts) > 1 and parts[1].strip():
                 current_ap["OtherRates"] = parts[1].strip()
             continue
 
@@ -148,10 +189,70 @@ def scan_wifi():
     return networks
 
 
+def scan_wifi_detailed(timeout=12):
+    """
+    Executes Windows `netsh wlan show networks mode=bssid` without modifying
+    any adapter or system network settings.
+
+    Returns a structured status dictionary so callers can distinguish an empty
+    RF environment (success=True, networks=[]) from a scanner error (success=False):
+    {
+        "success": bool,
+        "networks": list[dict],
+        "error": str | None
+    }
+    """
+    try:
+        result = subprocess.run(
+            ["netsh", "wlan", "show", "networks", "mode=bssid"],
+            capture_output=True,
+            timeout=timeout
+        )
+    except FileNotFoundError:
+        err = "'netsh' command not found. This scanner requires a Windows environment."
+        return {"success": False, "networks": [], "error": err}
+    except subprocess.TimeoutExpired:
+        err = f"Wi-Fi scan timed out after {timeout} seconds."
+        return {"success": False, "networks": [], "error": err}
+    except Exception as e:
+        err = f"Error executing netsh command: {e}"
+        return {"success": False, "networks": [], "error": err}
+
+    stdout_text = _decode_subprocess_output(result.stdout)
+    stderr_text = _decode_subprocess_output(result.stderr)
+
+    if result.returncode != 0:
+        err_msg = stderr_text.strip() or stdout_text.strip() or f"netsh exited with code {result.returncode}"
+        lower_err = err_msg.lower()
+        if "wlansvc" in lower_err or "service" in lower_err:
+            friendly = f"Windows WLAN AutoConfig service (wlansvc) is not running ({err_msg})."
+        elif "interface" in lower_err or "not found" in lower_err:
+            friendly = f"No active Wi-Fi interface detected or Wi-Fi adapter is disabled ({err_msg})."
+        else:
+            friendly = f"Wi-Fi scanner failed: {err_msg}"
+        return {"success": False, "networks": [], "error": friendly}
+
+    networks = parse_netsh_output(stdout_text)
+    return {"success": True, "networks": networks, "error": None}
+
+
+def scan_wifi():
+    """
+    Backward-compatible scanner wrapper returning list of scanned AP dictionaries.
+    Prints scanner error notices clearly if scanning failed.
+    """
+    scan_res = scan_wifi_detailed()
+    if not scan_res["success"]:
+        print(f"Notice: {scan_res['error']}")
+        return []
+    return scan_res["networks"]
+
+
 def save_observations_to_csv(networks, csv_path=None):
     """
     Appends scanned networks to wifi_observations.csv.
-    Maintains raw real observations with timestamps and error safety.
+    Preserves existing CSV column layout while recording unavailable values as empty
+    strings rather than inventing synthetic values.
     """
     if not networks:
         return
@@ -170,12 +271,15 @@ def save_observations_to_csv(networks, csv_path=None):
             if not file_exists:
                 writer.writeheader()
             for net in networks:
+                sig = net.get("Signal")
+                ch = net.get("Channel")
+                sec = net.get("Security")
                 writer.writerow({
                     "SSID": net.get("SSID", ""),
-                    "BSSID": str(net.get("BSSID", "")).lower(),
-                    "Signal": net.get("Signal", 0),
-                    "Channel": net.get("Channel", 1),
-                    "Security": net.get("Security", "Unknown"),
+                    "BSSID": normalize_bssid(net.get("BSSID", "")) or str(net.get("BSSID", "")).lower(),
+                    "Signal": "" if sig is None else sig,
+                    "Channel": "" if ch is None else ch,
+                    "Security": "Unavailable" if sec is None else sec,
                     "Timestamp": net.get("Timestamp", datetime.now().strftime("%Y-%m-%d %H:%M:%S")),
                     "Label": net.get("Label", "Unknown")
                 })
@@ -188,16 +292,21 @@ if __name__ == "__main__":
     print("      REAL WI-FI SCANNER (WINDOWS NETSH)          ")
     print("==================================================")
     print("Scanning nearby access points using built-in adapter...\n")
-    scanned = scan_wifi()
-    if not scanned:
-        print("No Wi-Fi networks found or Wi-Fi adapter is turned off.")
+    res = scan_wifi_detailed()
+    if not res["success"]:
+        print(f"[ERROR] Scan failed: {res['error']}")
+    elif not res["networks"]:
+        print("Scan succeeded: No Wi-Fi networks currently in range.")
     else:
+        scanned = res["networks"]
         print(f"Found {len(scanned)} Access Point(s):\n")
-        print(f"{'SSID':<25} {'BSSID (MAC)':<20} {'Signal':<8} {'Channel':<8} {'Security':<15}")
-        print("-" * 80)
+        print(f"{'SSID':<25} {'BSSID (MAC)':<20} {'Signal':<12} {'Channel':<10} {'Security':<18}")
+        print("-" * 90)
         for net in scanned:
-            sig = f"{net['Signal']}%"
-            print(f"{net['SSID']:<25} {net['BSSID']:<20} {sig:<8} {str(net['Channel']):<8} {net['Security']:<15}")
+            sig = f"{net['Signal']}%" if net.get("Signal") is not None else "Unavailable"
+            ch = str(net["Channel"]) if net.get("Channel") is not None else "Unavailable"
+            sec = net.get("Security") or "Unavailable"
+            print(f"{net['SSID']:<25} {net['BSSID']:<20} {sig:<12} {ch:<10} {sec:<18}")
         save_observations_to_csv(scanned)
-        print("-" * 80)
+        print("-" * 90)
         print(f"Saved {len(scanned)} observation(s) to dataset/wifi_observations.csv")
